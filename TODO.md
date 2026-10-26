@@ -14,7 +14,7 @@
 ## Placeholders (do not invent values)
 
 - [ ] LICENSE copyright holder: replace `TODO: copyright holder year and legal name`
-- [ ] `config/ui-docs.php` `whatsapp_url`: replace with real WhatsApp deep link when available
+- [x] `config/ui-docs.php` `whatsapp_url`: `https://wa.me/6285117170755` (085117170755)
 - [x] `config/ui-docs.php` `email`: `praesepe@idnasirasira.com`
 - [x] `config/ui-docs.php` `github_url`: `https://github.com/idnasirasira/praesepe-ui`
 - [ ] Brand logo assets: do not invent logos; add SVG or raster assets under `public/` when ready
@@ -25,9 +25,9 @@
 
 - [ ] Point DNS for `ui.praesepe.id` and enable HTTPS on the production host
 - [ ] Set production `.env` (`APP_URL=https://ui.praesepe.id`, `APP_ENV=production`, `APP_DEBUG=false`)
-- [ ] Fill `whatsapp_url` in `config/ui-docs.php` (or env-backed config) before marketing blasts (`email` and `github_url` are set)
+- [x] Fill `whatsapp_url` in `config/ui-docs.php` (`email` and `github_url` are set)
 - [ ] Run `php artisan optimize` on the server after deploy (CI already verifies optimize locally)
 - [ ] Publish package distribution strategy (copy-paste docs only vs Composer package)
 - [ ] Replace home page marketing TODO with real proof points when available
 - [ ] Add real brand logo assets under `public/` when approved
-- [ ] Optional: wire search "Ask Praesepe to build it" CTA exclusively to WhatsApp once the deep link exists
+- [x] Wire search "Ask Praesepe to build it" CTA to WhatsApp deep link

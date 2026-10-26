@@ -6,8 +6,7 @@ return [
     'name' => 'Praesepe UI',
     'version' => '0.1.0',
     'praesepe_url' => 'https://praesepe.id',
-    // TODO: replace with real WhatsApp deep link when available
-    'whatsapp_url' => null,
+    'whatsapp_url' => 'https://wa.me/6285117170755',
     'email' => 'praesepe@idnasirasira.com',
     'github_url' => 'https://github.com/idnasirasira/praesepe-ui',
     'navigation' => [
