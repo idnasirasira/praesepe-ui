@@ -1,0 +1,27 @@
+<fieldset class="grid max-w-xl gap-3 sm:grid-cols-2">
+    <legend class="mb-1 text-sm font-medium text-fg">Deployment region</legend>
+    <label class="flex cursor-pointer items-start gap-3 rounded-card border border-border bg-surface-raised p-4 shadow-sm has-[:checked]:border-brand has-[:checked]:bg-brand/5">
+        <span class="relative mt-0.5 inline-flex size-4 shrink-0">
+            <input id="region-sg" type="radio" name="region" value="sg" checked class="peer absolute inset-0 z-10 size-4 cursor-pointer opacity-0">
+            <span class="pointer-events-none flex size-4 items-center justify-center rounded-full border border-border-strong bg-surface-raised shadow-sm peer-checked:border-brand peer-checked:[&_.dot]:opacity-100" aria-hidden="true">
+                <span class="dot size-2 rounded-full bg-brand opacity-0"></span>
+            </span>
+        </span>
+        <span>
+            <span class="block text-sm font-medium text-fg">Singapore</span>
+            <span class="mt-0.5 block text-sm text-fg-muted">Lowest latency for SEA users.</span>
+        </span>
+    </label>
+    <label class="flex cursor-pointer items-start gap-3 rounded-card border border-border bg-surface-raised p-4 shadow-sm has-[:checked]:border-brand has-[:checked]:bg-brand/5">
+        <span class="relative mt-0.5 inline-flex size-4 shrink-0">
+            <input id="region-eu" type="radio" name="region" value="eu" class="peer absolute inset-0 z-10 size-4 cursor-pointer opacity-0">
+            <span class="pointer-events-none flex size-4 items-center justify-center rounded-full border border-border-strong bg-surface-raised shadow-sm peer-checked:border-brand peer-checked:[&_.dot]:opacity-100" aria-hidden="true">
+                <span class="dot size-2 rounded-full bg-brand opacity-0"></span>
+            </span>
+        </span>
+        <span>
+            <span class="block text-sm font-medium text-fg">Frankfurt</span>
+            <span class="mt-0.5 block text-sm text-fg-muted">EU data residency friendly.</span>
+        </span>
+    </label>
+</fieldset>
