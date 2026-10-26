@@ -75,7 +75,7 @@
         @endforeach
     </div>
 
-    <div class="mt-12 space-y-8">
+    <div class="mt-10 space-y-8">
         <div id="props">
             <h2 class="mb-3 text-xl font-semibold tracking-tight text-fg">Props API</h2>
             <x-docs.props-table :props="$page->props" />

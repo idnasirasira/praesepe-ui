@@ -11,25 +11,20 @@
 - Larastan: 3.x (PHPStan level 6)
 - Playwright + `@axe-core/playwright`: E2E a11y and keyboard suites
 
-## Placeholders (do not invent values)
+## Done
+
+- [x] `config/ui-docs.php` contact links (`whatsapp_url`, `email`, `github_url`)
+- [x] DNS + HTTPS for `ui.praesepe.id`
+- [x] Production `.env` (`APP_URL=https://ui.praesepe.id`, `APP_ENV=production`, `APP_DEBUG=false`)
+- [x] Deploy runs `php artisan optimize` (`deploy.local.sh` remote commands)
+- [x] Praesepe UI MCP via Laravel MCP (`Mcp::web('/mcp/praesepe-ui')` + local `mcp:start`)
+- [x] Document consumer setup (`/docs/mcp`, `mcp/README.md`, copy-paste agent prompt)
+- [x] Wire search "Ask Praesepe to build it" CTA to WhatsApp deep link
+
+## Still open (do not invent values)
 
 - [ ] LICENSE copyright holder: replace `TODO: copyright holder year and legal name`
-- [x] `config/ui-docs.php` `whatsapp_url`: `https://wa.me/6285117170755` (085117170755)
-- [x] `config/ui-docs.php` `email`: `praesepe@idnasirasira.com`
-- [x] `config/ui-docs.php` `github_url`: `https://github.com/idnasirasira/praesepe-ui`
-- [ ] Brand logo assets: do not invent logos; add SVG or raster assets under `public/` when ready
-- [ ] Home page marketing metrics, testimonials, and client names: keep as explicit TODO until real data exists
-- [ ] Social proof (star counts, download counts): omit until measurable from a public source
-
-## Launch follow-ups
-
-- [ ] Point DNS for `ui.praesepe.id` and enable HTTPS on the production host
-- [ ] Set production `.env` (`APP_URL=https://ui.praesepe.id`, `APP_ENV=production`, `APP_DEBUG=false`)
-- [x] Fill `whatsapp_url` in `config/ui-docs.php` (`email` and `github_url` are set)
-- [ ] Run `php artisan optimize` on the server after deploy (CI already verifies optimize locally)
+- [ ] Brand logo assets under `public/` when approved (Blade lockups in `x-docs.logo` / `x-docs.praesepe-logo` are interim)
+- [ ] Home page marketing metrics, testimonials, and client names (still called out in `home.blade.php`)
+- [ ] Social proof (star counts, download counts) until measurable from a public source
 - [ ] Publish package distribution strategy (copy-paste docs only vs Composer package)
-- [x] Praesepe UI MCP via Laravel MCP (`php artisan mcp:start praesepe-ui` + `Mcp::web('/mcp/praesepe-ui')`)
-- [x] Document external consumer setup (`/docs/mcp`, `mcp/README.md`: remote URL + local stdio)
-- [ ] Replace home page marketing TODO with real proof points when available
-- [ ] Add real brand logo assets under `public/` when approved
-- [x] Wire search "Ask Praesepe to build it" CTA to WhatsApp deep link

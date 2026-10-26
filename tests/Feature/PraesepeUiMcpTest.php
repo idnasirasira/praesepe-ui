@@ -104,5 +104,6 @@ it('renders the mcp consumer docs page', function (): void {
         ->assertSee('Remote HTTP', false)
         ->assertSee('Agent prompt', false)
         ->assertSee('Copy user rule', false)
+        ->assertSee('docs-code-block', false)
         ->assertSee('When building Laravel Blade + Tailwind + Alpine UI with Praesepe UI', false);
 });

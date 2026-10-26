@@ -27,6 +27,49 @@
     }
 }
 
+/*
+ | Docs prose rhythm (single source of truth).
+ | Use <x-docs.article> so pages do not invent their own h1/h2/p spacing.
+ */
+@layer components {
+    .docs-prose > h1 {
+        @apply text-3xl font-semibold tracking-tight text-balance text-fg;
+    }
+
+    .docs-prose > h2 {
+        @apply mt-10 text-xl font-semibold tracking-tight text-fg;
+    }
+
+    .docs-prose > h3 {
+        @apply mt-8 text-base font-semibold tracking-tight text-fg;
+    }
+
+    .docs-prose > p {
+        @apply mt-3 text-fg-muted leading-relaxed text-pretty;
+    }
+
+    .docs-prose > p + p {
+        @apply mt-6;
+    }
+
+    .docs-prose > ul {
+        @apply mt-3 list-disc space-y-2 pl-5 text-fg leading-relaxed;
+    }
+
+    .docs-prose > ol {
+        @apply mt-3 list-decimal space-y-2 pl-5 text-fg leading-relaxed;
+    }
+
+    .docs-prose > pre,
+    .docs-prose > .docs-code-block {
+        @apply mt-4;
+    }
+
+    .docs-prose > .docs-cta {
+        @apply mt-12;
+    }
+}
+
 @keyframes ui-toast-progress {
     from {
         transform: scaleX(1);
