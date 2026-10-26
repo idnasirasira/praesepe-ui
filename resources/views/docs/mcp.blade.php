@@ -24,14 +24,9 @@
 
     <h2 id="remote" class="mt-10 text-xl font-semibold tracking-tight text-fg">Remote HTTP</h2>
     <p class="mt-3 text-fg-muted leading-relaxed text-pretty">
-        Point any MCP client that supports HTTP transport at this endpoint (uses your current
-        <code class="rounded bg-surface-sunken px-1 text-sm">APP_URL</code>):
+        Point any MCP client that supports HTTP transport at the public production endpoint. No clone required.
     </p>
     <pre class="docs-code mt-4 overflow-x-auto rounded-card border border-border bg-surface-sunken p-4 text-xs text-fg tabular-nums"><code>{{ $mcpUrl }}</code></pre>
-    <p class="mt-3 text-sm text-fg-muted leading-relaxed">
-        Production target once DNS is live:
-        <code class="rounded bg-surface-sunken px-1 text-sm tabular-nums">https://ui.praesepe.id/mcp/praesepe-ui</code>.
-    </p>
 
     <h3 class="mt-8 text-base font-semibold tracking-tight text-fg">Cursor</h3>
     <p class="mt-2 text-fg-muted leading-relaxed text-pretty">

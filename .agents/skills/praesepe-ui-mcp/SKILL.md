@@ -9,7 +9,7 @@ When implementing UI with Praesepe components, call the `praesepe-ui` MCP tools 
 
 ## Connect
 
-- **Preferred:** remote HTTP `{APP_URL}/mcp/praesepe-ui` (no auth). Cursor: `"url": "https://ui.praesepe.id/mcp/praesepe-ui"`.
+- **Preferred:** remote HTTP `https://ui.praesepe.id/mcp/praesepe-ui` (no auth).
 - **Optional:** local stdio `php artisan mcp:start praesepe-ui` from a clone. Cursor starts it; do not run by hand.
 - Human setup: `/docs/mcp` and `mcp/README.md`.
 

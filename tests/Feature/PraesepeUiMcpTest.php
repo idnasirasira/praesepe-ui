@@ -65,6 +65,7 @@ it('lists icons and guidelines', function (): void {
         ->assertSee('long-form')
         ->assertSee('get_snippet')
         ->assertSee('/docs/mcp')
+        ->assertSee('https://ui.praesepe.id/mcp/praesepe-ui')
         ->assertSee('Theme tokens')
         ->assertSee('tabular-nums')
         ->assertSee('praesepe://guidelines');
@@ -98,7 +99,7 @@ it('renders the mcp consumer docs page', function (): void {
     $this->get('/docs/mcp')
         ->assertOk()
         ->assertSee('MCP for agents', false)
-        ->assertSee('/mcp/praesepe-ui', false)
+        ->assertSee('https://ui.praesepe.id/mcp/praesepe-ui', false)
         ->assertSee('get_guidelines', false)
         ->assertSee('Remote HTTP', false);
 });

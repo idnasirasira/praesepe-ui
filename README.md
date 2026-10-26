@@ -70,7 +70,7 @@ Optional UI mode: `npm run test:e2e:ui`. Override the base URL with `PLAYWRIGHT_
 
 Praesepe UI exposes components to coding agents via [Laravel MCP](https://laravel.com/docs/mcp).
 
-- **Public (recommended):** HTTP `{APP_URL}/mcp/praesepe-ui` (no auth). Point Cursor at that URL.
+- **Public (recommended):** HTTP `https://ui.praesepe.id/mcp/praesepe-ui` (no auth). Point Cursor at that URL.
 - **Optional local stdio:** `php artisan mcp:start praesepe-ui` from a clone (Cursor starts it; do not run by hand).
 
 Consumer guide: `/docs/mcp`. Maintainer notes: `mcp/README.md`. Editor folders such as `.cursor/` stay private.

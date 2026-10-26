@@ -35,7 +35,7 @@ Add new consumer rules here (`app/Docs/AgentGuidelines.php`), not in private `.c
 
 ## Cursor (recommended): remote HTTP
 
-Point at the deployed docs host. No clone required.
+Point at production. No clone required.
 
 ```json
 {
@@ -47,9 +47,9 @@ Point at the deployed docs host. No clone required.
 }
 ```
 
-Until production DNS is live, use your staging or local `APP_URL`, for example `http://127.0.0.1:8000/mcp/praesepe-ui`.
-
 Restart Cursor and enable **praesepe-ui**.
+
+For local maintenance of this repo only, you can temporarily point at your `APP_URL` (for example `http://127.0.0.1:8000/mcp/praesepe-ui`) or use stdio below.
 
 ## Optional: local stdio
 

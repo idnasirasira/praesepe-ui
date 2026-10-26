@@ -41,7 +41,7 @@ class DocsController extends Controller
     public function mcp(): View
     {
         return view('docs.mcp', [
-            'mcpUrl' => url('/mcp/praesepe-ui'),
+            'mcpUrl' => (string) config('ui-docs.mcp_url'),
         ]);
     }
 

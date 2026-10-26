@@ -90,7 +90,7 @@ Refuse the default LLM look. If the screen could belong to any SaaS after swappi
 - Warning: clean amber-orange with readable `on-*` contrast
 
 ## Connect
-- Prefer remote HTTP: `{APP_URL}/mcp/praesepe-ui` (no auth)
+- Prefer remote HTTP: `https://ui.praesepe.id/mcp/praesepe-ui` (no auth)
 - Optional local stdio: Cursor runs `php artisan mcp:start praesepe-ui` (do not start manually)
 - Human setup: `/docs/mcp`
 
