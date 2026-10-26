@@ -36,25 +36,13 @@
 
         <div class="flex flex-col justify-center gap-3 bg-surface-sunken/50 p-6 sm:p-8">
             <p class="text-sm font-medium text-fg">Talk to the studio</p>
-            @if ($whatsapp)
-                <x-ui.button class="w-full justify-center" :href="$whatsapp" target="_blank" rel="noopener noreferrer">
-                    Chat on WhatsApp
-                </x-ui.button>
-            @else
-                <span class="inline-flex h-9 items-center justify-center rounded-control border border-dashed border-border px-4 text-sm text-fg-subtle">
-                    WhatsApp: TODO
-                </span>
-            @endif
+            <x-ui.button class="w-full justify-center" :href="$whatsapp" target="_blank" rel="noopener noreferrer">
+                Chat on WhatsApp
+            </x-ui.button>
 
-            @if ($email)
-                <x-ui.button class="w-full justify-center" variant="outline" :href="'mailto:'.$email">
-                    Email the studio
-                </x-ui.button>
-            @else
-                <span class="inline-flex h-9 items-center justify-center rounded-control border border-dashed border-border px-4 text-sm text-fg-subtle">
-                    Contact email: TODO
-                </span>
-            @endif
+            <x-ui.button class="w-full justify-center" variant="outline" :href="'mailto:'.$email">
+                Email the studio
+            </x-ui.button>
 
             <x-ui.button class="w-full justify-center" variant="ghost" :href="config('ui-docs.praesepe_url')" target="_blank" rel="noopener noreferrer">
                 Visit Praesepe

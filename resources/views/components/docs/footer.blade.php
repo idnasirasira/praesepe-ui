@@ -18,15 +18,8 @@
         <div class="flex flex-wrap gap-4 text-sm text-fg-muted">
             <a href="{{ route('docs.index') }}" class="hover:text-fg">Docs</a>
             <a href="{{ route('ui.index') }}" class="hover:text-fg">Kitchen sink</a>
-            @if (config('ui-docs.github_url'))
-                <a href="{{ config('ui-docs.github_url') }}" class="hover:text-fg" rel="noopener noreferrer" target="_blank">GitHub</a>
-            @else
-                {{-- TODO: github_url once repository is public --}}
-                <span class="text-fg-subtle">GitHub: TODO</span>
-            @endif
-            @if (config('ui-docs.whatsapp_url'))
-                <a href="{{ config('ui-docs.whatsapp_url') }}" class="hover:text-fg" rel="noopener noreferrer" target="_blank">WhatsApp</a>
-            @endif
+            <a href="{{ config('ui-docs.github_url') }}" class="hover:text-fg" rel="noopener noreferrer" target="_blank">GitHub</a>
+            <a href="{{ config('ui-docs.whatsapp_url') }}" class="hover:text-fg" rel="noopener noreferrer" target="_blank">WhatsApp</a>
         </div>
     </div>
     <p class="mt-6 text-xs text-fg-subtle">MIT License. Version {{ config('ui-docs.version') }}.</p>
