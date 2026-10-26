@@ -1,0 +1,26 @@
+<div class="divide-y divide-border rounded-card border border-border bg-surface-raised" x-data="{ openIds: ['api', 'webhooks'], toggle(id) { this.openIds = this.openIds.includes(id) ? this.openIds.filter(v => v !== id) : [...this.openIds, id] }, isOpen(id) { return this.openIds.includes(id) } }">
+    <div class="px-4">
+        <h3 class="m-0">
+            <button type="button" id="api-header" class="flex w-full items-center justify-between py-4 text-left text-sm font-medium text-fg" x-on:click="toggle('api')" x-bind:aria-expanded="isOpen('api').toString()" aria-controls="api-panel">
+                <span>API access</span>
+            </button>
+        </h3>
+        <div id="api-panel" role="region" aria-labelledby="api-header" class="grid transition-[grid-template-rows] duration-200" x-bind:class="isOpen('api') ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
+            <div class="overflow-hidden">
+                <p class="pb-4 text-sm text-fg-muted">Generate personal access tokens from Settings.</p>
+            </div>
+        </div>
+    </div>
+    <div class="px-4">
+        <h3 class="m-0">
+            <button type="button" id="webhooks-header" class="flex w-full items-center justify-between py-4 text-left text-sm font-medium text-fg" x-on:click="toggle('webhooks')" x-bind:aria-expanded="isOpen('webhooks').toString()" aria-controls="webhooks-panel">
+                <span>Webhooks</span>
+            </button>
+        </h3>
+        <div id="webhooks-panel" role="region" aria-labelledby="webhooks-header" class="grid transition-[grid-template-rows] duration-200" x-bind:class="isOpen('webhooks') ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
+            <div class="overflow-hidden">
+                <p class="pb-4 text-sm text-fg-muted">Subscribe to deploy and billing events.</p>
+            </div>
+        </div>
+    </div>
+</div>

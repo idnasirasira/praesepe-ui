@@ -42,3 +42,16 @@ it('renders tabs aria contracts for tablist tab and panel', function (): void {
         ->and($html)->toContain('aria-labelledby="account-tab"')
         ->and($html)->toContain('aria-disabled="true"');
 });
+
+it('renders accordion aria contracts for header and region', function (): void {
+    $html = Blade::render(<<<'BLADE'
+        <x-ui.accordion type="single" default="shipping">
+            <x-ui.accordion.item id="shipping" title="Shipping">Ships soon.</x-ui.accordion.item>
+        </x-ui.accordion>
+    BLADE);
+
+    expect($html)->toContain('x-bind:aria-expanded')
+        ->and($html)->toContain('aria-controls="shipping-panel"')
+        ->and($html)->toContain('role="region"')
+        ->and($html)->toContain('aria-labelledby="shipping-header"');
+});

@@ -1,0 +1,26 @@
+<div class="divide-y divide-border rounded-card border border-border bg-surface-raised" x-data="{ openId: 'shipping', toggle(id) { this.openId = this.openId === id ? null : id }, isOpen(id) { return this.openId === id } }">
+    <div class="px-4">
+        <h3 class="m-0">
+            <button type="button" class="flex w-full items-center justify-between py-4 text-left text-sm font-medium text-fg" x-on:click="toggle('shipping')" x-bind:aria-expanded="isOpen('shipping').toString()" aria-controls="shipping-panel" id="shipping-header">
+                <span>Shipping</span>
+            </button>
+        </h3>
+        <div id="shipping-panel" role="region" aria-labelledby="shipping-header" class="grid transition-[grid-template-rows] duration-200" x-bind:class="isOpen('shipping') ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
+            <div class="overflow-hidden">
+                <p class="pb-4 text-sm text-fg-muted">Ships within 2 business days across Indonesia.</p>
+            </div>
+        </div>
+    </div>
+    <div class="px-4">
+        <h3 class="m-0">
+            <button type="button" class="flex w-full items-center justify-between py-4 text-left text-sm font-medium text-fg" x-on:click="toggle('returns')" x-bind:aria-expanded="isOpen('returns').toString()" aria-controls="returns-panel" id="returns-header">
+                <span>Returns</span>
+            </button>
+        </h3>
+        <div id="returns-panel" role="region" aria-labelledby="returns-header" class="grid transition-[grid-template-rows] duration-200" x-bind:class="isOpen('returns') ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
+            <div class="overflow-hidden">
+                <p class="pb-4 text-sm text-fg-muted">Start a return within 14 days of delivery.</p>
+            </div>
+        </div>
+    </div>
+</div>
