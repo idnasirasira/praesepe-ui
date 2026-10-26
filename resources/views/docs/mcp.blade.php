@@ -6,6 +6,7 @@
 @section('toc')
     <x-docs.toc :items="[
         ['id' => 'remote', 'label' => 'Remote HTTP'],
+        ['id' => 'prompt', 'label' => 'Agent prompt'],
         ['id' => 'local', 'label' => 'Local stdio'],
         ['id' => 'tools', 'label' => 'Tools'],
         ['id' => 'workflow', 'label' => 'Agent workflow'],
@@ -41,6 +42,16 @@
     }
   }
 }</code></pre>
+
+    <h2 id="prompt" class="mt-10 text-xl font-semibold tracking-tight text-fg">Agent prompt</h2>
+    <p class="mt-3 text-fg-muted leading-relaxed text-pretty">
+        After the MCP server is enabled, paste this into Cursor Settings → Rules → User Rules
+        (or your project's agent rules). Agents will call Praesepe tools instead of inventing markup.
+    </p>
+    <div class="mt-4 flex justify-end">
+        <x-docs.copy-button :code="$agentPrompt" label="Copy user rule" />
+    </div>
+    <pre class="docs-code mt-2 overflow-x-auto rounded-card border border-border bg-surface-sunken p-4 text-xs text-fg whitespace-pre-wrap"><code>{{ $agentPrompt }}</code></pre>
 
     <h2 id="local" class="mt-10 text-xl font-semibold tracking-tight text-fg">Local stdio</h2>
     <p class="mt-3 text-fg-muted leading-relaxed text-pretty">

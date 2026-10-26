@@ -102,4 +102,35 @@ Refuse the default LLM look. If the screen could belong to any SaaS after swappi
 5. Adapt into the app. Keep Alpine long-form. Self-check against the Anti-generic ban list before finishing
 MD;
     }
+
+    /**
+     * Short Cursor User Rules / agent prompt for consumers. Paste into client rules after enabling the MCP server.
+     */
+    public static function userPrompt(): string
+    {
+        $mcpUrl = (string) config('ui-docs.mcp_url');
+        $docsUrl = rtrim((string) config('ui-docs.url'), '/').'/docs/mcp';
+
+        return <<<MD
+# Praesepe UI MCP
+
+When building Laravel Blade + Tailwind + Alpine UI with Praesepe UI, use the `praesepe-ui` MCP tools. Do not invent component APIs, props, variants, or markup.
+
+MCP: {$mcpUrl}
+Setup: {$docsUrl}
+
+## Workflow
+1. `get_guidelines` or resource `praesepe://guidelines` first. Follow Anti-generic and Taste rules before writing markup.
+2. `search_components` or `list_components` to find candidates.
+3. `get_component` for props, a11y notes, and example slugs.
+4. `get_snippet` with format `blade` (Laravel) or `html` (Alpine-only).
+5. Adapt the snippet. Keep long-form Alpine (`x-on:click`, `x-bind:class`). Self-check the Anti-generic ban list.
+
+## Do not
+- Invent prop names or variants not returned by `get_component`.
+- Use Alpine shorthand on Blade components (`:class`, `@click` on `<x-ui.*>`).
+- Construct Tailwind classes with string concatenation.
+- Ship purple gradients, glow stacks, invented metrics, or generic AI landing layouts.
+MD;
+    }
 }

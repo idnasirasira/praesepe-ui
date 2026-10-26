@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Docs\AgentGuidelines;
 use App\Docs\ComponentRegistry;
 use App\Docs\IconCatalog;
 use Illuminate\Contracts\View\View;
@@ -42,6 +43,7 @@ class DocsController extends Controller
     {
         return view('docs.mcp', [
             'mcpUrl' => (string) config('ui-docs.mcp_url'),
+            'agentPrompt' => AgentGuidelines::userPrompt(),
         ]);
     }
 

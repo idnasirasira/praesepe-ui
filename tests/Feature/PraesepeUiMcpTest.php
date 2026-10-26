@@ -101,5 +101,8 @@ it('renders the mcp consumer docs page', function (): void {
         ->assertSee('MCP for agents', false)
         ->assertSee('https://ui.praesepe.id/mcp/praesepe-ui', false)
         ->assertSee('get_guidelines', false)
-        ->assertSee('Remote HTTP', false);
+        ->assertSee('Remote HTTP', false)
+        ->assertSee('Agent prompt', false)
+        ->assertSee('Copy user rule', false)
+        ->assertSee('When building Laravel Blade + Tailwind + Alpine UI with Praesepe UI', false);
 });
