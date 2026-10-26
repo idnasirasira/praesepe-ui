@@ -1,8 +1,50 @@
-<nav class="w-64 rounded-card border border-border bg-surface-raised p-4" aria-label="Sidebar">
-    <p class="mb-3 text-sm font-semibold text-fg">Operasional</p>
-    <p class="mb-1 px-3 text-xs font-semibold uppercase tracking-wide text-fg-subtle">Penjualan</p>
-    <a href="#" class="block rounded-control bg-surface-sunken px-3 py-2 text-sm font-medium text-fg" aria-current="page">Pesanan</a>
-    <a href="#" class="block rounded-control px-3 py-2 text-sm font-medium text-fg-muted">Faktur</a>
-    <p class="mt-4 mb-1 px-3 text-xs font-semibold uppercase tracking-wide text-fg-subtle">Inventori</p>
-    <a href="#" class="block rounded-control px-3 py-2 text-sm font-medium text-fg-muted">Stok gudang</a>
-</nav>
+<div x-data="{ open: false, close() { this.open = false } }" x-on:keydown.escape.window="if (open) close()" x-on:resize.window="if (window.innerWidth >= 1024 && open) close()">
+    <button
+        type="button"
+        class="mb-3 inline-flex h-10 items-center gap-2 rounded-control border border-border bg-surface-raised px-3 text-sm shadow-2xs lg:hidden"
+        x-on:click="open = true"
+        x-bind:aria-expanded="open.toString()"
+        aria-controls="ui-sidebar-panel-demo"
+        aria-label="Open sidebar menu"
+    >
+        Menu
+    </button>
+
+    <nav class="hidden w-64 flex-col gap-4 rounded-card border border-border bg-surface-raised p-4 lg:flex" aria-label="Sidebar">
+        <p class="text-sm font-semibold tracking-tight text-fg">Operasional</p>
+        <p class="px-3 text-xs font-semibold uppercase tracking-wider text-fg-subtle">Penjualan</p>
+        <a href="#" class="flex h-10 items-center rounded-control bg-surface-sunken px-3 text-sm font-medium text-fg" aria-current="page">Pesanan</a>
+        <a href="#" class="flex h-10 items-center rounded-control px-3 text-sm font-medium text-fg-muted hover:bg-surface-sunken">Faktur</a>
+        <p class="mt-2 px-3 text-xs font-semibold uppercase tracking-wider text-fg-subtle">Inventori</p>
+        <a href="#" class="flex h-10 items-center rounded-control px-3 text-sm font-medium text-fg-muted hover:bg-surface-sunken">Stok gudang</a>
+    </nav>
+
+    <template x-teleport="body">
+        <div x-show="open" x-cloak role="dialog" aria-modal="true" aria-label="Operasional" class="fixed inset-0 z-50 lg:hidden">
+            <div class="fixed inset-0 bg-overlay backdrop-blur-[2px]" x-on:click="close()" x-show="open" x-transition:enter="transition-opacity ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" aria-hidden="true"></div>
+            <nav
+                id="ui-sidebar-panel-demo"
+                class="relative flex h-full w-[min(20rem,calc(100vw-2.5rem))] flex-col gap-2 overflow-y-auto overscroll-contain border-r border-border bg-surface-raised p-4 shadow-xl"
+                x-show="open"
+                x-trap.inert.noscroll="open"
+                x-transition:enter="transition ease-out duration-200 transform"
+                x-transition:enter-start="-translate-x-full"
+                x-transition:enter-end="translate-x-0"
+                x-transition:leave="transition ease-in duration-150 transform"
+                x-transition:leave-start="translate-x-0"
+                x-transition:leave-end="-translate-x-full"
+                aria-label="Sidebar"
+            >
+                <div class="mb-2 flex h-10 items-center justify-between">
+                    <p class="text-sm font-semibold text-fg">Operasional</p>
+                    <button type="button" class="inline-flex size-9 items-center justify-center rounded-control text-fg-muted" x-on:click="close()" aria-label="Close sidebar">×</button>
+                </div>
+                <p class="px-3 text-xs font-semibold uppercase tracking-wider text-fg-subtle">Penjualan</p>
+                <a href="#" class="flex h-10 items-center rounded-control bg-brand/10 px-3 text-sm font-medium text-brand" aria-current="page">Pesanan</a>
+                <a href="#" class="flex h-10 items-center rounded-control px-3 text-sm text-fg-muted">Faktur</a>
+                <p class="mt-2 px-3 text-xs font-semibold uppercase tracking-wider text-fg-subtle">Inventori</p>
+                <a href="#" class="flex h-10 items-center rounded-control px-3 text-sm text-fg-muted">Stok gudang</a>
+            </nav>
+        </div>
+    </template>
+</div>

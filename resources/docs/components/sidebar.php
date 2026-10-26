@@ -32,8 +32,9 @@ return [
         'Sidebar is a nav landmark with an accessible label.',
         'Active items set aria-current="page".',
         'Collapsed desktop mode keeps icon affordances and uses title tooltips for labels.',
-        'Mobile off-canvas mode traps focus with x-trap and closes on Escape or overlay click.',
+        'Mobile drawer teleports to body, traps focus with x-trap.inert.noscroll, and closes on Escape, overlay click, or resize to lg+.',
         'Dispatch ui-sidebar-open on window to open the mobile drawer from a sibling control.',
+        'Mobile items use a minimum 40px tap height (h-10).',
     ],
     'examples' => [
         [

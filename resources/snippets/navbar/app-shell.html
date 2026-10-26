@@ -1,12 +1,113 @@
-<header class="border-b border-border bg-surface-raised" x-data="{ open: false }" x-on:keydown.escape.window="open = false">
-    <div class="flex h-14 items-center gap-4 px-4">
-        <button type="button" class="rounded-control border border-border p-2 md:hidden" x-on:click="open = true" x-bind:aria-expanded="open.toString()" aria-label="Open navigation">Menu</button>
-        <a href="/" class="font-semibold text-fg">Toko Kita</a>
-        <nav class="hidden gap-1 md:flex" aria-label="Primary">
-            <a href="#" class="rounded-control bg-surface-sunken px-3 py-2 text-sm font-medium text-fg" aria-current="page">Dashboard</a>
-            <a href="#" class="rounded-control px-3 py-2 text-sm font-medium text-fg-muted">Pesanan</a>
-            <a href="#" class="rounded-control px-3 py-2 text-sm font-medium text-fg-muted">Pelanggan</a>
-        </nav>
-        <div class="ml-auto"><button type="button" class="rounded-control border border-border px-3 py-1.5 text-sm">Akun</button></div>
-    </div>
-</header>
+<div class="space-y-8">
+    <header
+        class="sticky top-0 z-40 w-full border-b border-border bg-surface/85 backdrop-blur-md"
+        x-data="{ mobileOpen: false, close() { this.mobileOpen = false } }"
+        x-on:keydown.escape.window="if (mobileOpen) close()"
+        x-on:resize.window="if (window.innerWidth >= 768 && mobileOpen) close()"
+    >
+        <div class="mx-auto flex h-14 max-w-7xl items-center justify-between gap-4 px-4">
+            <div class="flex items-center gap-6">
+                <a href="/" class="inline-flex items-center gap-2.5 text-base font-semibold tracking-tight text-fg">
+                    <span class="inline-flex size-7 items-center justify-center rounded-control bg-brand text-xs font-bold text-on-brand" aria-hidden="true">T</span>
+                    <span>Toko Kita</span>
+                </a>
+                <nav aria-label="Main navigation" class="hidden md:flex md:gap-1">
+                    <a href="#" class="inline-flex h-10 items-center rounded-control bg-surface-sunken px-3 text-sm font-medium text-fg" aria-current="page">Dashboard</a>
+                    <a href="#" class="inline-flex h-10 items-center rounded-control px-3 text-sm font-medium text-fg-muted hover:bg-surface-sunken hover:text-fg">Pesanan</a>
+                    <a href="#" class="inline-flex h-10 items-center rounded-control px-3 text-sm font-medium text-fg-muted hover:bg-surface-sunken hover:text-fg">Pelanggan</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="hidden md:block">
+                    <button type="button" class="inline-flex h-8 items-center rounded-control border border-border px-2.5 text-xs font-medium">Akun</button>
+                </div>
+                <button
+                    type="button"
+                    class="inline-flex size-9 items-center justify-center rounded-control border border-border bg-surface-raised text-fg shadow-2xs hover:bg-surface-sunken md:hidden"
+                    x-on:click="mobileOpen = !mobileOpen"
+                    x-bind:aria-expanded="mobileOpen.toString()"
+                    aria-controls="ui-navbar-drawer-demo"
+                    aria-label="Open navigation menu"
+                >
+                    <svg x-show="!mobileOpen" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h12" /></svg>
+                    <svg x-show="mobileOpen" x-cloak class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" d="M18 6 6 18M6 6l12 12" /></svg>
+                </button>
+            </div>
+        </div>
+
+        <template x-teleport="body">
+            <div x-show="mobileOpen" x-cloak id="ui-navbar-drawer-demo" role="dialog" aria-modal="true" aria-label="Mobile navigation" class="fixed inset-0 z-50 md:hidden">
+                <div class="fixed inset-0 bg-overlay backdrop-blur-[2px]" x-on:click="close()" x-show="mobileOpen" x-transition:enter="transition-opacity ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" aria-hidden="true"></div>
+                <div
+                    class="relative flex h-full w-[min(20rem,calc(100vw-2.5rem))] flex-col border-r border-border bg-surface-raised shadow-xl"
+                    x-show="mobileOpen"
+                    x-trap.inert.noscroll="mobileOpen"
+                    x-transition:enter="transition ease-out duration-200 transform"
+                    x-transition:enter-start="-translate-x-full"
+                    x-transition:enter-end="translate-x-0"
+                    x-transition:leave="transition ease-in duration-150 transform"
+                    x-transition:leave-start="translate-x-0"
+                    x-transition:leave-end="-translate-x-full"
+                >
+                    <div class="flex h-14 items-center justify-between border-b border-border px-4">
+                        <span class="text-sm font-semibold text-fg">Toko Kita</span>
+                        <button type="button" class="inline-flex size-9 items-center justify-center rounded-control text-fg-muted" x-on:click="close()" aria-label="Close navigation menu">×</button>
+                    </div>
+                    <nav aria-label="Mobile navigation links" class="flex-1 overflow-y-auto overscroll-contain px-3 py-4">
+                        <a href="#" class="flex h-10 items-center rounded-control border-l-2 border-brand bg-brand/10 px-3 text-sm font-medium text-brand" aria-current="page">Dashboard</a>
+                        <a href="#" class="flex h-10 items-center rounded-control border-l-2 border-transparent px-3 text-sm text-fg-muted hover:bg-surface-sunken">Pesanan</a>
+                        <a href="#" class="flex h-10 items-center rounded-control border-l-2 border-transparent px-3 text-sm text-fg-muted hover:bg-surface-sunken">Pelanggan</a>
+                    </nav>
+                    <div class="border-t border-border bg-surface p-4">
+                        <button type="button" class="inline-flex h-9 w-full items-center justify-center rounded-control border border-border text-sm">Akun</button>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </header>
+
+    <header
+        class="relative z-40 w-full border-b border-border bg-surface/85 backdrop-blur-md"
+        x-data="{ mobileOpen: false, close() { this.mobileOpen = false } }"
+        x-on:keydown.escape.window="if (mobileOpen) close()"
+    >
+        <div class="flex h-14 items-center justify-between gap-4 px-4">
+            <a href="/" class="inline-flex items-center gap-2 font-semibold tracking-tight text-fg">
+                <span class="inline-flex size-7 items-center justify-center rounded-control bg-brand text-xs font-bold text-on-brand" aria-hidden="true">T</span>
+                Toko Kita
+            </a>
+            <button
+                type="button"
+                class="inline-flex size-10 items-center justify-center rounded-control text-fg-muted hover:bg-surface-sunken md:hidden"
+                x-on:click="mobileOpen = !mobileOpen"
+                x-bind:aria-expanded="mobileOpen.toString()"
+                aria-controls="ui-navbar-floating-demo"
+                aria-label="Open navigation menu"
+            >
+                Menu
+            </button>
+            <nav class="hidden gap-1 md:flex" aria-label="Main navigation">
+                <a href="#" class="inline-flex h-10 items-center rounded-control bg-surface-sunken px-3 text-sm font-medium" aria-current="page">Dashboard</a>
+                <a href="#" class="inline-flex h-10 items-center rounded-control px-3 text-sm text-fg-muted">Stok</a>
+            </nav>
+        </div>
+        <div
+            x-show="mobileOpen"
+            x-cloak
+            id="ui-navbar-floating-demo"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation"
+            class="absolute inset-x-3 top-[calc(100%+0.5rem)] z-50 md:hidden"
+            x-trap.inert.noscroll="mobileOpen"
+            x-on:click.outside="close()"
+        >
+            <div class="overflow-hidden rounded-card border border-border bg-surface-raised shadow-xl ring-1 ring-black/5">
+                <nav class="flex flex-col gap-1 p-3" aria-label="Mobile navigation links">
+                    <a href="#" class="flex h-10 items-center rounded-control bg-brand/10 px-3 text-sm font-medium text-brand" aria-current="page">Dashboard</a>
+                    <a href="#" class="flex h-10 items-center rounded-control px-3 text-sm text-fg-muted">Stok</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+</div>

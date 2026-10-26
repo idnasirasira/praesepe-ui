@@ -5,20 +5,32 @@
 
 @section('body')
 <div class="min-h-dvh bg-surface text-fg">
-    <header class="sticky top-0 z-20 border-b border-border/80 bg-surface/80 backdrop-blur-md">
-        <div class="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-            <a href="{{ route('home') }}" class="text-base font-semibold tracking-tight text-fg">
-                {{ config('ui-docs.name') }}
-            </a>
-            <nav class="flex items-center gap-2 text-sm sm:gap-3" aria-label="Primary">
-                <a href="{{ route('docs.index') }}" class="hidden text-fg-muted transition-colors hover:text-fg sm:inline">Docs</a>
-                <a href="{{ route('ui.index') }}" class="hidden text-fg-muted transition-colors hover:text-fg sm:inline">Kitchen sink</a>
-                <x-docs.theme-switcher />
-                <x-docs.dark-mode-toggle />
-                <x-ui.button variant="outline" size="sm" :href="route('docs.index')">Get started</x-ui.button>
-            </nav>
-        </div>
-    </header>
+    <x-ui.navbar :brand-href="route('home')" :brand-name="config('ui-docs.name')" class="z-20">
+        <x-slot:links>
+            <x-ui.navbar.link :href="route('docs.index')">Docs</x-ui.navbar.link>
+            <x-ui.navbar.link :href="route('ui.index')">Kitchen sink</x-ui.navbar.link>
+        </x-slot:links>
+
+        <x-slot:actions>
+            <div class="flex flex-col gap-3 md:flex-row md:items-center md:gap-2">
+                <div class="flex items-center gap-2">
+                    <x-docs.theme-switcher />
+                    <x-docs.dark-mode-toggle />
+                </div>
+                @if (config('ui-docs.github_url'))
+                    <a
+                        href="{{ config('ui-docs.github_url') }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex h-9 items-center justify-center rounded-control border border-border bg-surface-raised px-3 text-sm font-medium text-fg shadow-2xs transition-colors duration-150 hover:bg-surface-sunken md:h-8 md:px-2.5 md:text-xs"
+                    >
+                        GitHub
+                    </a>
+                @endif
+                <x-ui.button variant="outline" size="sm" class="w-full justify-center md:w-auto" :href="route('docs.index')">Get started</x-ui.button>
+            </div>
+        </x-slot:actions>
+    </x-ui.navbar>
 
     <main id="main-content">
         <section class="relative overflow-hidden border-b border-border">

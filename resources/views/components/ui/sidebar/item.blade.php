@@ -12,8 +12,8 @@
     href="{{ $href }}"
     @if ($current) aria-current="page" @endif
     {{ $attributes->class([
-        'inline-flex items-center gap-3 rounded-control px-3 py-2 text-sm font-medium',
-        'bg-surface-sunken text-fg' => $current,
+        'inline-flex h-10 items-center gap-3 rounded-control px-3 text-sm font-medium transition-colors duration-150',
+        'bg-brand/10 font-medium text-brand lg:bg-surface-sunken lg:text-fg' => $current,
         'text-fg-muted hover:bg-surface-sunken hover:text-fg' => ! $current,
     ]) }}
     x-bind:title="collapsed && !open ? @js($title) : null"
