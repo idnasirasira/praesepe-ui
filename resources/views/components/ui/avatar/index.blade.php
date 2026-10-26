@@ -76,6 +76,7 @@
     @if ($statusClass)
         <span
             class="absolute right-0 bottom-0 {{ $statusSizeClass }} rounded-full ring-2 ring-surface {{ $statusClass }}"
+            role="img"
             aria-label="{{ $status }}"
             title="{{ $status }}"
         ></span>

@@ -33,6 +33,7 @@ Run these before every pull request:
 ```bash
 composer check
 npm run build
+npm run test:e2e
 ```
 
 Individual scripts:
@@ -41,6 +42,24 @@ Individual scripts:
 - `composer format` : auto-fix style with Pint
 - `composer analyse` : Larastan / PHPStan level 6
 - `composer test` : Pest test suite
+- `npm run test:e2e` : Playwright Axe a11y + keyboard interaction suite
+- `npm run test:e2e:a11y` : Axe WCAG 2.2 AA only (`tests/e2e/a11y.spec.ts`)
+- `npm run test:e2e:interactions` : keyboard flows only (`tests/e2e/interactions.spec.ts`)
+
+### Playwright setup
+
+One-time browser install:
+
+```bash
+npx playwright install chromium
+```
+
+Then build frontend assets and run the suite. Playwright starts `php artisan serve` on `http://127.0.0.1:8000` unless `PLAYWRIGHT_BASE_URL` points at an already running app:
+
+```bash
+npm run build
+npm run test:e2e
+```
 
 ## Architecture rules (summary)
 
@@ -82,4 +101,4 @@ Keep commits small and green: run `composer lint` and `composer test` before com
 1. Describe the why, not only the what.
 2. Link related issues when applicable.
 3. Include screenshots for visual changes.
-4. Confirm `composer check` and `npm run build` pass.
+4. Confirm `composer check`, `npm run build`, and `npm run test:e2e` pass.

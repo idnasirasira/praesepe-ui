@@ -39,10 +39,29 @@
                 const hay = [entry.title, entry.description, ...(entry.tags || [])].join(' ').toLowerCase();
                 return hay.includes(q);
             }).slice(0, 12);
+        },
+        openSearchFromSlash(event) {
+            if (event.key !== '/' || this.searchOpen) {
+                return;
+            }
+
+            const target = event.target;
+            if (!(target instanceof Element)) {
+                return;
+            }
+
+            const tag = target.tagName;
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(tag) || target.isContentEditable) {
+                return;
+            }
+
+            event.preventDefault();
+            this.openSearch();
         }
     }"
     x-on:keydown.window.prevent.cmd.k="openSearch()"
     x-on:keydown.window.prevent.ctrl.k="openSearch()"
+    x-on:keydown.window="openSearchFromSlash($event)"
 >
     <header class="sticky top-0 z-40 border-b border-border bg-surface/90 backdrop-blur">
         <div class="mx-auto flex h-14 max-w-7xl items-center gap-3 px-4 sm:px-6 lg:px-8">
@@ -152,20 +171,23 @@
         class="fixed inset-0 z-50 flex items-start justify-center bg-fg/50 p-4 pt-[12vh]"
         x-show="searchOpen"
         x-cloak
-        x-on:keydown.escape.window="closeSearch()"
+        x-on:keydown.escape.window="if (searchOpen) closeSearch()"
+        x-on:click.self="closeSearch()"
         role="dialog"
         aria-modal="true"
         aria-label="Search documentation"
+        x-trap.inert.noscroll="searchOpen"
     >
-        <div class="w-full max-w-xl overflow-hidden rounded-card border border-border bg-surface-raised shadow-lg" x-on:click.outside="closeSearch()">
+        <div class="w-full max-w-xl overflow-hidden rounded-card border border-border bg-surface-raised shadow-lg">
             <div class="flex items-center gap-2 border-b border-border px-3">
-                <x-icons.search class="size-4 text-fg-subtle" />
+                <x-icons.search class="size-4 text-fg-subtle" aria-hidden="true" />
                 <input
                     type="search"
                     x-ref="searchInput"
                     x-model="query"
                     x-on:input="runSearch()"
                     placeholder="Search components and docs"
+                    aria-label="Search components and docs"
                     class="w-full border-0 bg-transparent py-3 text-sm text-fg outline-none placeholder:text-fg-subtle"
                 >
                 <button type="button" class="text-xs text-fg-subtle" x-on:click="closeSearch()">Esc</button>

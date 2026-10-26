@@ -36,6 +36,28 @@ Visit the local app URL printed by Herd, Sail, or `php artisan serve`.
 | `composer check` | lint + analyse + test |
 | `npm run build` | Production Vite build |
 | `npm run dev` | Vite development server |
+| `npm run test:e2e` | Playwright a11y + keyboard interaction suite |
+| `npm run test:e2e:a11y` | Axe WCAG 2.2 AA scan across themes and modes |
+| `npm run test:e2e:interactions` | Modal, dropdown, tabs, and search keyboard flows |
+
+### End-to-end accessibility and keyboard tests
+
+Install browser binaries once, build assets, then run Playwright (it starts `php artisan serve` automatically):
+
+```bash
+npx playwright install chromium
+npm run build
+npm run test:e2e
+```
+
+Run only Axe or only interaction specs:
+
+```bash
+npm run test:e2e:a11y
+npm run test:e2e:interactions
+```
+
+Optional UI mode: `npm run test:e2e:ui`. Override the base URL with `PLAYWRIGHT_BASE_URL` when the app is already running.
 
 ## Philosophy
 

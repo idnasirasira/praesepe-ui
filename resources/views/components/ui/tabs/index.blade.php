@@ -32,8 +32,9 @@
         active: @js($active),
         orientation: @js($orientation),
         select(id) {
-            const tab = this.$refs.tablist?.querySelector('[role=tab][data-tab-id=\"' + id + '\"]');
-            if (tab?.disabled || tab?.getAttribute('aria-disabled') === 'true') return;
+            const tab = Array.from(this.$refs.tablist?.querySelectorAll('[role=tab]') || [])
+                .find((el) => el.getAttribute('data-tab-id') === id);
+            if (!tab || tab.disabled || tab.getAttribute('aria-disabled') === 'true') return;
             this.active = id;
         },
         tabs() {

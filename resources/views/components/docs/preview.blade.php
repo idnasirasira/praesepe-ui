@@ -86,10 +86,10 @@
         </div>
 
         <div role="tabpanel" x-show="tab === 'html'">
-            <pre class="overflow-x-auto p-4 text-xs leading-relaxed text-fg"><code>{{ $html }}</code></pre>
+            <pre tabindex="0" class="overflow-x-auto p-4 text-xs leading-relaxed text-fg" role="region" aria-label="{{ $title }} HTML source"><code>{{ $html }}</code></pre>
         </div>
         <div role="tabpanel" x-show="tab === 'blade'" x-cloak>
-            <pre class="overflow-x-auto p-4 text-xs leading-relaxed text-fg"><code>{{ $blade }}</code></pre>
+            <pre tabindex="0" class="overflow-x-auto p-4 text-xs leading-relaxed text-fg" role="region" aria-label="{{ $title }} Blade source"><code>{{ $blade }}</code></pre>
         </div>
     </div>
 </section>

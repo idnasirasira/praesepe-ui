@@ -18,7 +18,11 @@
 @endphp
 
 @if ($header)
-    <th scope="col" {{ $cellAttributes->class(['px-4 py-3 font-medium']) }}>
+    <th
+        scope="col"
+        @if ($sortable) aria-sort="{{ $ariaSort }}" @endif
+        {{ $cellAttributes->class(['px-4 py-3 font-medium']) }}
+    >
         @if ($selectAll)
             <input
                 type="checkbox"
@@ -32,7 +36,6 @@
             <button
                 type="button"
                 class="inline-flex items-center gap-1 rounded-control text-left hover:text-fg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ui-ring)]"
-                aria-sort="{{ $ariaSort }}"
                 {{ $actionAttributes }}
             >
                 <span>{{ $slot }}</span>
