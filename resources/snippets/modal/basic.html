@@ -1,0 +1,31 @@
+<div x-data="{ open: false }">
+    <button
+        type="button"
+        class="inline-flex h-10 items-center justify-center rounded-control bg-brand px-4 text-sm font-medium text-on-brand"
+        x-on:click="open = true"
+    >
+        Open dialog
+    </button>
+
+    <template x-teleport="body">
+        <div
+            x-show="open"
+            x-cloak
+            class="fixed inset-0 z-50 flex items-center justify-center p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="demo-modal-title"
+            x-trap.inert.noscroll="open"
+            x-on:keydown.escape.window="if (open) open = false"
+        >
+            <div class="absolute inset-0 bg-fg/50" x-on:click="open = false"></div>
+            <div class="relative z-10 w-full max-w-lg rounded-card border border-border bg-surface-raised p-5 shadow-lg">
+                <h2 id="demo-modal-title" class="text-lg font-semibold text-fg">Project details</h2>
+                <p class="mt-2 text-sm text-fg-muted">Review the summary before continuing.</p>
+                <div class="mt-6 flex justify-end gap-2">
+                    <button type="button" class="inline-flex h-10 items-center rounded-control border border-border px-4 text-sm" x-on:click="open = false">Close</button>
+                </div>
+            </div>
+        </div>
+    </template>
+</div>
