@@ -1,0 +1,22 @@
+<div class="w-full max-w-md">
+    <div class="flex items-start gap-3">
+        <div class="relative mt-0.5 inline-flex size-4 shrink-0">
+            <input
+                id="terms-error"
+                type="checkbox"
+                name="terms"
+                value="1"
+                aria-invalid="true"
+                aria-describedby="terms-error-error"
+                class="peer absolute inset-0 z-10 size-4 cursor-pointer opacity-0"
+            >
+            <span class="pointer-events-none flex size-4 items-center justify-center rounded-[0.3rem] border border-danger bg-surface-raised text-on-brand shadow-sm peer-checked:border-brand peer-checked:bg-brand peer-checked:[&_svg]:opacity-100" aria-hidden="true">
+                <svg class="size-3 opacity-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12.5 9.5 17 19 7" /></svg>
+            </span>
+        </div>
+        <div>
+            <label for="terms-error" class="block text-sm font-medium text-fg">Accept terms</label>
+        </div>
+    </div>
+    <p id="terms-error-error" class="mt-1.5 text-xs text-danger">You must accept the terms to continue.</p>
+</div>

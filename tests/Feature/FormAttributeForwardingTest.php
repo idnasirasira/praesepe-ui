@@ -63,3 +63,14 @@ it('forwards form attributes to the native textarea element', function (): void 
         ->and($textarea->getAttribute('x-model'))->toBe('bio')
         ->and($textarea->hasAttribute('required'))->toBeTrue();
 });
+
+it('forwards form attributes to the native checkbox element', function (): void {
+    $html = Blade::render('<x-ui.checkbox name="terms" value="1" required x-model="accepted" class="wrapper-class" />');
+
+    [, $input] = assertControlReceivesAttributes($html, '//input[@type="checkbox"]');
+
+    expect($input->getAttribute('name'))->toBe('terms')
+        ->and($input->getAttribute('value'))->toBe('1')
+        ->and($input->getAttribute('x-model'))->toBe('accepted')
+        ->and($input->hasAttribute('required'))->toBeTrue();
+});
