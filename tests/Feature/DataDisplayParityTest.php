@@ -83,3 +83,20 @@ it('renders breadcrumb nav list with aria-current on the final item', function (
         ->and($html)->toContain('aria-current="page"')
         ->and($html)->toContain('ORD-2201');
 });
+
+it('renders navbar mobile drawer contracts', function (): void {
+    $html = Blade::render(<<<'BLADE'
+        <x-ui.navbar>
+            <x-slot:brand>Toko Kita</x-slot:brand>
+            <x-slot:links>
+                <x-ui.navbar.link href="#" current>Dashboard</x-ui.navbar.link>
+            </x-slot:links>
+        </x-ui.navbar>
+    BLADE);
+
+    expect($html)->toContain('x-bind:aria-expanded')
+        ->and($html)->toContain('aria-controls="ui-navbar-drawer"')
+        ->and($html)->toContain('x-trap.inert.noscroll')
+        ->and($html)->toContain('x-on:keydown.escape.window')
+        ->and($html)->toContain('aria-current="page"');
+});

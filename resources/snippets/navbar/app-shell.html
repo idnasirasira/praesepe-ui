@@ -1,0 +1,12 @@
+<header class="border-b border-border bg-surface-raised" x-data="{ open: false }" x-on:keydown.escape.window="open = false">
+    <div class="flex h-14 items-center gap-4 px-4">
+        <button type="button" class="rounded-control border border-border p-2 md:hidden" x-on:click="open = true" x-bind:aria-expanded="open.toString()" aria-label="Open navigation">Menu</button>
+        <a href="/" class="font-semibold text-fg">Toko Kita</a>
+        <nav class="hidden gap-1 md:flex" aria-label="Primary">
+            <a href="#" class="rounded-control bg-surface-sunken px-3 py-2 text-sm font-medium text-fg" aria-current="page">Dashboard</a>
+            <a href="#" class="rounded-control px-3 py-2 text-sm font-medium text-fg-muted">Pesanan</a>
+            <a href="#" class="rounded-control px-3 py-2 text-sm font-medium text-fg-muted">Pelanggan</a>
+        </nav>
+        <div class="ml-auto"><button type="button" class="rounded-control border border-border px-3 py-1.5 text-sm">Akun</button></div>
+    </div>
+</header>
