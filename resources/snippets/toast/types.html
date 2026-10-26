@@ -1,0 +1,6 @@
+<div class="flex flex-wrap gap-3">
+    <button type="button" class="rounded-control border border-border px-3 py-2 text-sm" x-on:click="window.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', title: 'Info', message: 'Informational update.' } }))">Info</button>
+    <button type="button" class="rounded-control border border-border px-3 py-2 text-sm" x-on:click="window.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'success', title: 'Success', message: 'Changes saved.' } }))">Success</button>
+    <button type="button" class="rounded-control border border-border px-3 py-2 text-sm" x-on:click="window.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'warning', title: 'Warning', message: 'Quota is almost full.' } }))">Warning</button>
+    <button type="button" class="rounded-control border border-border px-3 py-2 text-sm" x-on:click="window.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'danger', title: 'Error', message: 'Request failed.' } }))">Danger</button>
+</div>

@@ -1,0 +1,16 @@
+<div class="flex flex-wrap gap-3">
+    <button
+        type="button"
+        class="inline-flex h-10 items-center rounded-control bg-brand px-4 text-sm font-medium text-on-brand"
+        x-on:click="window.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'success', title: 'Deployed', message: 'Production is live.', duration: 4000 } }))"
+    >
+        Show success toast
+    </button>
+    <button
+        type="button"
+        class="inline-flex h-10 items-center rounded-control border border-border px-4 text-sm font-medium text-fg"
+        x-on:click="window.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', title: 'Queued', message: 'Your export will be ready shortly.' } }))"
+    >
+        Show info toast
+    </button>
+</div>

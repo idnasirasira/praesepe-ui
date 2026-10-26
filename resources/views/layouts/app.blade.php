@@ -28,6 +28,8 @@
 
     @yield('body')
 
+    <x-ui.toast-viewport />
+
     @stack('scripts')
 </body>
 </html>

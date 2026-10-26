@@ -79,3 +79,22 @@ it('renders alert roles for status and danger variants', function (): void {
         ->and($danger)->toContain('x-on:click="show = false"')
         ->and($danger)->toContain('aria-label="Dismiss alert"');
 });
+
+it('renders toast viewport with teleport and live region', function (): void {
+    $html = Blade::render('<x-ui.toast-viewport position="bottom-right" />');
+
+    expect($html)->toContain('x-teleport="body"')
+        ->and($html)->toContain('aria-live="polite"')
+        ->and($html)->toContain('$store.toasts')
+        ->and($html)->toContain("toast.type === 'danger' ? 'alert' : 'status'");
+});
+
+it('registers the toast store module from app.js', function (): void {
+    $appJs = file_get_contents(resource_path('js/app.js'));
+    $toastJs = file_get_contents(resource_path('js/toast.js'));
+
+    expect($appJs)->toContain("import { registerToastStore } from './toast'")
+        ->and($appJs)->toContain('registerToastStore(Alpine)')
+        ->and($toastJs)->toContain("Alpine.store('toasts'")
+        ->and($toastJs)->toContain("window.addEventListener('ui:toast'");
+});
