@@ -1,0 +1,12 @@
+<div
+    class="flex gap-3 rounded-card border border-info/30 bg-info-soft p-4"
+    role="status"
+    x-data="{ show: true }"
+    x-show="show"
+>
+    <div class="min-w-0 flex-1">
+        <p class="text-sm font-semibold text-fg">New docs theme</p>
+        <p class="mt-1 text-sm text-fg-muted">Try the warm theme from the header switcher.</p>
+    </div>
+    <button type="button" class="rounded-control p-1 text-fg-muted" x-on:click="show = false" aria-label="Dismiss alert">×</button>
+</div>

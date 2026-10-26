@@ -69,3 +69,13 @@ it('renders tooltip with role and focus or escape handlers', function (): void {
         ->and($html)->toContain('x-on:focusin')
         ->and($html)->toContain('x-on:keydown.escape');
 });
+
+it('renders alert roles for status and danger variants', function (): void {
+    $info = Blade::render('<x-ui.alert variant="info" title="Note">Hello</x-ui.alert>');
+    $danger = Blade::render('<x-ui.alert variant="danger" title="Error" dismissible>Failed</x-ui.alert>');
+
+    expect($info)->toContain('role="status"')
+        ->and($danger)->toContain('role="alert"')
+        ->and($danger)->toContain('x-on:click="show = false"')
+        ->and($danger)->toContain('aria-label="Dismiss alert"');
+});
