@@ -2,6 +2,7 @@ import './bootstrap';
 import Alpine from 'alpinejs';
 import focus from '@alpinejs/focus';
 import { commandPalette } from './command-palette';
+import { highlightCodeBlocks } from './code-highlight';
 import { initTheme } from './theme';
 import { registerToastStore } from './toast';
 
@@ -14,3 +15,4 @@ registerToastStore(Alpine);
 initTheme();
 
 Alpine.start();
+highlightCodeBlocks();

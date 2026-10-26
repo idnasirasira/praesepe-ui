@@ -74,9 +74,9 @@
     --ui-success-soft: oklch(0.95 0.03 155);
     --ui-on-success: oklch(0.99 0.01 155);
 
-    --ui-warning: oklch(0.58 0.14 75);
-    --ui-warning-soft: oklch(0.95 0.05 85);
-    --ui-on-warning: oklch(0.22 0.04 75);
+    --ui-warning: oklch(0.66 0.16 65);
+    --ui-warning-soft: oklch(0.95 0.06 80);
+    --ui-on-warning: oklch(0.99 0.01 75);
 
     --ui-info: oklch(0.52 0.12 250);
     --ui-info-soft: oklch(0.95 0.03 250);
@@ -120,9 +120,9 @@ html.dark[data-theme='praesepe'] {
     --ui-success-soft: oklch(0.28 0.05 155);
     --ui-on-success: oklch(0.16 0.03 155);
 
-    --ui-warning: oklch(0.82 0.12 85);
-    --ui-warning-soft: oklch(0.30 0.05 85);
-    --ui-on-warning: oklch(0.18 0.04 85);
+    --ui-warning: oklch(0.84 0.14 75);
+    --ui-warning-soft: oklch(0.30 0.05 75);
+    --ui-on-warning: oklch(0.22 0.05 70);
 
     --ui-info: oklch(0.74 0.1 250);
     --ui-info-soft: oklch(0.28 0.05 250);
@@ -165,8 +165,8 @@ html.dark[data-theme='praesepe'] {
     --ui-success-soft: oklch(0.95 0.02 150);
     --ui-on-success: oklch(0.99 0 0);
 
-    --ui-warning: oklch(0.50 0.13 75);
-    --ui-warning-soft: oklch(0.95 0.04 85);
+    --ui-warning: oklch(0.60 0.15 65);
+    --ui-warning-soft: oklch(0.95 0.05 80);
     --ui-on-warning: oklch(0.99 0 0);
 
     --ui-info: oklch(0.4 0.08 250);
@@ -209,9 +209,9 @@ html.dark[data-theme='minimal'],
     --ui-success-soft: oklch(0.26 0.04 150);
     --ui-on-success: oklch(0.12 0 0);
 
-    --ui-warning: oklch(0.84 0.11 85);
-    --ui-warning-soft: oklch(0.28 0.04 85);
-    --ui-on-warning: oklch(0.14 0 0);
+    --ui-warning: oklch(0.84 0.13 75);
+    --ui-warning-soft: oklch(0.28 0.05 75);
+    --ui-on-warning: oklch(0.18 0.04 70);
 
     --ui-info: oklch(0.74 0.08 250);
     --ui-info-soft: oklch(0.26 0.04 250);
@@ -255,9 +255,9 @@ html.dark[data-theme='minimal'],
     --ui-success-soft: oklch(0.95 0.03 165);
     --ui-on-success: oklch(0.99 0.01 165);
 
-    --ui-warning: oklch(0.62 0.14 70);
-    --ui-warning-soft: oklch(0.95 0.05 75);
-    --ui-on-warning: oklch(0.24 0.04 70);
+    --ui-warning: oklch(0.66 0.15 62);
+    --ui-warning-soft: oklch(0.95 0.06 75);
+    --ui-on-warning: oklch(0.99 0.01 70);
 
     --ui-info: oklch(0.52 0.09 210);
     --ui-info-soft: oklch(0.95 0.03 210);
@@ -299,9 +299,9 @@ html.dark[data-theme='warm'],
     --ui-success-soft: oklch(0.28 0.04 165);
     --ui-on-success: oklch(0.16 0.03 165);
 
-    --ui-warning: oklch(0.84 0.11 75);
-    --ui-warning-soft: oklch(0.30 0.05 75);
-    --ui-on-warning: oklch(0.18 0.04 75);
+    --ui-warning: oklch(0.84 0.13 70);
+    --ui-warning-soft: oklch(0.30 0.05 70);
+    --ui-on-warning: oklch(0.22 0.04 65);
 
     --ui-info: oklch(0.74 0.08 210);
     --ui-info-soft: oklch(0.28 0.04 210);

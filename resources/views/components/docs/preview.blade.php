@@ -196,11 +196,11 @@
 
     {{-- Blade source --}}
     <div x-show="tab === 'blade'" x-cloak role="tabpanel" id="{{ $panelId }}-blade">
-        <pre tabindex="0" class="max-h-[28rem] overflow-auto bg-surface-sunken/30 p-4 text-xs leading-relaxed text-fg" role="region" aria-label="{{ $title }} Blade source"><code x-ref="bladeCode">{{ $blade }}</code></pre>
+        <pre tabindex="0" class="docs-code max-h-[28rem] overflow-auto bg-surface-sunken/30 p-4 text-xs leading-relaxed text-fg" role="region" aria-label="{{ $title }} Blade source"><code x-ref="bladeCode" class="language-blade">{{ $blade }}</code></pre>
     </div>
 
     {{-- HTML source --}}
     <div x-show="tab === 'html'" x-cloak role="tabpanel" id="{{ $panelId }}-html">
-        <pre tabindex="0" class="max-h-[28rem] overflow-auto bg-surface-sunken/30 p-4 text-xs leading-relaxed text-fg" role="region" aria-label="{{ $title }} HTML source"><code x-ref="htmlCode">{{ $html }}</code></pre>
+        <pre tabindex="0" class="docs-code max-h-[28rem] overflow-auto bg-surface-sunken/30 p-4 text-xs leading-relaxed text-fg" role="region" aria-label="{{ $title }} HTML source"><code x-ref="htmlCode" class="language-html">{{ $html }}</code></pre>
     </div>
 </section>

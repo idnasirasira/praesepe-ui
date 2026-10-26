@@ -1,0 +1,76 @@
+/*
+ * Syntax colors mapped to Praesepe semantic tokens so light/dark + themes stay coherent.
+ * Classes come from highlight.js token names.
+ */
+
+pre code.hljs,
+code.hljs {
+    display: block;
+    overflow-x: auto;
+    background: transparent;
+    color: var(--ui-fg);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+.hljs-comment,
+.hljs-quote {
+    color: var(--ui-fg-subtle);
+    font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-addition {
+    color: var(--ui-brand);
+}
+
+.hljs-name,
+.hljs-section,
+.hljs-attribute,
+.hljs-attr {
+    color: color-mix(in oklch, var(--ui-info) 85%, var(--ui-fg));
+}
+
+.hljs-string,
+.hljs-meta .hljs-string,
+.hljs-regexp,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-template-tag,
+.hljs-template-variable {
+    color: var(--ui-success);
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-type,
+.hljs-link {
+    color: var(--ui-warning);
+}
+
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.function_ {
+    color: color-mix(in oklch, var(--ui-brand) 70%, var(--ui-fg));
+}
+
+.hljs-meta,
+.hljs-tag,
+.hljs-punctuation,
+.hljs-subst {
+    color: var(--ui-fg-muted);
+}
+
+.hljs-deletion {
+    color: var(--ui-danger);
+}
+
+.hljs-emphasis {
+    font-style: italic;
+}
+
+.hljs-strong {
+    font-weight: 600;
+}

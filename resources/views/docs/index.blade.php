@@ -32,7 +32,7 @@
     <p class="mt-3 text-fg-muted leading-relaxed">
         Declare explicit <code class="rounded bg-surface-sunken px-1 text-sm">@source</code> paths so classes used only in snippets and metadata are never purged.
     </p>
-    <pre class="mt-4 overflow-x-auto rounded-card border border-border bg-surface-sunken p-4 text-xs text-fg"><code>@import "tailwindcss";
+    <pre class="docs-code mt-4 overflow-x-auto rounded-card border border-border bg-surface-sunken p-4 text-xs text-fg"><code class="language-css">@import "tailwindcss";
 @import "./theme.css";
 
 @source "../views/**/*.blade.php";
@@ -45,7 +45,7 @@
     </p>
 
     <h2 id="alpine" class="mt-10 text-xl font-semibold tracking-tight text-fg">Alpine setup</h2>
-    <pre class="mt-4 overflow-x-auto rounded-card border border-border bg-surface-sunken p-4 text-xs text-fg"><code>import Alpine from 'alpinejs';
+    <pre class="docs-code mt-4 overflow-x-auto rounded-card border border-border bg-surface-sunken p-4 text-xs text-fg"><code class="language-javascript">import Alpine from 'alpinejs';
 import focus from '@alpinejs/focus';
 
 Alpine.plugin(focus);
