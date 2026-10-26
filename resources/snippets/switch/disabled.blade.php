@@ -1,7 +1,7 @@
 <x-ui.switch
-    name="maintenance"
-    label="Maintenance mode"
-    description="Only owners can change this setting."
+    name="payroll_lock"
+    label="Lock payroll period"
+    description="Only finance owners can reopen a closed pay period."
     disabled
     class="max-w-md"
 />

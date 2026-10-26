@@ -22,17 +22,37 @@
         'lg' => 'h-10 text-sm px-4',
     ];
 
+    $iconPadClasses = [
+        'sm' => 'pl-8',
+        'md' => 'pl-9',
+        'lg' => 'pl-10',
+    ];
+
+    $iconSizeClasses = [
+        'sm' => '[&_svg]:size-3.5',
+        'md' => '[&_svg]:size-4',
+        'lg' => '[&_svg]:size-4',
+    ];
+
+    $iconInsetClasses = [
+        'sm' => 'pl-2.5',
+        'md' => 'pl-3',
+        'lg' => 'pl-3.5',
+    ];
+
     $sizeClass = $sizeClasses[$size] ?? $sizeClasses['md'];
     $hasLeading = filled($leadingIcon);
     $isPassword = $type === 'password';
     $inputType = $isPassword ? 'password' : $type;
+    $useTabular = in_array($type, ['number', 'tel'], true);
 
     $controlClasses = [
-        'w-full rounded-control border bg-surface-raised text-fg shadow-2xs placeholder:text-fg-subtle tabular-nums',
+        'w-full rounded-control border bg-surface-raised text-fg shadow-2xs placeholder:text-fg-subtle',
         'border-border hover:border-border-strong focus:border-brand transition-colors duration-150',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
         $sizeClass,
-        $hasLeading ? 'pl-9' : '',
+        $useTabular ? 'tabular-nums' : '',
+        $hasLeading ? ($iconPadClasses[$size] ?? $iconPadClasses['md']) : '',
         ($isPassword || filled($trailingAddon)) ? 'pr-10' : '',
         $error ? 'border-danger hover:border-danger focus:border-danger focus-visible:ring-danger' : '',
     ];
@@ -52,7 +72,7 @@
         class="relative"
     >
         @if ($hasLeading)
-            <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-fg-subtle [&_svg]:size-4 [&_svg]:shrink-0">
+            <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center {{ $iconInsetClasses[$size] ?? $iconInsetClasses['md'] }} text-fg-subtle {{ $iconSizeClasses[$size] ?? $iconSizeClasses['md'] }} [&_svg]:shrink-0">
                 {{ $leadingIcon }}
             </span>
         @endif
@@ -72,7 +92,7 @@
         @if ($isPassword)
             <button
                 type="button"
-                class="absolute inset-y-0 right-0 flex items-center px-3 text-fg-muted hover:text-fg"
+                class="absolute inset-y-0 right-0 flex min-w-10 items-center justify-center px-3 text-fg-muted transition-colors duration-150 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface rounded-control"
                 x-on:click="show = !show"
                 x-bind:aria-label="show ? 'Hide password' : 'Show password'"
             >

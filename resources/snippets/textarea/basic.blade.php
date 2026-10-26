@@ -1,8 +1,8 @@
 <x-ui.textarea
-    name="bio"
-    label="Bio"
-    hint="Keep it short and specific."
-    placeholder="Tell us about your product"
+    name="fulfillment_notes"
+    label="Fulfillment notes"
+    hint="Visible on the pick list for ORD-2026-4418."
+    placeholder="Packing instructions for warehouse staff (e.g. fragile glassware, include packing list)"
     rows="4"
     class="max-w-lg"
 />

@@ -1,6 +1,6 @@
 <div class="w-full max-w-md">
     <div class="flex items-start gap-3">
-        <div class="relative mt-0.5 inline-flex size-4 shrink-0">
+        <div class="relative -ml-1.5 inline-flex size-10 shrink-0 items-center justify-center">
             <input
                 id="terms-error"
                 type="checkbox"
@@ -8,15 +8,18 @@
                 value="1"
                 aria-invalid="true"
                 aria-describedby="terms-error-error"
-                class="peer absolute inset-0 z-10 size-4 cursor-pointer opacity-0"
+                class="peer absolute inset-0 z-10 size-full cursor-pointer opacity-0"
             >
-            <span class="pointer-events-none flex size-4 items-center justify-center rounded-[0.3rem] border border-danger bg-surface-raised text-on-brand shadow-sm peer-checked:border-brand peer-checked:bg-brand peer-checked:[&_svg]:opacity-100" aria-hidden="true">
-                <svg class="size-3 opacity-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12.5 9.5 17 19 7" /></svg>
+            <span class="pointer-events-none flex size-4 items-center justify-center rounded-control border border-danger bg-surface-raised text-on-brand shadow-2xs peer-checked:border-brand peer-checked:bg-brand peer-checked:[&_svg]:opacity-100 peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-surface" aria-hidden="true">
+                <svg class="size-3 shrink-0 opacity-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12.5 9.5 17 19 7" /></svg>
             </span>
         </div>
-        <div>
-            <label for="terms-error" class="block text-sm font-medium text-fg">Accept terms</label>
+        <div class="min-w-0 flex-1 pt-2">
+            <label for="terms-error" class="block text-sm font-medium text-fg">Confirm void of INV-2026-104</label>
         </div>
     </div>
-    <p id="terms-error-error" class="mt-1.5 text-xs text-danger">You must accept the terms to continue.</p>
+    <p id="terms-error-error" class="mt-1.5 flex items-start gap-1.5 text-xs text-danger">
+        <svg class="mt-0.5 size-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" /></svg>
+        <span>Finance requires confirmation before voiding a posted invoice.</span>
+    </p>
 </div>

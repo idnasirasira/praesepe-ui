@@ -8,15 +8,15 @@
 ])
 
 @php
-    $solidTactile = 'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16),0_1px_2px_0_rgba(0,0,0,0.06)] motion-safe:active:translate-y-[0.5px]';
+    $solidTactile = 'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16),0_1px_2px_0_rgba(0,0,0,0.06)] motion-safe:active:translate-y-px';
 
     $variantClasses = [
         'primary' => 'bg-brand text-on-brand hover:opacity-90 '.$solidTactile,
-        'secondary' => 'bg-surface-sunken text-fg hover:bg-border/60 border border-border shadow-2xs motion-safe:active:translate-y-[0.5px]',
-        'outline' => 'bg-transparent text-fg border border-border-strong hover:bg-surface-sunken motion-safe:active:translate-y-[0.5px]',
-        'ghost' => 'bg-transparent text-fg hover:bg-surface-sunken',
+        'secondary' => 'bg-surface-sunken text-fg hover:bg-border/60 border border-border shadow-2xs motion-safe:active:translate-y-px',
+        'outline' => 'bg-transparent text-fg border border-border-strong shadow-2xs hover:bg-surface-sunken motion-safe:active:translate-y-px',
+        'ghost' => 'bg-transparent text-fg hover:bg-surface-sunken motion-safe:active:translate-y-px',
         'danger' => 'bg-danger text-on-danger hover:opacity-90 '.$solidTactile,
-        'link' => 'bg-transparent text-brand underline-offset-4 hover:underline px-0 h-auto shadow-none active:translate-y-0',
+        'link' => 'bg-transparent text-brand underline-offset-4 hover:underline px-0 h-auto shadow-none motion-safe:active:translate-y-0',
     ];
 
     $sizeClasses = [
@@ -28,8 +28,18 @@
         'icon-lg' => 'size-10 p-0 gap-0 rounded-control',
     ];
 
+    $spinnerClasses = [
+        'sm' => 'size-3.5',
+        'md' => 'size-4',
+        'lg' => 'size-4',
+        'icon-sm' => 'size-3.5',
+        'icon-md' => 'size-4',
+        'icon-lg' => 'size-4',
+    ];
+
     $variantClass = $variantClasses[$variant] ?? $variantClasses['primary'];
     $sizeClass = $sizeClasses[$size] ?? $sizeClasses['md'];
+    $spinnerClass = $spinnerClasses[$size] ?? $spinnerClasses['md'];
     $isDisabled = $disabled || $loading;
     $isLink = filled($href);
 
@@ -44,7 +54,7 @@
         {{ $attributes->class([$baseClass, $variantClass, $sizeClass, $isDisabled ? 'pointer-events-none opacity-50' : '']) }}
     >
         @if ($loading)
-            <x-icons.spinner class="size-4" />
+            <x-icons.spinner class="{{ $spinnerClass }}" />
         @endif
         {{ $slot }}
     </a>
@@ -57,7 +67,7 @@
         @if ($loading) x-bind:disabled="true" @endif
     >
         @if ($loading)
-            <x-icons.spinner class="size-4" />
+            <x-icons.spinner class="{{ $spinnerClass }}" />
         @endif
         {{ $slot }}
     </button>

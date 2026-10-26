@@ -1,21 +1,21 @@
 <div class="w-full max-w-md">
     <div class="flex items-start gap-3">
-        <div class="relative mt-0.5 inline-flex size-4 shrink-0">
+        <div class="relative -ml-1.5 inline-flex size-10 shrink-0 items-center justify-center">
             <input
-                id="marketing-basic"
+                id="e-invoice-basic"
                 type="checkbox"
-                name="marketing"
+                name="e_invoice"
                 value="1"
-                aria-describedby="marketing-basic-description"
-                class="peer absolute inset-0 z-10 size-4 cursor-pointer opacity-0"
+                aria-describedby="e-invoice-basic-description"
+                class="peer absolute inset-0 z-10 size-full cursor-pointer opacity-0"
             >
-            <span class="pointer-events-none flex size-4 items-center justify-center rounded-[0.3rem] border border-border-strong bg-surface-raised text-on-brand shadow-sm peer-checked:border-brand peer-checked:bg-brand peer-checked:[&_svg]:opacity-100" aria-hidden="true">
-                <svg class="size-3 opacity-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12.5 9.5 17 19 7" /></svg>
+            <span class="pointer-events-none flex size-4 items-center justify-center rounded-control border border-border-strong bg-surface-raised text-on-brand shadow-2xs peer-checked:border-brand peer-checked:bg-brand peer-checked:[&_svg]:opacity-100 peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-surface" aria-hidden="true">
+                <svg class="size-3 shrink-0 opacity-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12.5 9.5 17 19 7" /></svg>
             </span>
         </div>
-        <div>
-            <label for="marketing-basic" class="block text-sm font-medium text-fg">Email updates</label>
-            <p id="marketing-basic-description" class="mt-0.5 text-sm text-fg-muted">Occasional product notes. No spam.</p>
+        <div class="min-w-0 flex-1 pt-2">
+            <label for="e-invoice-basic" class="block text-sm font-medium text-fg">Issue e-Faktur automatically</label>
+            <p id="e-invoice-basic-description" class="mt-0.5 text-sm text-fg-muted leading-relaxed">Create a tax invoice draft when ORD status becomes Paid.</p>
         </div>
     </div>
 </div>

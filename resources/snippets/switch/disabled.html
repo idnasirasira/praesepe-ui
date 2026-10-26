@@ -1,21 +1,21 @@
 <div class="w-full max-w-md">
     <div class="flex items-start gap-3">
-        <div class="relative inline-flex shrink-0">
+        <div class="relative -ml-1.5 inline-flex size-10 shrink-0 items-center justify-center">
             <input
-                id="maintenance-disabled"
+                id="payroll-lock-disabled"
                 type="checkbox"
                 role="switch"
-                name="maintenance"
+                name="payroll_lock"
                 disabled
-                class="peer absolute inset-0 z-10 h-6 w-11 cursor-not-allowed opacity-0"
+                class="peer absolute inset-0 z-10 size-full cursor-not-allowed opacity-0"
             >
             <span class="pointer-events-none inline-flex h-6 w-11 items-center rounded-pill bg-border-strong p-0.5 opacity-50" aria-hidden="true">
                 <span class="thumb block size-5 rounded-full bg-surface-raised shadow-sm"></span>
             </span>
         </div>
-        <div>
-            <label for="maintenance-disabled" class="block text-sm font-medium text-fg">Maintenance mode</label>
-            <p class="mt-0.5 text-sm text-fg-muted">Only owners can change this setting.</p>
+        <div class="min-w-0 flex-1 pt-2">
+            <label for="payroll-lock-disabled" class="block text-sm font-medium text-fg">Lock payroll period</label>
+            <p class="mt-0.5 text-sm text-fg-muted leading-relaxed">Only finance owners can reopen a closed pay period.</p>
         </div>
     </div>
 </div>

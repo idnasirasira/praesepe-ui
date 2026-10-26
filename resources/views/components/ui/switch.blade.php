@@ -20,40 +20,33 @@
         'md' => 'size-5',
     ];
 
-    $hitClasses = [
-        'sm' => 'h-5 w-9',
-        'md' => 'h-6 w-11',
-    ];
-
     $trackClass = $trackClasses[$size] ?? $trackClasses['md'];
     $thumbClass = $thumbClasses[$size] ?? $thumbClasses['md'];
-    $hitClass = $hitClasses[$size] ?? $hitClasses['md'];
 @endphp
 
 <div {{ $attributes->only('class')->class(['w-full']) }}>
     <div class="flex items-start gap-3">
-        <div class="relative inline-flex shrink-0">
+        <div class="relative -ml-1.5 inline-flex size-10 shrink-0 items-center justify-center">
             <input
                 type="checkbox"
                 role="switch"
                 id="{{ $id }}"
                 @if ($descriptionId) aria-describedby="{{ $descriptionId }}" @endif
                 {{ $attributes->except(['class'])->class([
-                    'peer absolute inset-0 z-10 cursor-pointer opacity-0',
-                    $hitClass,
+                    'peer absolute inset-0 z-10 size-full cursor-pointer opacity-0',
                     'disabled:cursor-not-allowed',
                 ]) }}
             >
 
             <span
-                class="{{ $trackClass }} pointer-events-none inline-flex items-center rounded-pill bg-border-strong p-0.5 transition-colors peer-checked:bg-brand peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[var(--ui-ring)] peer-disabled:opacity-50"
+                class="{{ $trackClass }} pointer-events-none inline-flex items-center rounded-pill bg-border-strong p-0.5 transition-colors duration-150 peer-checked:bg-brand peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-surface peer-disabled:opacity-50"
                 aria-hidden="true"
             >
-                <span class="thumb {{ $thumbClass }} block rounded-full bg-surface-raised shadow-sm transition-transform"></span>
+                <span class="thumb {{ $thumbClass }} block rounded-full bg-surface-raised shadow-sm transition-transform duration-150 motion-reduce:transition-none"></span>
             </span>
         </div>
 
-        <div class="min-w-0 flex-1">
+        <div class="min-w-0 flex-1 pt-2">
             @if ($label)
                 <label for="{{ $id }}" class="block text-sm font-medium text-fg">
                     {{ $label }}
@@ -61,7 +54,7 @@
             @endif
 
             @if ($description)
-                <p id="{{ $descriptionId }}" class="mt-0.5 text-sm text-fg-muted">{{ $description }}</p>
+                <p id="{{ $descriptionId }}" class="mt-0.5 text-sm text-fg-muted leading-relaxed">{{ $description }}</p>
             @endif
         </div>
     </div>

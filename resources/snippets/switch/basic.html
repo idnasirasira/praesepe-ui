@@ -1,23 +1,23 @@
 <div class="w-full max-w-md">
     <div class="flex items-start gap-3">
-        <div class="relative inline-flex shrink-0">
+        <div class="relative -ml-1.5 inline-flex size-10 shrink-0 items-center justify-center">
             <input
-                id="notifications-basic"
+                id="low-stock-alerts"
                 type="checkbox"
                 role="switch"
-                name="notifications"
+                name="low_stock_alerts"
                 value="1"
                 checked
-                aria-describedby="notifications-basic-description"
-                class="peer absolute inset-0 z-10 h-6 w-11 cursor-pointer opacity-0"
+                aria-describedby="low-stock-alerts-description"
+                class="peer absolute inset-0 z-10 size-full cursor-pointer opacity-0"
             >
-            <span class="pointer-events-none inline-flex h-6 w-11 items-center rounded-pill bg-border-strong p-0.5 transition-colors peer-checked:bg-brand peer-checked:[&_.thumb]:translate-x-5" aria-hidden="true">
-                <span class="thumb block size-5 rounded-full bg-surface-raised shadow-sm transition-transform"></span>
+            <span class="pointer-events-none inline-flex h-6 w-11 items-center rounded-pill bg-border-strong p-0.5 transition-colors duration-150 peer-checked:bg-brand peer-checked:[&_.thumb]:translate-x-5 peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-surface" aria-hidden="true">
+                <span class="thumb block size-5 rounded-full bg-surface-raised shadow-sm transition-transform duration-150"></span>
             </span>
         </div>
-        <div>
-            <label for="notifications-basic" class="block text-sm font-medium text-fg">Product notifications</label>
-            <p id="notifications-basic-description" class="mt-0.5 text-sm text-fg-muted">Email me when a deploy finishes.</p>
+        <div class="min-w-0 flex-1 pt-2">
+            <label for="low-stock-alerts" class="block text-sm font-medium text-fg">Low-stock warehouse alerts</label>
+            <p id="low-stock-alerts-description" class="mt-0.5 text-sm text-fg-muted leading-relaxed">Notify ops when SKU stock falls below reorder point.</p>
         </div>
     </div>
 </div>

@@ -1,8 +1,8 @@
 <x-ui.switch
-    name="notifications"
+    name="low_stock_alerts"
     value="1"
-    label="Product notifications"
-    description="Email me when a deploy finishes."
+    label="Low-stock warehouse alerts"
+    description="Notify ops when SKU stock falls below reorder point."
     checked
     class="max-w-md"
 />

@@ -1,12 +1,15 @@
 <div class="w-full max-w-lg">
-    <label for="notes-error" class="mb-1.5 block text-sm font-medium text-fg">Notes</label>
+    <label for="credit-memo-notes-error" class="mb-1.5 block text-sm font-medium text-fg">Credit memo reason</label>
     <textarea
-        id="notes-error"
-        name="notes"
+        id="credit-memo-notes-error"
+        name="credit_memo_reason"
         rows="3"
         aria-invalid="true"
-        aria-describedby="notes-error-error"
-        class="min-h-24 w-full resize-y rounded-control border border-danger bg-surface-raised px-3 py-2 text-sm text-fg shadow-sm"
-    >Too short</textarea>
-    <p id="notes-error-error" class="mt-1.5 text-xs text-danger">Please add at least 20 characters.</p>
+        aria-describedby="credit-memo-notes-error-error"
+        class="min-h-24 w-full resize-y rounded-control border border-danger bg-surface-raised px-3.5 py-2 text-sm text-fg shadow-2xs transition-colors duration-150 hover:border-danger focus:border-danger focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+    >Damaged</textarea>
+    <p id="credit-memo-notes-error-error" class="mt-1.5 flex items-start gap-1.5 text-xs text-danger">
+        <svg class="mt-0.5 size-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" /></svg>
+        <span>Add at least 20 characters so finance can audit INV-2026-104.</span>
+    </p>
 </div>

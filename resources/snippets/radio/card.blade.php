@@ -1,18 +1,18 @@
 <fieldset class="grid max-w-xl gap-3 sm:grid-cols-2">
-    <legend class="mb-1 text-sm font-medium text-fg">Deployment region</legend>
+    <legend class="mb-1 text-sm font-medium text-fg">Fulfillment warehouse</legend>
     <x-ui.radio
         variant="card"
-        name="region"
-        value="sg"
-        label="Singapore"
-        description="Lowest latency for SEA users."
+        name="warehouse"
+        value="jkt"
+        label="Jakarta Pusat"
+        description="Same-day for Jabodetabek orders."
         checked
     />
     <x-ui.radio
         variant="card"
-        name="region"
-        value="eu"
-        label="Frankfurt"
-        description="EU data residency friendly."
+        name="warehouse"
+        value="sby"
+        label="Surabaya Timur"
+        description="East Java hub with cold-chain bay."
     />
 </fieldset>

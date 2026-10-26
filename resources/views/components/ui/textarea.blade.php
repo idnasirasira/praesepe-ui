@@ -20,9 +20,10 @@
     $initialCount = mb_strlen($initialValue);
 
     $controlClasses = [
-        'w-full rounded-control border bg-surface-raised px-3 py-2 text-sm text-fg shadow-sm placeholder:text-fg-subtle',
-        'border-border focus:border-border-strong',
-        $error ? 'border-danger' : '',
+        'w-full rounded-control border bg-surface-raised px-3.5 py-2 text-sm text-fg shadow-2xs placeholder:text-fg-subtle',
+        'border-border hover:border-border-strong focus:border-brand transition-colors duration-150',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
+        $error ? 'border-danger hover:border-danger focus:border-danger focus-visible:ring-danger' : '',
         $autosize ? 'overflow-hidden resize-none' : 'resize-y min-h-24',
     ];
 @endphp
@@ -64,17 +65,20 @@
         >{{ $attributes->get('value') }}</textarea>
 
         @if ($max !== null)
-            <p id="{{ $counterId }}" class="mt-1.5 text-right text-xs text-fg-subtle" aria-live="polite">
+            <p id="{{ $counterId }}" class="mt-1.5 text-right text-xs tabular-nums text-fg-subtle" aria-live="polite">
                 <span x-text="count">{{ $initialCount }}</span> / {{ $max }}
             </p>
         @endif
     </div>
 
     @if ($hint)
-        <p id="{{ $hintId }}" class="mt-1.5 text-xs text-fg-muted">{{ $hint }}</p>
+        <p id="{{ $hintId }}" class="mt-1.5 text-xs text-fg-muted leading-relaxed">{{ $hint }}</p>
     @endif
 
     @if ($error)
-        <p id="{{ $errorId }}" class="mt-1.5 text-xs text-danger">{{ $error }}</p>
+        <p id="{{ $errorId }}" class="mt-1.5 flex items-start gap-1.5 text-xs text-danger">
+            <x-icons.alert class="mt-0.5 size-3.5 shrink-0" />
+            <span>{{ $error }}</span>
+        </p>
     @endif
 </div>

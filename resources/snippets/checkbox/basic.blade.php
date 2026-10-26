@@ -1,7 +1,7 @@
 <x-ui.checkbox
-    name="marketing"
+    name="e_invoice"
     value="1"
-    label="Email updates"
-    description="Occasional product notes. No spam."
+    label="Issue e-Faktur automatically"
+    description="Create a tax invoice draft when ORD status becomes Paid."
     class="max-w-md"
 />
