@@ -1,28 +1,52 @@
 <span
     class="relative inline-flex"
-    x-data="{ open: false }"
-    x-on:mouseenter="open = true"
-    x-on:mouseleave="open = false"
-    x-on:focusin="open = true"
-    x-on:focusout="open = false"
-    x-on:keydown.escape.stop="open = false"
+    x-data="{
+        open: false,
+        style: {},
+        place() {
+            const trigger = this.$refs.trigger;
+            if (! trigger) return;
+            const rect = trigger.getBoundingClientRect();
+            this.style = {
+                position: 'fixed',
+                top: (rect.top - 8) + 'px',
+                left: (rect.left + rect.width / 2) + 'px',
+                transform: 'translate(-50%, -100%)',
+            };
+        },
+        show() { this.open = true; this.$nextTick(() => this.place()); },
+        hide() { this.open = false; },
+    }"
+    x-on:mouseenter="show()"
+    x-on:mouseleave="hide()"
+    x-on:focusin="show()"
+    x-on:focusout="hide()"
+    x-on:keydown.escape.stop="hide()"
 >
-    <button type="button" class="inline-flex h-9 items-center rounded-control border border-border bg-surface-raised px-3.5 text-sm text-fg shadow-2xs" aria-describedby="tip-basic">
+    <button
+        type="button"
+        x-ref="trigger"
+        class="inline-flex h-9 items-center rounded-control border border-border bg-surface-raised px-3.5 text-sm text-fg shadow-2xs"
+        aria-describedby="tip-basic"
+    >
         Stock status
     </button>
-    <span
-        id="tip-basic"
-        role="tooltip"
-        x-show="open"
-        x-cloak
-        x-transition:enter="transition ease-out duration-150"
-        x-transition:enter-start="opacity-0 scale-95 translate-y-1"
-        x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-        x-transition:leave="transition ease-in duration-100"
-        x-transition:leave-start="opacity-100 scale-100"
-        x-transition:leave-end="opacity-0 scale-95"
-        class="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2 rounded-control bg-fg px-2 py-1 text-xs text-fg-inverse shadow-md ring-1 ring-black/5"
-    >
-        24 units left in Gudang A
-    </span>
+    <template x-teleport="body">
+        <span
+            id="tip-basic"
+            role="tooltip"
+            x-show="open"
+            x-cloak
+            x-bind:style="style"
+            x-transition:enter="transition ease-out duration-150"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-100"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="pointer-events-none z-[70] w-max max-w-xs rounded-control bg-fg px-2.5 py-1.5 text-xs leading-snug text-fg-inverse shadow-md ring-1 ring-black/5"
+        >
+            24 units left in Gudang A
+        </span>
+    </template>
 </span>

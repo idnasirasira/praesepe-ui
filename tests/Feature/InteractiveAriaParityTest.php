@@ -67,7 +67,9 @@ it('renders tooltip with role and focus or escape handlers', function (): void {
         ->and($html)->toContain('id="demo-tip-tip"')
         ->and($html)->toContain('aria-describedby')
         ->and($html)->toContain('x-on:focusin')
-        ->and($html)->toContain('x-on:keydown.escape');
+        ->and($html)->toContain('x-on:keydown.escape')
+        ->and($html)->toContain('x-teleport="body"')
+        ->and($html)->toContain('w-max');
 });
 
 it('renders alert roles for status and danger variants', function (): void {

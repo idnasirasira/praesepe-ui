@@ -26,6 +26,7 @@ return [
         'The tooltip bubble uses role="tooltip" and is referenced from the trigger wrapper with aria-describedby.',
         'Shows on mouseenter and focusin. Hides on mouseleave and focusout.',
         'Escape dismisses the tooltip while leaving keyboard focus on the trigger.',
+        'The bubble teleports to body with fixed positioning so overflow canvases do not clip or squeeze it.',
         'Tooltips should complement visible labels. Do not put essential instructions only in a tooltip.',
     ],
     'examples' => [
