@@ -60,3 +60,12 @@ it('renders table region scroll wrapper and sortable aria-sort', function (): vo
         ->and($html)->toContain('aria-sort="ascending"')
         ->and($html)->toContain('aria-label="Select all rows"');
 });
+
+it('renders pagination range summary and aria-current page', function (): void {
+    $html = Blade::render('<x-ui.pagination variant="numbered" :current="3" :total="5" :per-page="10" :total-items="42" />');
+
+    expect($html)->toContain('Showing')
+        ->and($html)->toContain('aria-current="page"')
+        ->and($html)->toContain('aria-label="Pagination"')
+        ->and($html)->toContain('42');
+});
