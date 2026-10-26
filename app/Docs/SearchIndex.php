@@ -100,7 +100,7 @@ class SearchIndex
                 description: 'Preview built-in themes and mix a custom OKLCH brand palette.',
                 href: route('themes.index', absolute: false),
                 tags: ['themes', 'gallery', 'palette', 'oklch'],
-                headings: ['Built-in themes', 'Custom palette', 'Token samples'],
+                headings: ['Built-in themes', 'Build your own', 'Token samples'],
             ),
             $this->page(
                 title: 'Kitchen sink',

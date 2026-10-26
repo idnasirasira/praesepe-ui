@@ -3,11 +3,28 @@
     x-data="{
         open: false,
         theme: window.PraesepeTheme?.getStoredTheme() || 'praesepe',
-        themes: [
+        builtIn: [
             { id: 'praesepe', label: 'Praesepe', brand: 'oklch(0.46 0.17 278)', surface: 'oklch(0.985 0.006 268)' },
             { id: 'minimal', label: 'Minimal', brand: 'oklch(0.16 0 0)', surface: 'oklch(0.995 0 0)' },
             { id: 'warm', label: 'Warm', brand: 'oklch(0.46 0.09 195)', surface: 'oklch(0.975 0.012 80)' },
         ],
+        customMeta: window.PraesepeTheme?.getCustomThemeMeta?.() || null,
+        get themes() {
+            const items = [...this.builtIn];
+            if (this.customMeta?.brand) {
+                items.push({
+                    id: 'custom',
+                    label: this.customMeta.name || 'My theme',
+                    brand: this.customMeta.brand,
+                    surface: 'oklch(0.985 0.006 268)',
+                });
+            }
+            return items;
+        },
+        refreshCustom() {
+            this.customMeta = window.PraesepeTheme?.getCustomThemeMeta?.() || null;
+            this.theme = window.PraesepeTheme?.getStoredTheme() || 'praesepe';
+        },
         select(id) {
             this.theme = id;
             window.PraesepeTheme?.setTheme(id);
@@ -15,8 +32,10 @@
         },
         current() {
             return this.themes.find((item) => item.id === this.theme) || this.themes[0];
-        }
+        },
     }"
+    x-on:ui-theme-change.window="refreshCustom()"
+    x-on:storage.window="refreshCustom()"
 >
     <button
         type="button"
@@ -71,5 +90,14 @@
                 </button>
             </li>
         </template>
+        <li class="border-t border-border mt-1 pt-1">
+            <a
+                href="{{ route('themes.index') }}#custom-palette"
+                class="flex w-full items-center gap-2.5 rounded-control px-2.5 py-2 text-left text-sm text-fg-muted hover:bg-surface-sunken hover:text-fg"
+                x-on:click="open = false"
+            >
+                Build your own theme
+            </a>
+        </li>
     </ul>
 </div>

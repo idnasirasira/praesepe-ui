@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'praesepe.palette-lab';
+const STORAGE_KEY = 'praesepe-ui.custom-theme';
 
 const PAGE_VARS = [
     '--ui-brand',
@@ -51,55 +51,76 @@ function readStored() {
     }
 }
 
+export function buildTokenMap(hue, chroma, lightness) {
+    const h = Number(hue);
+    const c = Number(chroma);
+    const l = Number(lightness);
+    const brand = oklch(l, c, h);
+
+    return {
+        '--ui-brand': brand,
+        '--ui-on-brand': onColor(l, h),
+        '--ui-ring': oklch(clamp(l + 0.08, 0.35, 0.78), clamp(c * 0.85, 0.04, 0.18), h),
+        '--ui-success': oklch(0.48, 0.12, 155),
+        '--ui-on-success': oklch(0.99, 0.01, 155),
+        '--ui-warning': oklch(0.68, 0.17, 55),
+        '--ui-on-warning': oklch(0.99, 0.01, 70),
+        '--ui-danger': oklch(0.52, 0.19, 25),
+        '--ui-on-danger': oklch(0.99, 0.01, 25),
+        '--ui-info': oklch(0.52, 0.12, 250),
+        '--ui-on-info': oklch(0.99, 0.01, 250),
+    };
+}
+
+export function applyCustomTokens(tokens) {
+    Object.entries(tokens).forEach(([key, value]) => {
+        document.documentElement.style.setProperty(key, value);
+    });
+}
+
+export function clearCustomTokens() {
+    PAGE_VARS.forEach((key) => {
+        document.documentElement.style.removeProperty(key);
+    });
+}
+
 export function paletteLab() {
     const stored = readStored();
     const defaults = PRESETS[0];
 
     return {
         presets: PRESETS,
+        name: stored?.name ?? 'My theme',
         hue: stored?.hue ?? defaults.hue,
         chroma: stored?.chroma ?? defaults.chroma,
         lightness: stored?.lightness ?? defaults.lightness,
-        appliedToPage: false,
+        active: window.PraesepeTheme?.getStoredTheme?.() === 'custom',
         copied: false,
 
+        init() {
+            window.addEventListener('ui-theme-change', (event) => {
+                this.active = event.detail?.theme === 'custom';
+            });
+        },
+
         get previewStyle() {
-            return this.cssVarsString();
+            return Object.entries(this.tokenMap())
+                .map(([key, value]) => `${key}:${value}`)
+                .join(';');
         },
 
         get exportCss() {
-            const tokens = this.tokenMap();
-
-            return Object.entries(tokens)
+            return Object.entries(this.tokenMap())
                 .map(([key, value]) => `    ${key}: ${value};`)
                 .join('\n');
         },
 
-        tokenMap() {
-            const hue = Number(this.hue);
-            const chroma = Number(this.chroma);
-            const lightness = Number(this.lightness);
-            const brand = oklch(lightness, chroma, hue);
-
-            return {
-                '--ui-brand': brand,
-                '--ui-on-brand': onColor(lightness, hue),
-                '--ui-ring': oklch(clamp(lightness + 0.08, 0.35, 0.78), clamp(chroma * 0.85, 0.04, 0.18), hue),
-                '--ui-success': oklch(0.48, 0.12, 155),
-                '--ui-on-success': oklch(0.99, 0.01, 155),
-                '--ui-warning': oklch(0.68, 0.17, 55),
-                '--ui-on-warning': oklch(0.99, 0.01, 70),
-                '--ui-danger': oklch(0.52, 0.19, 25),
-                '--ui-on-danger': oklch(0.99, 0.01, 25),
-                '--ui-info': oklch(0.52, 0.12, 250),
-                '--ui-on-info': oklch(0.99, 0.01, 250),
-            };
+        get brandSwatch() {
+            return oklch(Number(this.lightness), Number(this.chroma), Number(this.hue));
         },
 
-        cssVarsString() {
-            return Object.entries(this.tokenMap())
-                .map(([key, value]) => `${key}:${value}`)
-                .join(';');
+        tokenMap() {
+            return buildTokenMap(this.hue, this.chroma, this.lightness);
         },
 
         applyPreset(preset) {
@@ -108,53 +129,53 @@ export function paletteLab() {
             this.lightness = preset.lightness;
             this.persist();
 
-            if (this.appliedToPage) {
-                this.pushToPage();
+            if (this.active) {
+                this.useAsTheme();
             }
         },
 
         onChange() {
             this.persist();
 
-            if (this.appliedToPage) {
-                this.pushToPage();
+            if (this.active) {
+                applyCustomTokens(this.tokenMap());
             }
         },
 
         persist() {
             localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                name: String(this.name || 'My theme').slice(0, 40),
                 hue: Number(this.hue),
                 chroma: Number(this.chroma),
                 lightness: Number(this.lightness),
+                tokens: this.tokenMap(),
             }));
         },
 
-        pushToPage() {
-            const tokens = this.tokenMap();
-
-            PAGE_VARS.forEach((key) => {
-                document.documentElement.style.setProperty(key, tokens[key]);
-            });
-
-            this.appliedToPage = true;
+        useAsTheme() {
+            this.persist();
+            window.PraesepeTheme?.setTheme('custom');
+            this.active = true;
         },
 
-        clearPage() {
-            PAGE_VARS.forEach((key) => {
-                document.documentElement.style.removeProperty(key);
-            });
+        clearTheme() {
+            clearCustomTokens();
+            this.active = false;
 
-            this.appliedToPage = false;
+            if (window.PraesepeTheme?.getStoredTheme?.() === 'custom') {
+                window.PraesepeTheme.setTheme('praesepe');
+            }
         },
 
         reset() {
+            this.name = 'My theme';
             this.applyPreset(PRESETS[0]);
-            this.clearPage();
+            this.clearTheme();
             localStorage.removeItem(STORAGE_KEY);
         },
 
         async copyCss() {
-            const block = `:root {\n${this.exportCss}\n}`;
+            const block = `[data-theme='custom'] {\n${this.exportCss}\n}`;
 
             try {
                 await navigator.clipboard.writeText(block);

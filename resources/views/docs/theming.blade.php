@@ -17,9 +17,10 @@
         <li><strong>warm</strong>: teal brand on soft stone and sand neutrals</li>
     </ul>
 
-    <h2 class="mt-10 text-xl font-semibold text-fg">Custom palette lab</h2>
+    <h2 class="mt-10 text-xl font-semibold text-fg">Build your own theme</h2>
     <p class="mt-3 text-fg-muted">
-        On the themes gallery you can mix brand hue, chroma, and lightness in OKLCH, preview components live, apply tokens to the page, and copy a CSS snippet into your app.
+        On the themes gallery, mix brand hue, chroma, and lightness in OKLCH, preview components live, save the result as
+        <strong class="font-medium text-fg">My theme</strong> in the header switcher, and copy a CSS snippet into your app.
     </p>
 
     <h2 class="mt-10 text-xl font-semibold text-fg">Color scheme</h2>

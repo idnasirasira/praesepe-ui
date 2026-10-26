@@ -1,12 +1,12 @@
 @extends('layouts.docs')
 
 @section('title', 'Themes · '.config('ui-docs.name'))
-@section('meta_description', 'Preview praesepe, minimal, and warm themes, then mix a custom brand palette with live OKLCH controls.')
+@section('meta_description', 'Preview praesepe, minimal, and warm themes, then build your own brand theme with live OKLCH controls.')
 
 @section('toc')
     <x-docs.toc :items="[
         ['id' => 'built-in', 'label' => 'Built-in themes'],
-        ['id' => 'custom-palette', 'label' => 'Custom palette'],
+        ['id' => 'custom-palette', 'label' => 'Build your own'],
         ['id' => 'token-samples', 'label' => 'Token samples'],
     ]" />
 @endsection
@@ -15,8 +15,17 @@
 <div class="mx-auto max-w-4xl">
     <h1 class="text-3xl font-semibold tracking-tight text-fg text-balance">Themes</h1>
     <p class="mt-3 max-w-3xl text-fg-muted leading-relaxed text-pretty">
-        Switch built-in themes from the header, or mix your own brand palette below.
-        Components keep using semantic tokens; only the CSS variables change.
+        Pick a built-in theme, or build your own brand palette and save it as
+        <strong class="font-medium text-fg">My theme</strong> in the header switcher.
+    </p>
+
+    <p class="mt-4">
+        <a
+            href="#custom-palette"
+            class="inline-flex h-9 items-center rounded-control border border-border bg-surface-raised px-3.5 text-sm font-medium text-fg shadow-2xs transition-colors duration-150 hover:border-border-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+        >
+            Build your own theme
+        </a>
     </p>
 
     <h2 id="built-in" class="mt-10 text-xl font-semibold tracking-tight text-fg">Built-in themes</h2>
@@ -43,15 +52,14 @@
 
     <section
         id="custom-palette"
-        class="mt-12 space-y-6"
-        x-data="paletteLab"
-        x-cloak
+        class="mt-12 space-y-6 scroll-mt-24"
+        x-data="paletteLab()"
     >
         <div>
-            <h2 class="text-xl font-semibold tracking-tight text-fg">Custom palette</h2>
+            <h2 class="text-xl font-semibold tracking-tight text-fg">Build your own theme</h2>
             <p class="mt-2 max-w-3xl text-sm text-fg-muted leading-relaxed text-pretty">
-                Dial brand hue, chroma, and lightness in OKLCH. Preview stays scoped to the lab.
-                Optionally push tokens onto this page, then copy a CSS snippet into your app.
+                Mix brand hue, chroma, and lightness in OKLCH. Preview updates live.
+                Click <strong class="font-medium text-fg">Use as my theme</strong> to save it into the header theme switcher.
             </p>
         </div>
 
@@ -73,6 +81,18 @@
 
         <div class="grid gap-6 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)]">
             <div class="space-y-5 rounded-card border border-border bg-surface-raised p-5 shadow-2xs">
+                <label class="block space-y-2">
+                    <span class="text-xs font-medium text-fg">Theme name</span>
+                    <input
+                        type="text"
+                        maxlength="40"
+                        class="h-9 w-full rounded-control border border-border bg-surface px-3 text-sm text-fg shadow-2xs tabular-nums transition-colors duration-150 hover:border-border-strong focus:border-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                        x-model="name"
+                        x-on:input="onChange()"
+                        placeholder="My theme"
+                    >
+                </label>
+
                 <label class="block space-y-2">
                     <span class="flex items-center justify-between text-xs font-medium text-fg">
                         <span>Hue</span>
@@ -121,38 +141,33 @@
                     >
                 </label>
 
+                <div class="flex items-center gap-3 rounded-control border border-border bg-surface p-3">
+                    <span class="size-8 shrink-0 rounded-full border border-border shadow-2xs" x-bind:style="`background:${brandSwatch}`"></span>
+                    <div class="min-w-0">
+                        <p class="truncate text-sm font-medium text-fg" x-text="name || 'My theme'"></p>
+                        <p class="truncate text-xs text-fg-muted tabular-nums" x-text="brandSwatch"></p>
+                    </div>
+                </div>
+
                 <div class="flex flex-wrap gap-2 pt-1">
-                    <x-ui.button
-                        type="button"
-                        size="sm"
-                        x-on:click="pushToPage()"
-                    >
-                        Apply to page
+                    <x-ui.button type="button" size="sm" x-on:click="useAsTheme()">
+                        Use as my theme
                     </x-ui.button>
-                    <x-ui.button
-                        type="button"
-                        variant="secondary"
-                        size="sm"
-                        x-on:click="clearPage()"
-                    >
-                        Clear page
+                    <x-ui.button type="button" variant="secondary" size="sm" x-on:click="clearTheme()">
+                        Back to built-in
                     </x-ui.button>
-                    <x-ui.button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        x-on:click="reset()"
-                    >
+                    <x-ui.button type="button" variant="ghost" size="sm" x-on:click="reset()">
                         Reset
                     </x-ui.button>
                 </div>
 
                 <p
                     class="text-xs text-fg-muted leading-relaxed"
-                    x-show="appliedToPage"
+                    x-show="active"
                     x-cloak
                 >
-                    Live tokens are overriding this page until you clear or reset.
+                    Your theme is active and available in the header switcher as
+                    <span class="font-medium text-fg" x-text="name || 'My theme'"></span>.
                 </p>
             </div>
 
@@ -168,18 +183,22 @@
                 </div>
 
                 <div class="space-y-5 bg-surface p-5">
-                    <div class="flex flex-wrap gap-2">
-                        <x-ui.button size="sm">Primary</x-ui.button>
-                        <x-ui.button variant="secondary" size="sm">Secondary</x-ui.button>
-                        <x-ui.button variant="outline" size="sm">Outline</x-ui.button>
-                        <x-ui.badge variant="solid" color="brand" size="sm">brand</x-ui.badge>
-                        <x-ui.badge variant="solid" color="success" size="sm">success</x-ui.badge>
-                        <x-ui.badge variant="solid" color="warning" size="sm">warning</x-ui.badge>
-                        <x-ui.badge variant="solid" color="danger" size="sm">danger</x-ui.badge>
+                    <div class="space-y-3">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <x-ui.button size="sm">Primary</x-ui.button>
+                            <x-ui.button variant="secondary" size="sm">Secondary</x-ui.button>
+                            <x-ui.button variant="outline" size="sm">Outline</x-ui.button>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <x-ui.badge variant="solid" color="brand" size="sm">brand</x-ui.badge>
+                            <x-ui.badge variant="solid" color="success" size="sm">success</x-ui.badge>
+                            <x-ui.badge variant="solid" color="warning" size="sm">warning</x-ui.badge>
+                            <x-ui.badge variant="solid" color="danger" size="sm">danger</x-ui.badge>
+                        </div>
                     </div>
 
                     <x-ui.alert variant="info" title="Scoped preview">
-                        Sliders rewrite <code class="rounded bg-surface-sunken px-1 text-xs">--ui-brand</code> and friends on this card only, until you apply to the page.
+                        Sliders rewrite <code class="rounded bg-surface-sunken px-1 text-xs">--ui-brand</code> here. Use as my theme applies it across the docs site.
                     </x-ui.alert>
 
                     <div class="grid gap-3 sm:grid-cols-2">
@@ -211,21 +230,16 @@
         <div class="rounded-card border border-border bg-surface-raised p-5 shadow-2xs">
             <div class="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                    <h3 class="text-sm font-semibold tracking-tight text-fg">Copy into your theme</h3>
+                    <h3 class="text-sm font-semibold tracking-tight text-fg">Copy into your app</h3>
                     <p class="mt-1 text-xs text-fg-muted leading-relaxed">
-                        Paste under your light <code class="rounded bg-surface-sunken px-1">:root</code> or <code class="rounded bg-surface-sunken px-1">[data-theme]</code> block.
+                        Paste under a <code class="rounded bg-surface-sunken px-1">[data-theme='custom']</code> block, or override <code class="rounded bg-surface-sunken px-1">:root</code>.
                     </p>
                 </div>
-                <x-ui.button
-                    type="button"
-                    variant="secondary"
-                    size="sm"
-                    x-on:click="copyCss()"
-                >
+                <x-ui.button type="button" variant="secondary" size="sm" x-on:click="copyCss()">
                     <span x-text="copied ? 'Copied' : 'Copy CSS'"></span>
                 </x-ui.button>
             </div>
-            <pre class="docs-code mt-4 overflow-x-auto rounded-card border border-border bg-surface-sunken p-4 text-xs text-fg"><code x-text="`:root {\n${exportCss}\n}`"></code></pre>
+            <pre class="docs-code mt-4 overflow-x-auto rounded-card border border-border bg-surface-sunken p-4 text-xs text-fg"><code x-text="`[data-theme='custom'] {\n${exportCss}\n}`"></code></pre>
         </div>
     </section>
 

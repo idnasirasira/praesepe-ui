@@ -17,7 +17,20 @@
                 var theme = localStorage.getItem('praesepe-ui.theme') || 'praesepe';
                 var scheme = localStorage.getItem('praesepe-ui.color-scheme') || 'system';
                 var root = document.documentElement;
-                root.setAttribute('data-theme', theme);
+                var custom = null;
+                try {
+                    custom = JSON.parse(localStorage.getItem('praesepe-ui.custom-theme') || 'null');
+                } catch (e) {
+                    custom = null;
+                }
+                if (theme === 'custom' && custom && custom.tokens) {
+                    root.setAttribute('data-theme', 'praesepe');
+                    Object.keys(custom.tokens).forEach(function (key) {
+                        root.style.setProperty(key, custom.tokens[key]);
+                    });
+                } else {
+                    root.setAttribute('data-theme', theme === 'custom' ? 'praesepe' : theme);
+                }
                 var dark = scheme === 'dark' || (scheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
                 root.classList.toggle('dark', dark);
             } catch (e) {}
