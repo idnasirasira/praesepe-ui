@@ -80,12 +80,25 @@ test.describe('keyboard interactions', () => {
         await page.goto('/docs', { waitUntil: 'networkidle' });
 
         const dialog = page.getByRole('dialog', { name: 'Search documentation' });
-        const searchInput = dialog.getByRole('searchbox', { name: 'Search components and docs' });
+        const searchInput = dialog.getByRole('combobox', {
+            name: 'Search components, props, variants, and docs',
+        });
 
         const modifier = process.platform === 'darwin' ? 'Meta' : 'Control';
         await page.keyboard.press(`${modifier}+k`);
         await expect(dialog).toBeVisible();
         await expect(searchInput).toBeFocused();
+        await expect(searchInput).toHaveAttribute('aria-expanded', 'true');
+        await expect(searchInput).toHaveAttribute('aria-controls', 'search-results');
+
+        await searchInput.fill('a');
+        await expect(dialog.getByRole('option').first()).toBeVisible();
+        await expect
+            .poll(async () => dialog.getByRole('option').count())
+            .toBeGreaterThan(1);
+        await expect(searchInput).toHaveAttribute('aria-activedescendant', 'search-option-0');
+        await page.keyboard.press('ArrowDown');
+        await expect(searchInput).toHaveAttribute('aria-activedescendant', 'search-option-1');
 
         await page.keyboard.press('Escape');
         await expect(dialog).toBeHidden();

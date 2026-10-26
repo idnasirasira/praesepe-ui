@@ -51,6 +51,11 @@ jobs:
       - name: Run composer check
         run: composer check
 
+      - name: Verify production optimize caches
+        run: |
+          php artisan optimize
+          php artisan optimize:clear
+
   e2e:
     name: Playwright E2E
     runs-on: ubuntu-latest

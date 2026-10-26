@@ -3,62 +3,7 @@
 @section('body')
 <div
     class="min-h-dvh"
-    x-data="{
-        sidebarOpen: false,
-        searchOpen: false,
-        query: '',
-        results: [],
-        index: [],
-        async loadIndex() {
-            if (this.index.length) return;
-            try {
-                const response = await fetch(@js(route('search-index')));
-                const data = await response.json();
-                this.index = data.entries || [];
-            } catch (e) {
-                this.index = [];
-            }
-        },
-        openSearch() {
-            this.searchOpen = true;
-            this.loadIndex();
-            this.$nextTick(() => this.$refs.searchInput?.focus());
-        },
-        closeSearch() {
-            this.searchOpen = false;
-            this.query = '';
-            this.results = [];
-        },
-        runSearch() {
-            const q = this.query.trim().toLowerCase();
-            if (!q) {
-                this.results = [];
-                return;
-            }
-            this.results = this.index.filter((entry) => {
-                const hay = [entry.title, entry.description, ...(entry.tags || [])].join(' ').toLowerCase();
-                return hay.includes(q);
-            }).slice(0, 12);
-        },
-        openSearchFromSlash(event) {
-            if (event.key !== '/' || this.searchOpen) {
-                return;
-            }
-
-            const target = event.target;
-            if (!(target instanceof Element)) {
-                return;
-            }
-
-            const tag = target.tagName;
-            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(tag) || target.isContentEditable) {
-                return;
-            }
-
-            event.preventDefault();
-            this.openSearch();
-        }
-    }"
+    x-data="commandPalette(@js(route('search-index')))"
     x-on:keydown.window.prevent.cmd.k="openSearch()"
     x-on:keydown.window.prevent.ctrl.k="openSearch()"
     x-on:keydown.window="openSearchFromSlash($event)"
@@ -167,49 +112,6 @@
         </div>
     </div>
 
-    <div
-        class="fixed inset-0 z-50 flex items-start justify-center bg-fg/50 p-4 pt-[12vh]"
-        x-show="searchOpen"
-        x-cloak
-        x-on:keydown.escape.window="if (searchOpen) closeSearch()"
-        x-on:click.self="closeSearch()"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Search documentation"
-        x-trap.inert.noscroll="searchOpen"
-    >
-        <div class="w-full max-w-xl overflow-hidden rounded-card border border-border bg-surface-raised shadow-lg">
-            <div class="flex items-center gap-2 border-b border-border px-3">
-                <x-icons.search class="size-4 text-fg-subtle" aria-hidden="true" />
-                <input
-                    type="search"
-                    x-ref="searchInput"
-                    x-model="query"
-                    x-on:input="runSearch()"
-                    placeholder="Search components and docs"
-                    aria-label="Search components and docs"
-                    class="w-full border-0 bg-transparent py-3 text-sm text-fg outline-none placeholder:text-fg-subtle"
-                >
-                <button type="button" class="text-xs text-fg-subtle" x-on:click="closeSearch()">Esc</button>
-            </div>
-            <ul class="max-h-80 overflow-y-auto p-2" role="listbox">
-                <template x-for="result in results" x-bind:key="result.href">
-                    <li>
-                        <a
-                            x-bind:href="result.href"
-                            class="block rounded-control px-3 py-2 hover:bg-surface-sunken"
-                            x-on:click="closeSearch()"
-                        >
-                            <div class="text-sm font-medium text-fg" x-text="result.title"></div>
-                            <div class="text-xs text-fg-muted" x-text="result.description"></div>
-                        </a>
-                    </li>
-                </template>
-                <li x-show="query && results.length === 0" class="px-3 py-6 text-center text-sm text-fg-muted">
-                    No results
-                </li>
-            </ul>
-        </div>
-    </div>
+    <x-docs.command-palette />
 </div>
 @endsection
