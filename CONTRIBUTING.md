@@ -5,7 +5,7 @@ test, and submit changes.
 
 ## Prerequisites
 
-- PHP 8.3 or newer
+- PHP 8.4 or newer
 - Composer 2
 - Node.js 20 or newer and npm
 - SQLite (default local database) or another driver configured in `.env`

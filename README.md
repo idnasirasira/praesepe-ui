@@ -11,7 +11,7 @@ software for SMEs.
 ## Stack
 
 - Laravel 13
-- PHP 8.3+
+- PHP 8.4+
 - Tailwind CSS 4 (`@tailwindcss/vite`)
 - Alpine.js 3 with `@alpinejs/focus`
 - Pest, Pint, Larastan (level 6)

@@ -14,4 +14,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - OKLCH semantic theme engine with praesepe, minimal, and warm themes
 - Docs registry, layouts, search index, sitemap, and robots routes
 - Golden archetypes: Button, Input, Modal
-- Feature test suite and GitHub Actions CI for PHP 8.3 and 8.4
+- Feature test suite and GitHub Actions CI for PHP 8.4

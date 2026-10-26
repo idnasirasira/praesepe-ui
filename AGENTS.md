@@ -7,7 +7,7 @@ API accuracy; when rules conflict, this file wins for Praesepe UI architecture.
 ## Stack
 
 - Laravel 12.x / 13.x (exact version logged in `TODO.md`)
-- PHP 8.3+
+- PHP 8.4+
 - Tailwind CSS v4 via `@tailwindcss/vite`
 - Alpine.js v3 + `@alpinejs/focus` via npm
 - No Livewire, no jQuery, no external icon packages

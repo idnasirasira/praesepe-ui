@@ -3,7 +3,7 @@
 ## Stack versions (logged at bootstrap)
 
 - Laravel Framework: 13.38.0
-- PHP: 8.3+ (local CLI 8.4.27)
+- PHP: 8.4+ (local CLI 8.4.27)
 - Tailwind CSS: 4.x via `@tailwindcss/vite`
 - Alpine.js: 3.x with `@alpinejs/focus`
 - Pest: 5.x
