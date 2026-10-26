@@ -8,7 +8,7 @@
     x-on:keydown.window.prevent.ctrl.k="openSearch()"
     x-on:keydown.window="openSearchFromSlash($event)"
 >
-    <header class="sticky top-0 z-40 border-b border-border bg-surface/90 backdrop-blur">
+    <header class="sticky top-0 z-50 border-b border-border bg-surface">
         <div class="mx-auto flex h-14 max-w-7xl items-center gap-3 px-4 sm:px-6 lg:px-8">
             <button
                 type="button"
@@ -45,7 +45,7 @@
 
     <div class="mx-auto flex max-w-7xl">
         <div
-            class="fixed inset-0 z-30 bg-fg/40 lg:hidden"
+            class="fixed inset-0 z-40 bg-fg/40 lg:hidden"
             x-show="sidebarOpen"
             x-cloak
             x-on:click="sidebarOpen = false"
@@ -53,7 +53,7 @@
 
         <aside
             id="docs-sidebar"
-            class="fixed inset-y-0 left-0 z-40 w-72 -translate-x-full overflow-y-auto border-r border-border bg-surface px-4 py-6 transition-transform lg:static lg:translate-x-0 lg:pt-8"
+            class="fixed top-14 bottom-0 left-0 z-40 w-72 -translate-x-full overflow-y-auto border-r border-border bg-surface px-4 py-6 transition-transform lg:sticky lg:top-14 lg:z-30 lg:h-[calc(100dvh-3.5rem)] lg:translate-x-0 lg:self-start lg:pt-8"
             x-bind:class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'"
         >
             <nav aria-label="Documentation" class="space-y-6">
