@@ -15,6 +15,7 @@ return [
             'items' => [
                 ['label' => 'Installation', 'route' => 'docs.index'],
                 ['label' => 'Theming', 'route' => 'docs.theming'],
+                ['label' => 'Icons', 'route' => 'docs.icons'],
                 ['label' => 'Accessibility', 'route' => 'docs.accessibility'],
             ],
         ],

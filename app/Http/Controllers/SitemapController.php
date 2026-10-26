@@ -16,6 +16,7 @@ class SitemapController extends Controller
             route('docs.index'),
             route('docs.theming'),
             route('docs.accessibility'),
+            route('docs.icons'),
             route('docs.components.index'),
             route('ui.index'),
             route('themes.index'),

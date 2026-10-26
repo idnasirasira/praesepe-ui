@@ -16,6 +16,7 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/docs', [DocsController::class, 'index'])->name('docs.index');
 Route::get('/docs/theming', [DocsController::class, 'theming'])->name('docs.theming');
 Route::get('/docs/accessibility', [DocsController::class, 'accessibility'])->name('docs.accessibility');
+Route::get('/docs/icons', [DocsController::class, 'icons'])->name('docs.icons');
 Route::get('/docs/components', [DocsController::class, 'components'])->name('docs.components.index');
 Route::get('/docs/components/{slug}', [DocsController::class, 'show'])
     ->where('slug', '[a-z0-9-]+')

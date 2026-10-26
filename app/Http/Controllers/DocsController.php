@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Docs\ComponentRegistry;
+use App\Docs\IconCatalog;
 use Illuminate\Contracts\View\View;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -12,6 +13,7 @@ class DocsController extends Controller
 {
     public function __construct(
         private readonly ComponentRegistry $registry,
+        private readonly IconCatalog $icons,
     ) {}
 
     public function index(): View
@@ -27,6 +29,13 @@ class DocsController extends Controller
     public function accessibility(): View
     {
         return view('docs.accessibility');
+    }
+
+    public function icons(): View
+    {
+        return view('docs.icons', [
+            'icons' => $this->icons->all(),
+        ]);
     }
 
     public function components(): View

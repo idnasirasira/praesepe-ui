@@ -75,6 +75,13 @@ class SearchIndex
                 headings: ['Built-in themes', 'Semantic tokens', 'Runtime dark mode'],
             ),
             $this->page(
+                title: 'Icons',
+                description: 'Built-in operational icons and bring-your-own guidance for Heroicons or any SVG.',
+                href: route('docs.icons', absolute: false),
+                tags: ['icons', 'svg', 'heroicons', 'slots'],
+                headings: ['Built-in set', 'Usage', 'Bring your own', 'Accessibility'],
+            ),
+            $this->page(
                 title: 'Accessibility',
                 description: 'Keyboard and ARIA patterns used across components.',
                 href: route('docs.accessibility', absolute: false),
