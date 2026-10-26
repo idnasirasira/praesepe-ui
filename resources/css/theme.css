@@ -1,0 +1,303 @@
+/*
+ * Praesepe UI semantic token engine.
+ * Themes swap via [data-theme] and .dark on :root / html.
+ * Components should prefer semantic utilities (bg-brand, text-fg) over raw palette colors.
+ */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+    --color-brand: var(--ui-brand);
+    --color-on-brand: var(--ui-on-brand);
+    --color-surface: var(--ui-surface);
+    --color-surface-raised: var(--ui-surface-raised);
+    --color-surface-sunken: var(--ui-surface-sunken);
+    --color-border: var(--ui-border);
+    --color-border-strong: var(--ui-border-strong);
+    --color-ring: var(--ui-ring);
+    --color-fg: var(--ui-fg);
+    --color-fg-muted: var(--ui-fg-muted);
+    --color-fg-subtle: var(--ui-fg-subtle);
+    --color-fg-inverse: var(--ui-fg-inverse);
+    --color-danger: var(--ui-danger);
+    --color-danger-soft: var(--ui-danger-soft);
+    --color-on-danger: var(--ui-on-danger);
+    --color-success: var(--ui-success);
+    --color-success-soft: var(--ui-success-soft);
+    --color-on-success: var(--ui-on-success);
+    --color-warning: var(--ui-warning);
+    --color-warning-soft: var(--ui-warning-soft);
+    --color-on-warning: var(--ui-on-warning);
+    --color-info: var(--ui-info);
+    --color-info-soft: var(--ui-info-soft);
+    --color-on-info: var(--ui-on-info);
+    --radius-control: var(--ui-radius-control);
+    --radius-card: var(--ui-radius-card);
+    --radius-pill: var(--ui-radius-pill);
+    --shadow-sm: var(--ui-shadow-sm);
+    --shadow-md: var(--ui-shadow-md);
+    --shadow-lg: var(--ui-shadow-lg);
+    --font-sans: var(--ui-font-sans);
+}
+
+/* -------------------------------------------------------------------------
+ * Theme: praesepe (default) light
+ * Deep teal brand with cool neutrals.
+ * ------------------------------------------------------------------------- */
+:root,
+[data-theme='praesepe'] {
+    --ui-font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+
+    --ui-brand: oklch(0.48 0.11 195);
+    --ui-on-brand: oklch(0.99 0.01 195);
+
+    --ui-surface: oklch(0.99 0.005 195);
+    --ui-surface-raised: oklch(1 0 0);
+    --ui-surface-sunken: oklch(0.96 0.008 195);
+
+    --ui-border: oklch(0.88 0.015 195);
+    --ui-border-strong: oklch(0.72 0.03 195);
+    --ui-ring: oklch(0.55 0.12 195);
+
+    --ui-fg: oklch(0.22 0.02 195);
+    --ui-fg-muted: oklch(0.42 0.02 195);
+    --ui-fg-subtle: oklch(0.58 0.015 195);
+    --ui-fg-inverse: oklch(0.99 0.005 195);
+
+    --ui-danger: oklch(0.52 0.19 25);
+    --ui-danger-soft: oklch(0.95 0.03 25);
+    --ui-on-danger: oklch(0.99 0.01 25);
+
+    --ui-success: oklch(0.48 0.12 150);
+    --ui-success-soft: oklch(0.95 0.03 150);
+    --ui-on-success: oklch(0.99 0.01 150);
+
+    --ui-warning: oklch(0.68 0.14 75);
+    --ui-warning-soft: oklch(0.96 0.04 85);
+    --ui-on-warning: oklch(0.25 0.05 75);
+
+    --ui-info: oklch(0.52 0.12 250);
+    --ui-info-soft: oklch(0.95 0.03 250);
+    --ui-on-info: oklch(0.99 0.01 250);
+
+    --ui-radius-control: 0.5rem;
+    --ui-radius-card: 0.75rem;
+    --ui-radius-pill: 9999px;
+
+    --ui-shadow-sm: 0 1px 2px oklch(0.2 0.02 195 / 0.08);
+    --ui-shadow-md: 0 4px 12px oklch(0.2 0.02 195 / 0.1);
+    --ui-shadow-lg: 0 12px 32px oklch(0.2 0.02 195 / 0.14);
+}
+
+[data-theme='praesepe'].dark,
+.dark[data-theme='praesepe'],
+html.dark:not([data-theme]),
+html.dark[data-theme='praesepe'] {
+    --ui-brand: oklch(0.72 0.1 195);
+    --ui-on-brand: oklch(0.2 0.03 195);
+
+    --ui-surface: oklch(0.18 0.02 195);
+    --ui-surface-raised: oklch(0.23 0.02 195);
+    --ui-surface-sunken: oklch(0.14 0.015 195);
+
+    --ui-border: oklch(0.32 0.02 195);
+    --ui-border-strong: oklch(0.45 0.03 195);
+    --ui-ring: oklch(0.7 0.1 195);
+
+    --ui-fg: oklch(0.95 0.01 195);
+    --ui-fg-muted: oklch(0.78 0.015 195);
+    --ui-fg-subtle: oklch(0.62 0.015 195);
+    --ui-fg-inverse: oklch(0.18 0.02 195);
+
+    --ui-danger: oklch(0.68 0.16 25);
+    --ui-danger-soft: oklch(0.28 0.06 25);
+    --ui-on-danger: oklch(0.16 0.03 25);
+
+    --ui-success: oklch(0.72 0.12 150);
+    --ui-success-soft: oklch(0.28 0.05 150);
+    --ui-on-success: oklch(0.16 0.03 150);
+
+    --ui-warning: oklch(0.78 0.12 85);
+    --ui-warning-soft: oklch(0.3 0.05 85);
+    --ui-on-warning: oklch(0.2 0.04 85);
+
+    --ui-info: oklch(0.72 0.1 250);
+    --ui-info-soft: oklch(0.28 0.05 250);
+    --ui-on-info: oklch(0.16 0.03 250);
+
+    --ui-shadow-sm: 0 1px 2px oklch(0 0 0 / 0.35);
+    --ui-shadow-md: 0 4px 12px oklch(0 0 0 / 0.45);
+    --ui-shadow-lg: 0 12px 32px oklch(0 0 0 / 0.55);
+}
+
+/* -------------------------------------------------------------------------
+ * Theme: minimal (sharp / monochrome)
+ * ------------------------------------------------------------------------- */
+[data-theme='minimal'] {
+    --ui-font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+
+    --ui-brand: oklch(0.25 0 0);
+    --ui-on-brand: oklch(0.99 0 0);
+
+    --ui-surface: oklch(1 0 0);
+    --ui-surface-raised: oklch(1 0 0);
+    --ui-surface-sunken: oklch(0.96 0 0);
+
+    --ui-border: oklch(0.88 0 0);
+    --ui-border-strong: oklch(0.55 0 0);
+    --ui-ring: oklch(0.4 0 0);
+
+    --ui-fg: oklch(0.15 0 0);
+    --ui-fg-muted: oklch(0.4 0 0);
+    --ui-fg-subtle: oklch(0.55 0 0);
+    --ui-fg-inverse: oklch(0.99 0 0);
+
+    --ui-danger: oklch(0.45 0.18 25);
+    --ui-danger-soft: oklch(0.95 0.02 25);
+    --ui-on-danger: oklch(0.99 0 0);
+
+    --ui-success: oklch(0.42 0.1 150);
+    --ui-success-soft: oklch(0.95 0.02 150);
+    --ui-on-success: oklch(0.99 0 0);
+
+    --ui-warning: oklch(0.62 0.12 75);
+    --ui-warning-soft: oklch(0.96 0.03 85);
+    --ui-on-warning: oklch(0.2 0 0);
+
+    --ui-info: oklch(0.4 0.08 250);
+    --ui-info-soft: oklch(0.95 0.02 250);
+    --ui-on-info: oklch(0.99 0 0);
+
+    --ui-radius-control: 0.125rem;
+    --ui-radius-card: 0.25rem;
+    --ui-radius-pill: 0.25rem;
+
+    --ui-shadow-sm: 0 1px 0 oklch(0 0 0 / 0.08);
+    --ui-shadow-md: 0 2px 8px oklch(0 0 0 / 0.1);
+    --ui-shadow-lg: 0 8px 24px oklch(0 0 0 / 0.12);
+}
+
+html.dark[data-theme='minimal'],
+[data-theme='minimal'].dark {
+    --ui-brand: oklch(0.92 0 0);
+    --ui-on-brand: oklch(0.12 0 0);
+
+    --ui-surface: oklch(0.14 0 0);
+    --ui-surface-raised: oklch(0.2 0 0);
+    --ui-surface-sunken: oklch(0.1 0 0);
+
+    --ui-border: oklch(0.3 0 0);
+    --ui-border-strong: oklch(0.5 0 0);
+    --ui-ring: oklch(0.75 0 0);
+
+    --ui-fg: oklch(0.95 0 0);
+    --ui-fg-muted: oklch(0.72 0 0);
+    --ui-fg-subtle: oklch(0.55 0 0);
+    --ui-fg-inverse: oklch(0.12 0 0);
+
+    --ui-danger: oklch(0.7 0.15 25);
+    --ui-danger-soft: oklch(0.26 0.05 25);
+    --ui-on-danger: oklch(0.12 0 0);
+
+    --ui-success: oklch(0.74 0.1 150);
+    --ui-success-soft: oklch(0.26 0.04 150);
+    --ui-on-success: oklch(0.12 0 0);
+
+    --ui-warning: oklch(0.8 0.11 85);
+    --ui-warning-soft: oklch(0.28 0.04 85);
+    --ui-on-warning: oklch(0.14 0 0);
+
+    --ui-info: oklch(0.74 0.08 250);
+    --ui-info-soft: oklch(0.26 0.04 250);
+    --ui-on-info: oklch(0.12 0 0);
+
+    --ui-shadow-sm: 0 1px 0 oklch(0 0 0 / 0.5);
+    --ui-shadow-md: 0 2px 8px oklch(0 0 0 / 0.55);
+    --ui-shadow-lg: 0 8px 24px oklch(0 0 0 / 0.65);
+}
+
+/* -------------------------------------------------------------------------
+ * Theme: warm (soft amber / teal)
+ * ------------------------------------------------------------------------- */
+[data-theme='warm'] {
+    --ui-font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+
+    --ui-brand: oklch(0.55 0.12 55);
+    --ui-on-brand: oklch(0.22 0.04 55);
+
+    --ui-surface: oklch(0.98 0.01 85);
+    --ui-surface-raised: oklch(1 0.005 85);
+    --ui-surface-sunken: oklch(0.95 0.015 85);
+
+    --ui-border: oklch(0.88 0.02 75);
+    --ui-border-strong: oklch(0.7 0.04 65);
+    --ui-ring: oklch(0.58 0.1 180);
+
+    --ui-fg: oklch(0.28 0.03 55);
+    --ui-fg-muted: oklch(0.45 0.03 55);
+    --ui-fg-subtle: oklch(0.58 0.025 55);
+    --ui-fg-inverse: oklch(0.98 0.01 85);
+
+    --ui-danger: oklch(0.5 0.17 30);
+    --ui-danger-soft: oklch(0.95 0.03 30);
+    --ui-on-danger: oklch(0.99 0.01 30);
+
+    --ui-success: oklch(0.5 0.1 165);
+    --ui-success-soft: oklch(0.95 0.03 165);
+    --ui-on-success: oklch(0.99 0.01 165);
+
+    --ui-warning: oklch(0.7 0.13 70);
+    --ui-warning-soft: oklch(0.96 0.04 80);
+    --ui-on-warning: oklch(0.28 0.05 70);
+
+    --ui-info: oklch(0.52 0.09 210);
+    --ui-info-soft: oklch(0.95 0.03 210);
+    --ui-on-info: oklch(0.99 0.01 210);
+
+    --ui-radius-control: 0.75rem;
+    --ui-radius-card: 1rem;
+    --ui-radius-pill: 9999px;
+
+    --ui-shadow-sm: 0 1px 2px oklch(0.35 0.04 55 / 0.1);
+    --ui-shadow-md: 0 6px 16px oklch(0.35 0.04 55 / 0.12);
+    --ui-shadow-lg: 0 16px 36px oklch(0.35 0.04 55 / 0.16);
+}
+
+html.dark[data-theme='warm'],
+[data-theme='warm'].dark {
+    --ui-brand: oklch(0.78 0.1 70);
+    --ui-on-brand: oklch(0.22 0.04 55);
+
+    --ui-surface: oklch(0.2 0.02 55);
+    --ui-surface-raised: oklch(0.25 0.025 55);
+    --ui-surface-sunken: oklch(0.16 0.015 55);
+
+    --ui-border: oklch(0.35 0.03 55);
+    --ui-border-strong: oklch(0.48 0.04 55);
+    --ui-ring: oklch(0.72 0.08 180);
+
+    --ui-fg: oklch(0.95 0.015 85);
+    --ui-fg-muted: oklch(0.78 0.02 75);
+    --ui-fg-subtle: oklch(0.62 0.02 65);
+    --ui-fg-inverse: oklch(0.2 0.02 55);
+
+    --ui-danger: oklch(0.7 0.14 30);
+    --ui-danger-soft: oklch(0.3 0.05 30);
+    --ui-on-danger: oklch(0.18 0.03 30);
+
+    --ui-success: oklch(0.74 0.1 165);
+    --ui-success-soft: oklch(0.28 0.04 165);
+    --ui-on-success: oklch(0.16 0.03 165);
+
+    --ui-warning: oklch(0.8 0.11 80);
+    --ui-warning-soft: oklch(0.3 0.05 80);
+    --ui-on-warning: oklch(0.2 0.04 80);
+
+    --ui-info: oklch(0.74 0.08 210);
+    --ui-info-soft: oklch(0.28 0.04 210);
+    --ui-on-info: oklch(0.16 0.03 210);
+
+    --ui-shadow-sm: 0 1px 2px oklch(0 0 0 / 0.4);
+    --ui-shadow-md: 0 6px 16px oklch(0 0 0 / 0.48);
+    --ui-shadow-lg: 0 16px 36px oklch(0 0 0 / 0.58);
+}
