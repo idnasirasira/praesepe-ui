@@ -5,14 +5,36 @@
 
 @section('body')
 <div class="min-h-dvh bg-surface text-fg">
-    <x-ui.navbar :brand-href="route('home')" :brand-name="config('ui-docs.name')" class="z-20">
+    <x-ui.navbar :brand-href="route('home')" brand-name="" class="z-20">
+        <x-slot:logo>
+            <x-docs.logo />
+        </x-slot:logo>
+
         <x-slot:links>
             <x-ui.navbar.link :href="route('docs.index')">Docs</x-ui.navbar.link>
             <x-ui.navbar.link :href="route('ui.index')">Kitchen sink</x-ui.navbar.link>
         </x-slot:links>
 
         <x-slot:actions>
-            <div class="flex flex-col gap-3 md:flex-row md:items-center md:gap-2">
+            <div class="flex items-center gap-2">
+                <x-docs.theme-switcher />
+                <x-docs.dark-mode-toggle />
+                @if (config('ui-docs.github_url'))
+                    <a
+                        href="{{ config('ui-docs.github_url') }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex h-8 items-center justify-center rounded-control border border-border bg-surface-raised px-2.5 text-xs font-medium text-fg shadow-2xs transition-colors duration-150 hover:bg-surface-sunken"
+                    >
+                        GitHub
+                    </a>
+                @endif
+                <x-ui.button variant="outline" size="sm" :href="route('docs.index')">Get started</x-ui.button>
+            </div>
+        </x-slot:actions>
+
+        <x-slot:mobileFooter>
+            <div class="flex flex-col gap-3">
                 <div class="flex items-center gap-2">
                     <x-docs.theme-switcher />
                     <x-docs.dark-mode-toggle />
@@ -22,14 +44,14 @@
                         href="{{ config('ui-docs.github_url') }}"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex h-9 items-center justify-center rounded-control border border-border bg-surface-raised px-3 text-sm font-medium text-fg shadow-2xs transition-colors duration-150 hover:bg-surface-sunken md:h-8 md:px-2.5 md:text-xs"
+                        class="inline-flex h-9 w-full items-center justify-center rounded-control border border-border bg-surface-raised px-3 text-sm font-medium text-fg shadow-2xs transition-colors duration-150 hover:bg-surface-sunken"
                     >
                         GitHub
                     </a>
                 @endif
-                <x-ui.button variant="outline" size="sm" class="w-full justify-center md:w-auto" :href="route('docs.index')">Get started</x-ui.button>
+                <x-ui.button variant="outline" size="sm" class="w-full justify-center" :href="route('docs.index')">Get started</x-ui.button>
             </div>
-        </x-slot:actions>
+        </x-slot:mobileFooter>
     </x-ui.navbar>
 
     <main id="main-content">

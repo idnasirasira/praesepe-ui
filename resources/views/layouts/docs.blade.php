@@ -35,10 +35,9 @@
         <div class="mx-auto flex h-14 max-w-[90rem] items-center gap-3 px-4 sm:px-6 lg:px-8">
             <a
                 href="{{ route('home') }}"
-                class="inline-flex min-w-0 items-center gap-2.5 rounded-control font-semibold tracking-tight text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                class="inline-flex min-w-0 items-center gap-2.5 rounded-control focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
             >
-                <span class="inline-flex size-7 shrink-0 items-center justify-center rounded-control bg-brand text-xs font-bold text-on-brand shadow-2xs" aria-hidden="true">P</span>
-                <span class="truncate">{{ config('ui-docs.name') }}</span>
+                <x-docs.logo />
                 <span class="hidden text-xs font-normal tabular-nums text-fg-subtle sm:inline">v{{ config('ui-docs.version') }}</span>
             </a>
 
@@ -153,7 +152,7 @@
                 class="relative flex h-full w-[min(20rem,calc(100vw-2.5rem))] flex-col border-r border-border bg-surface-raised shadow-xl"
             >
                 <div class="flex h-14 shrink-0 items-center justify-between border-b border-border px-4">
-                    <span class="text-sm font-semibold tracking-tight text-fg">{{ config('ui-docs.name') }}</span>
+                    <x-docs.logo />
                     <button
                         type="button"
                         x-on:click="sidebarOpen = false"

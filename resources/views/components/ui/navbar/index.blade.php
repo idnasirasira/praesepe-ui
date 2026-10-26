@@ -36,10 +36,12 @@
                     {{ $logo }}
                 @else
                     <span class="inline-flex size-7 shrink-0 items-center justify-center rounded-control bg-brand text-xs font-bold text-on-brand shadow-2xs" aria-hidden="true">
-                        {{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr($resolvedBrand, 0, 1)) }}
+                        {{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr($resolvedBrand !== '' ? $resolvedBrand : 'P', 0, 1)) }}
                     </span>
                 @endisset
-                <span class="truncate">{{ $resolvedBrand }}</span>
+                @if ($resolvedBrand !== '')
+                    <span class="truncate">{{ $resolvedBrand }}</span>
+                @endif
             </a>
 
             @isset($links)
@@ -181,7 +183,11 @@
                     class="relative flex h-full w-[min(20rem,calc(100vw-2.5rem))] flex-col justify-between border-r border-border bg-surface-raised shadow-xl"
                 >
                     <div class="flex h-14 shrink-0 items-center justify-between border-b border-border px-4">
-                        <span class="text-sm font-semibold tracking-tight text-fg">{{ $resolvedBrand }}</span>
+                        @isset($logo)
+                            {{ $logo }}
+                        @else
+                            <span class="text-sm font-semibold tracking-tight text-fg">{{ $resolvedBrand }}</span>
+                        @endisset
                         <button
                             type="button"
                             x-on:click="close()"
