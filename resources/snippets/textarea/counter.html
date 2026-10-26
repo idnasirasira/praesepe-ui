@@ -1,0 +1,15 @@
+<div class="w-full max-w-lg" x-data="{ count: 0, max: 120 }">
+    <label for="summary-counter" class="mb-1.5 block text-sm font-medium text-fg">Summary</label>
+    <textarea
+        id="summary-counter"
+        name="summary"
+        rows="3"
+        maxlength="120"
+        aria-describedby="summary-counter-counter"
+        class="min-h-24 w-full resize-y rounded-control border border-border bg-surface-raised px-3 py-2 text-sm text-fg shadow-sm focus:border-border-strong"
+        x-on:input="count = $event.target.value.length"
+    ></textarea>
+    <p id="summary-counter-counter" class="mt-1.5 text-right text-xs text-fg-subtle" aria-live="polite">
+        <span x-text="count">0</span> / 120
+    </p>
+</div>

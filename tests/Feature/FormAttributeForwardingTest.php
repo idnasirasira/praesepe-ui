@@ -52,3 +52,14 @@ it('forwards form attributes to the native select element', function (): void {
         ->and($select->getAttribute('x-model'))->toBe('plan')
         ->and($select->hasAttribute('required'))->toBeTrue();
 });
+
+it('forwards form attributes to the native textarea element', function (): void {
+    $html = Blade::render('<x-ui.textarea name="bio" required placeholder="Tell us" x-model="bio" class="wrapper-class" />');
+
+    [, $textarea] = assertControlReceivesAttributes($html, '//textarea');
+
+    expect($textarea->getAttribute('name'))->toBe('bio')
+        ->and($textarea->getAttribute('placeholder'))->toBe('Tell us')
+        ->and($textarea->getAttribute('x-model'))->toBe('bio')
+        ->and($textarea->hasAttribute('required'))->toBeTrue();
+});
