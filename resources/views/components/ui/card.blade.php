@@ -5,9 +5,9 @@
 
 @php
     $variantClasses = [
-        'default' => 'border border-border bg-surface-raised shadow-sm ring-1 ring-black/5',
+        'default' => 'border border-border bg-surface-raised shadow-sm ring-1 ring-border/60',
         'sunken' => 'border border-transparent bg-surface-sunken',
-        'interactive' => 'border border-border bg-surface-raised shadow-sm ring-1 ring-black/5 transition-colors duration-150 hover:border-border-strong hover:bg-surface',
+        'interactive' => 'border border-border bg-surface-raised shadow-sm ring-1 ring-border/60 transition-colors duration-150 hover:border-border-strong hover:bg-surface-raised hover:shadow-md',
     ];
 
     $variantClass = $variantClasses[$variant] ?? $variantClasses['default'];
@@ -18,7 +18,7 @@
     {{ $attributes->class([
         'relative overflow-hidden rounded-card',
         $variantClass,
-        $isInteractive ? 'focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-[var(--ui-ring)]' : '',
+        $isInteractive ? 'focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-surface' : '',
     ]) }}
 >
     @isset($media)
@@ -42,7 +42,7 @@
                 <span class="relative z-10">{{ $title ?? $slot }}</span>
             </a>
             @isset($title)
-                <div class="relative z-10 mt-2 text-sm text-fg-muted">
+                <div class="relative z-10 mt-2 text-sm text-fg-muted leading-relaxed">
                     {{ $slot }}
                 </div>
             @endisset

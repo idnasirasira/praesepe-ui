@@ -42,7 +42,7 @@
     @endif
 >
     <div
-        class="overflow-x-auto rounded-card border border-border focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--ui-ring)] {{ $stickyHeader ? 'max-h-[28rem] overflow-y-auto' : '' }}"
+        class="overflow-x-auto rounded-card border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface {{ $stickyHeader ? 'max-h-[28rem] overflow-y-auto' : '' }}"
         role="region"
         aria-label="{{ $label }}"
         tabindex="0"

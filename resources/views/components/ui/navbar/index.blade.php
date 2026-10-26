@@ -66,7 +66,7 @@
 
             <button
                 type="button"
-                class="inline-flex size-9 items-center justify-center rounded-control border border-border bg-surface-raised text-fg shadow-2xs transition-colors duration-150 hover:bg-surface-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface md:hidden"
+                class="inline-flex size-10 items-center justify-center rounded-control border border-border bg-surface-raised text-fg shadow-2xs transition-colors duration-150 hover:bg-surface-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface md:hidden"
                 x-on:click="mobileOpen = !mobileOpen"
                 x-bind:aria-expanded="mobileOpen.toString()"
                 aria-controls="ui-navbar-drawer"
@@ -118,12 +118,13 @@
             x-trap.inert.noscroll="mobileOpen"
         >
             <div
-                class="overflow-hidden rounded-card border border-border bg-surface-raised shadow-xl ring-1 ring-black/5"
+                class="overflow-hidden rounded-card border border-border bg-surface-raised shadow-xl ring-1 ring-border/60"
                 x-show="mobileOpen"
+                x-cloak
                 x-transition:enter="transition ease-out duration-200"
                 x-transition:enter-start="opacity-0 scale-95 translate-y-1"
                 x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave="transition ease-in duration-100"
                 x-transition:leave-start="opacity-100 scale-100 translate-y-0"
                 x-transition:leave-end="opacity-0 scale-95 translate-y-1"
                 x-on:click.outside="close()"
@@ -160,10 +161,11 @@
             >
                 <div
                     x-show="mobileOpen"
+                    x-cloak
                     x-transition:enter="transition-opacity ease-out duration-200"
                     x-transition:enter-start="opacity-0"
                     x-transition:enter-end="opacity-100"
-                    x-transition:leave="transition-opacity ease-in duration-150"
+                    x-transition:leave="transition-opacity ease-in duration-100"
                     x-transition:leave-start="opacity-100"
                     x-transition:leave-end="opacity-0"
                     x-on:click="close()"
@@ -173,11 +175,12 @@
 
                 <div
                     x-show="mobileOpen"
+                    x-cloak
                     x-trap.inert.noscroll="mobileOpen"
                     x-transition:enter="transition ease-out duration-200 transform"
                     x-transition:enter-start="-translate-x-full"
                     x-transition:enter-end="translate-x-0"
-                    x-transition:leave="transition ease-in duration-150 transform"
+                    x-transition:leave="transition ease-in duration-100 transform"
                     x-transition:leave-start="translate-x-0"
                     x-transition:leave-end="-translate-x-full"
                     class="relative flex h-full w-[min(20rem,calc(100vw-2.5rem))] flex-col justify-between border-r border-border bg-surface-raised shadow-xl"
@@ -191,7 +194,7 @@
                         <button
                             type="button"
                             x-on:click="close()"
-                            class="inline-flex size-9 items-center justify-center rounded-control text-fg-muted transition-colors duration-150 hover:bg-surface-sunken hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            class="inline-flex size-10 items-center justify-center rounded-control text-fg-muted transition-colors duration-150 hover:bg-surface-sunken hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                             aria-label="Close navigation menu"
                         >
                             <x-icons.x class="size-4 shrink-0" />

@@ -57,6 +57,7 @@
                 alt=""
                 class="size-full object-cover"
                 x-show="!failed"
+                x-cloak
                 x-on:error="failed = true"
             >
         @endif

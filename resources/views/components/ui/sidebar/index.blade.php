@@ -40,7 +40,7 @@
             <p class="text-sm font-semibold tracking-tight text-fg" x-show="collapsed" x-cloak>{{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr((string) ($brand ?? 'M'), 0, 1)) }}</p>
             <button
                 type="button"
-                class="inline-flex size-9 items-center justify-center rounded-control border border-border text-fg-muted transition-colors duration-150 hover:bg-surface-sunken hover:text-fg"
+                class="inline-flex size-10 items-center justify-center rounded-control border border-border text-fg-muted transition-colors duration-150 hover:bg-surface-sunken hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                 x-on:click="toggleCollapsed()"
                 x-bind:aria-pressed="collapsed.toString()"
                 aria-label="Collapse sidebar"
@@ -66,10 +66,11 @@
         >
             <div
                 x-show="open"
+                x-cloak
                 x-transition:enter="transition-opacity ease-out duration-200"
                 x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100"
-                x-transition:leave="transition-opacity ease-in duration-150"
+                x-transition:leave="transition-opacity ease-in duration-100"
                 x-transition:leave-start="opacity-100"
                 x-transition:leave-end="opacity-0"
                 x-on:click="closeMobile()"
@@ -81,11 +82,12 @@
                 id="ui-sidebar-panel"
                 aria-label="{{ $label }}"
                 x-show="open"
+                x-cloak
                 x-trap.inert.noscroll="open"
                 x-transition:enter="transition ease-out duration-200 transform"
                 x-transition:enter-start="-translate-x-full"
                 x-transition:enter-end="translate-x-0"
-                x-transition:leave="transition ease-in duration-150 transform"
+                x-transition:leave="transition ease-in duration-100 transform"
                 x-transition:leave-start="translate-x-0"
                 x-transition:leave-end="-translate-x-full"
                 class="relative flex h-full w-[min(20rem,calc(100vw-2.5rem))] flex-col gap-4 overflow-y-auto overscroll-contain border-r border-border bg-surface-raised p-4 shadow-xl"
@@ -94,7 +96,7 @@
                     <p class="text-sm font-semibold tracking-tight text-fg">{{ $brand ?? 'Menu' }}</p>
                     <button
                         type="button"
-                        class="inline-flex size-9 items-center justify-center rounded-control text-fg-muted transition-colors duration-150 hover:bg-surface-sunken hover:text-fg"
+                        class="inline-flex size-10 items-center justify-center rounded-control text-fg-muted transition-colors duration-150 hover:bg-surface-sunken hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                         x-on:click="closeMobile()"
                         aria-label="Close sidebar"
                     >

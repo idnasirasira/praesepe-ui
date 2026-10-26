@@ -37,7 +37,7 @@
         @elseif ($sortable)
             <button
                 type="button"
-                class="inline-flex items-center gap-1 rounded-control text-left uppercase tracking-wider hover:text-fg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ui-ring)]"
+                class="inline-flex items-center gap-1 rounded-control text-left uppercase tracking-wider hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                 {{ $actionAttributes }}
             >
                 <span>{{ $slot }}</span>

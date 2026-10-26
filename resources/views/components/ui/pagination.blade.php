@@ -32,6 +32,8 @@
         }
         $pages[] = $total;
     }
+
+    $controlFocus = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface';
 @endphp
 
 <nav {{ $attributes->class(['flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between']) }} aria-label="Pagination">
@@ -46,7 +48,8 @@
             <a
                 href="?page={{ max(1, $current - 1) }}"
                 @class([
-                    'inline-flex h-9 items-center rounded-control border border-border bg-surface-raised px-3.5 text-sm shadow-2xs transition-colors duration-150',
+                    'inline-flex h-10 items-center rounded-control border border-border bg-surface-raised px-3.5 text-sm shadow-2xs transition-colors duration-150',
+                    $controlFocus,
                     'pointer-events-none opacity-50' => $current <= 1,
                     'text-fg hover:border-border-strong hover:bg-surface-sunken' => $current > 1,
                 ])
@@ -57,7 +60,8 @@
             <a
                 href="?page={{ min($total, $current + 1) }}"
                 @class([
-                    'inline-flex h-9 items-center rounded-control border border-border bg-surface-raised px-3.5 text-sm shadow-2xs transition-colors duration-150',
+                    'inline-flex h-10 items-center rounded-control border border-border bg-surface-raised px-3.5 text-sm shadow-2xs transition-colors duration-150',
+                    $controlFocus,
                     'pointer-events-none opacity-50' => $current >= $total,
                     'text-fg hover:border-border-strong hover:bg-surface-sunken' => $current < $total,
                 ])
@@ -71,7 +75,7 @@
             <li>
                 <a
                     href="?page={{ max(1, $current - 1) }}"
-                    class="inline-flex size-9 items-center justify-center rounded-control border border-border bg-surface-raised text-sm tabular-nums shadow-2xs transition-colors duration-150 {{ $current <= 1 ? 'pointer-events-none opacity-50' : 'text-fg hover:border-border-strong hover:bg-surface-sunken' }}"
+                    class="inline-flex size-10 items-center justify-center rounded-control border border-border bg-surface-raised text-sm tabular-nums shadow-2xs transition-colors duration-150 {{ $controlFocus }} {{ $current <= 1 ? 'pointer-events-none opacity-50' : 'text-fg hover:border-border-strong hover:bg-surface-sunken' }}"
                     aria-label="Previous page"
                     @if ($current <= 1) aria-disabled="true" tabindex="-1" @endif
                 >
@@ -81,12 +85,13 @@
             @foreach ($pages as $page)
                 <li>
                     @if (is_string($page))
-                        <span class="inline-flex size-9 items-center justify-center text-sm tabular-nums text-fg-subtle" aria-hidden="true">…</span>
+                        <span class="inline-flex size-10 items-center justify-center text-sm tabular-nums text-fg-subtle" aria-hidden="true">…</span>
                     @else
                         <a
                             href="?page={{ $page }}"
                             @class([
-                                'inline-flex size-9 items-center justify-center rounded-control text-sm tabular-nums transition-colors duration-150',
+                                'inline-flex size-10 items-center justify-center rounded-control text-sm tabular-nums transition-colors duration-150',
+                                $controlFocus,
                                 'bg-brand text-on-brand shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16),0_1px_2px_0_rgba(0,0,0,0.06)]' => $page === $current,
                                 'border border-border bg-surface-raised text-fg shadow-2xs hover:border-border-strong hover:bg-surface-sunken' => $page !== $current,
                             ])
@@ -100,7 +105,7 @@
             <li>
                 <a
                     href="?page={{ min($total, $current + 1) }}"
-                    class="inline-flex size-9 items-center justify-center rounded-control border border-border bg-surface-raised text-sm tabular-nums shadow-2xs transition-colors duration-150 {{ $current >= $total ? 'pointer-events-none opacity-50' : 'text-fg hover:border-border-strong hover:bg-surface-sunken' }}"
+                    class="inline-flex size-10 items-center justify-center rounded-control border border-border bg-surface-raised text-sm tabular-nums shadow-2xs transition-colors duration-150 {{ $controlFocus }} {{ $current >= $total ? 'pointer-events-none opacity-50' : 'text-fg hover:border-border-strong hover:bg-surface-sunken' }}"
                     aria-label="Next page"
                     @if ($current >= $total) aria-disabled="true" tabindex="-1" @endif
                 >

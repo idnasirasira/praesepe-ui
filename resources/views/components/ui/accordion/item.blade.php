@@ -16,7 +16,7 @@
         <button
             type="button"
             id="{{ $headerId }}"
-            class="flex w-full items-center justify-between gap-3 py-4 text-left text-sm font-medium text-fg outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ui-ring)]"
+            class="flex min-h-11 w-full items-center justify-between gap-3 py-4 text-left text-sm font-medium text-fg outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
             x-on:click="toggle(@js($itemId))"
             x-bind:aria-expanded="isOpen(@js($itemId)).toString()"
             aria-controls="{{ $panelId }}"

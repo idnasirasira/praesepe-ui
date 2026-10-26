@@ -66,11 +66,11 @@
     @if ($removable)
         <button
             type="button"
-            class="inline-flex shrink-0 rounded-full p-0.5 opacity-80 hover:opacity-100"
+            class="-mr-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full opacity-80 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-transparent"
             aria-label="Remove"
             {{ $actionAttributes }}
         >
-            <x-icons.x class="size-3" />
+            <x-icons.x class="size-3 shrink-0" />
         </button>
     @endif
 </span>
