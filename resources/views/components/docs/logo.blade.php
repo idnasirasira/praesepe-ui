@@ -3,6 +3,7 @@
     'showBadge' => true,
 ])
 
+{{-- Product lockup for ui.praesepe.id. Use x-docs.praesepe-logo for praesepe.id. --}}
 <span {{ $attributes->class(['inline-flex items-center gap-2.5 select-none']) }}>
     {{-- Modular P Grid Mark --}}
     <span class="inline-flex size-7 shrink-0 items-center justify-center rounded-control bg-brand text-on-brand shadow-2xs ring-1 ring-inset ring-white/15">

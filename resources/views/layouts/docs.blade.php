@@ -225,8 +225,15 @@
                     @endif
 
                     <div class="rounded-card border border-border bg-surface-sunken/60 p-4 ring-1 ring-black/5">
-                        <p class="text-xs font-semibold uppercase tracking-wider text-fg-subtle">Studio</p>
-                        <p class="mt-2 text-sm font-semibold tracking-tight text-fg">Need custom ERP / SME software?</p>
+                        <a
+                            href="{{ config('ui-docs.praesepe_url') }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 rounded-control focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                        >
+                            <x-docs.praesepe-logo />
+                        </a>
+                        <p class="mt-3 text-sm font-semibold tracking-tight text-fg">Need custom ERP / SME software?</p>
                         <p class="mt-1.5 text-xs text-fg-muted leading-relaxed text-pretty">
                             Praesepe ships inventory, invoicing, and ops dashboards with these same primitives.
                         </p>

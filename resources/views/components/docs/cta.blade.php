@@ -11,7 +11,10 @@
 <section {{ $attributes->class(['overflow-hidden rounded-card border border-border bg-surface-raised shadow-sm ring-1 ring-black/5']) }}>
     <div class="grid gap-0 lg:grid-cols-[1.4fr_1fr]">
         <div class="border-b border-border p-6 sm:p-8 lg:border-r lg:border-b-0">
-            <p class="text-xs font-semibold uppercase tracking-wider text-brand">Built by Praesepe</p>
+            <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand">
+                <x-icons.praesepe class="size-3.5 shrink-0" />
+                Built by Praesepe
+            </p>
             <h2 class="mt-3 text-xl font-semibold tracking-tight text-balance text-fg sm:text-2xl">{{ $title }}</h2>
             <p class="mt-3 max-w-2xl text-sm text-fg-muted leading-relaxed text-pretty sm:text-base">{{ $body }}</p>
 
