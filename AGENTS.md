@@ -86,3 +86,65 @@ No database queries for docs routes. Keep session and cache drivers as `file` or
 
 Activate project skills under `.cursor/skills/` when working in matching domains
 (Laravel best practices, Tailwind, testing, deploying to Cloud).
+
+## UI/UX craft and design engineering (mandatory)
+
+Every component and documentation page must meet a flagship design-engineering
+standard (inspired by Linear, Raycast, and Flux UI): clean, high-density,
+tactile, and business-ready. Never output generic, flat Tailwind boilerplate.
+
+### Typography and optical precision
+
+- Headings: Always pair `font-semibold` with tight tracking (`tracking-tight`)
+  and `text-balance`.
+- Body and descriptions: Use `text-fg-muted leading-relaxed text-pretty`.
+- Data and business numbers: Any component displaying prices, IDs, dates,
+  counters, or table cells (`table`, `badge`, `pagination`, `input[type=number]`,
+  `textarea` counter) MUST include `tabular-nums` so digits align vertically in
+  SME dashboards.
+- Optical icon sizing: Inside `sm` controls use `size-3.5` icons; inside `md`
+  controls use `size-4`; inside `lg` controls use `size-4` or `size-5`. Always
+  add `shrink-0` to icons inside flex containers.
+
+### Tactile surfaces, borders, and elevation
+
+- Controls (`button`, `input`, `select`, `switch`, `card`): Avoid flat fills.
+  Combine crisp 1px borders (`border-border`) with subtle elevation
+  (`shadow-2xs` or `shadow-xs`).
+- Primary and solid buttons: Add a subtle top inner highlight
+  (`shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16),0_1px_2px_0_rgba(0,0,0,0.06)]`)
+  and micro-press feedback (`active:translate-y-px` or `active:scale-[0.99]`),
+  disabled under `prefers-reduced-motion`.
+- Dark mode depth: Never rely on heavy black drop shadows in `.dark` mode.
+  Create elevation in dark mode by stepping up surface lightness
+  (`bg-surface-sunken` -> `bg-surface` -> `bg-surface-raised`) paired with
+  crisp `border-border` hairlines.
+- Focus rings: Use a clean two-layer optical focus ring on `:focus-visible`:
+  `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
+  focus-visible:ring-offset-2 focus-visible:ring-offset-surface`.
+
+### Form ergonomics and states
+
+- Consistent heights: `sm` controls (`button`, `input`, `select`) MUST share an
+  exact height of `h-8` (32px, `text-xs` or `text-sm`), `md` MUST be `h-9`
+  (36px, `text-sm`), and `lg` MUST be `h-10` (40px, `text-sm` or `text-base`)
+  so inline form rows align to the pixel.
+- Hover and focus transitions: Inputs and selects should transition border color
+  smoothly (`hover:border-border-strong focus:border-brand transition-colors
+  duration-150`).
+- Error states: Never just turn a border red. Combine
+  `border-danger focus-visible:ring-danger` on the input with an inline warning
+  icon plus crisp `text-xs text-danger` helper message below.
+
+### Motion and choreography (Alpine transitions)
+
+- Never pop overlays (`modal`, `dropdown`, `tooltip`, `toast`, mobile drawer) in
+  or out abruptly.
+- Dropdowns and tooltips:
+  `x-transition:enter="transition ease-out duration-150"`
+  `x-transition:enter-start="opacity-0 scale-95 translate-y-0.5"`
+  `x-transition:enter-end="opacity-100 scale-100 translate-y-0"`
+  and a faster exit (`duration-100`).
+- Modals: Backdrop fades (`opacity-0` to `opacity-100 duration-200`) while the
+  panel scales or slides subtly (`opacity-0 scale-95 translate-y-2` to
+  `opacity-100 scale-100 translate-y-0 duration-200 ease-out`).
