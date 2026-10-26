@@ -125,6 +125,8 @@ Verification after each batch: `composer check` and `npm run build`.
 - Icon-only `button` `sm` remains 32px for dense toolbars; prefer `icon-md`/`lg` on primary mobile chrome.
 - Floating navbar panel stays in-header (by design) rather than body teleport; drawer style teleports.
 - HTML dropdown demos still use absolute menus (copy-paste simplicity) while Blade components teleport.
+- Toast viewport stays layout-mounted at `body` end (fixed + high z-index); type accents now render visually.
+- Follow-up from audit agents: modal initial focus, dropdown focus restore on item activate, navbar toggle label, toast type chrome, avatar SME names, `modal/event.html` completeness.
 
 ---
 

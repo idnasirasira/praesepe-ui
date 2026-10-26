@@ -36,6 +36,13 @@
         show() {
             this.trigger = document.activeElement;
             this.open = true;
+            this.$nextTick(() => {
+                const panel = this.$refs.panel;
+                const focusable = panel?.querySelector(
+                    'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex=\'-1\'])'
+                );
+                (focusable || panel)?.focus?.();
+            });
         },
         hide() {
             this.open = false;
@@ -81,7 +88,9 @@
             ></div>
 
             <div
-                class="relative z-10 w-full {{ $sizeClass }} rounded-card border border-border bg-surface-raised p-5 shadow-lg ring-1 ring-border/60"
+                x-ref="panel"
+                tabindex="-1"
+                class="relative z-10 w-full {{ $sizeClass }} rounded-card border border-border bg-surface-raised p-5 shadow-lg ring-1 ring-border/60 focus:outline-none"
                 x-show="open"
                 x-cloak
                 x-transition:enter="transition ease-out duration-200"

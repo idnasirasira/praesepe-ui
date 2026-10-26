@@ -27,7 +27,7 @@
         role="menuitem"
         tabindex="-1"
         {{ $attributes->class([$baseClass, $variantClass]) }}
-        x-on:click="hide(false)"
+        x-on:click="hide(true)"
     >
         @if (filled($icon))
             <span class="shrink-0 text-fg-muted [&_svg]:size-4 [&_svg]:shrink-0">{{ $icon }}</span>
@@ -45,7 +45,7 @@
         @if ($isDisabled) disabled aria-disabled="true" @endif
         {{ $attributes->class([$baseClass, $variantClass]) }}
         @unless ($isDisabled)
-            x-on:click="hide(false)"
+            x-on:click="hide(true)"
         @endunless
     >
         @if (filled($icon))

@@ -6,7 +6,7 @@
     {{ $slot }}
 
     @isset($overflow)
-        <span class="relative z-10 inline-flex size-10 items-center justify-center rounded-full bg-surface-sunken text-xs font-medium text-fg ring-2 ring-surface">
+        <span class="relative z-10 inline-flex size-10 items-center justify-center rounded-full bg-surface-sunken text-xs font-medium tabular-nums text-fg ring-2 ring-surface">
             {{ $overflow }}
         </span>
     @endisset

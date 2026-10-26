@@ -1,9 +1,35 @@
-<div>
+<div class="flex flex-wrap items-center gap-3" x-data="{
+    open: false,
+    show() { this.open = true },
+    hide() { this.open = false },
+}" x-on:ui-modal-open.window="if ($event.detail?.id === 'demo-event') show()" x-on:keydown.escape.window="if (open) hide()">
     <button
         type="button"
-        class="inline-flex h-9 items-center justify-center gap-2 rounded-control border border-border-strong bg-transparent px-3.5 text-sm font-medium text-fg transition duration-150 hover:bg-surface-sunken"
+        class="inline-flex h-9 items-center justify-center gap-2 rounded-control border border-border-strong bg-transparent px-3.5 text-sm font-medium text-fg shadow-2xs transition duration-150 hover:bg-surface-sunken motion-safe:active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
         x-on:click="window.dispatchEvent(new CustomEvent('ui-modal-open', { detail: { id: 'demo-event' } }))"
     >
         Open via event
     </button>
+
+    <template x-teleport="body">
+        <div
+            x-show="open"
+            x-cloak
+            class="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="demo-event-title"
+            x-trap.inert.noscroll="open"
+        >
+            <div class="absolute inset-0 bg-overlay backdrop-blur-[2px]" x-on:click="hide()"></div>
+            <div class="relative z-10 w-full max-w-lg rounded-card border border-border bg-surface-raised p-5 shadow-lg ring-1 ring-border/60" x-on:click.stop>
+                <h2 id="demo-event-title" class="text-lg font-semibold tracking-tight text-fg">Approval queue</h2>
+                <p class="mt-1 text-sm text-fg-muted leading-relaxed">Open INV-2026-089 from the finance toolbar without nesting the trigger.</p>
+                <p class="mt-4 text-sm text-fg leading-relaxed">Listen for the ui-modal-open window event and match detail.id.</p>
+                <div class="mt-6 flex justify-end">
+                    <button type="button" class="inline-flex h-9 items-center rounded-control border border-border bg-surface-sunken px-3.5 text-sm font-medium text-fg shadow-2xs" x-on:click="hide()">Close</button>
+                </div>
+            </div>
+        </div>
+    </template>
 </div>

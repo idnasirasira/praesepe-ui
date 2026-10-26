@@ -13,7 +13,7 @@
     $positionClass = $positionClasses[$position] ?? $positionClasses['bottom-right'];
 @endphp
 
-{{-- Already rendered at the end of <body> in layouts.app; no teleport needed. --}}
+{{-- Mounted at the end of <body> in layouts.app; fixed positioning already escapes overflow ancestors. --}}
 <div
     {{ $attributes->class(['pointer-events-none fixed z-[60] flex w-[min(24rem,calc(100vw-2rem))] flex-col gap-3', $positionClass]) }}
     x-data
@@ -24,7 +24,13 @@
 >
     <template x-for="toast in $store.toasts.items" x-bind:key="toast.id">
         <div
-            class="pointer-events-auto relative w-full overflow-hidden rounded-card border border-border bg-surface-raised p-4 shadow-lg ring-1 ring-border/60"
+            class="pointer-events-auto relative w-full overflow-hidden rounded-card border bg-surface-raised p-4 shadow-lg ring-1 ring-border/60"
+            x-bind:class="{
+                'border-border': toast.type === 'info',
+                'border-success/40': toast.type === 'success',
+                'border-warning/40': toast.type === 'warning',
+                'border-danger/40': toast.type === 'danger',
+            }"
             x-bind:role="toast.type === 'danger' ? 'alert' : 'status'"
             x-transition:enter="transition ease-out duration-150"
             x-transition:enter-start="opacity-0 scale-95 translate-y-1"
@@ -38,6 +44,18 @@
             x-on:focusout="$store.toasts.resume(toast.id)"
         >
             <div class="flex items-start gap-3">
+                <span
+                    class="mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-pill"
+                    x-bind:class="{
+                        'bg-info-soft text-info': toast.type === 'info',
+                        'bg-success-soft text-success': toast.type === 'success',
+                        'bg-warning-soft text-warning': toast.type === 'warning',
+                        'bg-danger-soft text-danger': toast.type === 'danger',
+                    }"
+                    aria-hidden="true"
+                >
+                    <span class="text-xs font-bold tabular-nums" x-text="toast.type === 'success' ? '✓' : (toast.type === 'info' ? 'i' : '!')"></span>
+                </span>
                 <div class="min-w-0 flex-1">
                     <p class="text-sm font-semibold tracking-tight text-fg" x-text="toast.title" x-show="toast.title" x-cloak></p>
                     <p class="text-sm text-fg-muted leading-relaxed" x-bind:class="toast.title ? 'mt-1' : ''" x-text="toast.message"></p>
@@ -58,7 +76,14 @@
                 x-cloak
             >
                 <div
-                    class="h-full w-full origin-left bg-brand/70"
+                    class="h-full w-full origin-left"
+                    x-bind:class="{
+                        'bg-info/70': toast.type === 'info',
+                        'bg-success/70': toast.type === 'success',
+                        'bg-warning/70': toast.type === 'warning',
+                        'bg-danger/70': toast.type === 'danger',
+                        'bg-brand/70': !['info','success','warning','danger'].includes(toast.type),
+                    }"
                     style="animation-name: ui-toast-progress; animation-timing-function: linear; animation-fill-mode: forwards;"
                     x-bind:style="`animation-duration: ${toast.duration}ms; animation-play-state: ${toast.hovering ? 'paused' : 'running'}`"
                 ></div>

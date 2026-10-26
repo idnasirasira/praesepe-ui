@@ -70,7 +70,7 @@
                 x-on:click="mobileOpen = !mobileOpen"
                 x-bind:aria-expanded="mobileOpen.toString()"
                 aria-controls="ui-navbar-drawer"
-                aria-label="Open navigation menu"
+                x-bind:aria-label="mobileOpen ? 'Close navigation menu' : 'Open navigation menu'"
             >
                 <svg
                     x-show="!mobileOpen"
