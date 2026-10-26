@@ -42,7 +42,7 @@
 @endsection
 
 @section('content')
-<article class="mx-auto max-w-3xl">
+<article class="mx-auto max-w-4xl">
     <nav class="mb-6" aria-label="Breadcrumb">
         <ol class="flex flex-wrap items-center gap-1.5 text-sm text-fg-muted">
             <li><a href="{{ route('docs.index') }}" class="hover:text-fg">Docs</a></li>
