@@ -26,9 +26,6 @@
             @endif
             @if (config('ui-docs.whatsapp_url'))
                 <a href="{{ config('ui-docs.whatsapp_url') }}" class="hover:text-fg" rel="noopener noreferrer" target="_blank">WhatsApp</a>
-            @else
-                {{-- TODO: whatsapp_url once published --}}
-                <span class="text-fg-subtle">WhatsApp: TODO</span>
             @endif
         </div>
     </div>
