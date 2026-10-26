@@ -28,6 +28,8 @@
 - [x] Fill `whatsapp_url` in `config/ui-docs.php` (`email` and `github_url` are set)
 - [ ] Run `php artisan optimize` on the server after deploy (CI already verifies optimize locally)
 - [ ] Publish package distribution strategy (copy-paste docs only vs Composer package)
+- [x] Praesepe UI MCP via Laravel MCP (`php artisan mcp:start praesepe-ui` + `Mcp::web('/mcp/praesepe-ui')`)
+- [x] Document external consumer setup (`/docs/mcp`, `mcp/README.md`: remote URL + local stdio)
 - [ ] Replace home page marketing TODO with real proof points when available
 - [ ] Add real brand logo assets under `public/` when approved
 - [x] Wire search "Ask Praesepe to build it" CTA to WhatsApp deep link

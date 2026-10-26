@@ -16,6 +16,7 @@ return [
                 ['label' => 'Installation', 'route' => 'docs.index'],
                 ['label' => 'Theming', 'route' => 'docs.theming'],
                 ['label' => 'Icons', 'route' => 'docs.icons'],
+                ['label' => 'MCP for agents', 'route' => 'docs.mcp'],
                 ['label' => 'Accessibility', 'route' => 'docs.accessibility'],
             ],
         ],

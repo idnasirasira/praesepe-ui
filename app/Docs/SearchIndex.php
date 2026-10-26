@@ -65,7 +65,7 @@ class SearchIndex
                 description: 'Install Praesepe UI with Tailwind CSS 4 and Alpine.js 3.',
                 href: route('docs.index', absolute: false),
                 tags: ['install', 'setup', 'tailwind', 'alpine'],
-                headings: ['Quick start', 'Stack', 'Copy a component'],
+                headings: ['Requirements', 'Tailwind source scanning', 'Theme tokens', 'Alpine setup', 'Livewire notes', 'MCP for coding agents'],
             ),
             $this->page(
                 title: 'Theming',
@@ -80,6 +80,13 @@ class SearchIndex
                 href: route('docs.icons', absolute: false),
                 tags: ['icons', 'svg', 'heroicons', 'slots'],
                 headings: ['Built-in set', 'Usage', 'Bring your own', 'Accessibility'],
+            ),
+            $this->page(
+                title: 'MCP for agents',
+                description: 'Connect Cursor or other MCP clients to the Praesepe UI component registry.',
+                href: route('docs.mcp', absolute: false),
+                tags: ['mcp', 'cursor', 'agents', 'ai'],
+                headings: ['Remote HTTP', 'Local stdio', 'Tools', 'Agent workflow'],
             ),
             $this->page(
                 title: 'Accessibility',

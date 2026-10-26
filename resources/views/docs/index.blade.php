@@ -57,6 +57,12 @@ Alpine.start();</code></pre>
         Praesepe UI does not require Livewire. If your app already uses Livewire, do not start a second Alpine instance. Livewire bundles Alpine; register the focus plugin on the existing Alpine global before Livewire boots, and prefer long-form directives in Blade to avoid attribute collisions.
     </p>
 
+    <h2 id="mcp" class="mt-10 text-xl font-semibold tracking-tight text-fg">MCP for coding agents</h2>
+    <p class="mt-3 text-fg-muted leading-relaxed">
+        Agents can list components and copy snippets via Laravel MCP. Connect Cursor over HTTP or local stdio. See
+        <a class="text-brand underline underline-offset-2" href="{{ route('docs.mcp') }}">MCP for agents</a>.
+    </p>
+
     <div class="mt-12">
         <x-docs.cta />
     </div>

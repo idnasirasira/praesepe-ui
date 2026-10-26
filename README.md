@@ -66,6 +66,17 @@ Optional UI mode: `npm run test:e2e:ui`. Override the base URL with `PLAYWRIGHT_
 - Components are copy-paste friendly Blade + Alpine, not a heavy runtime package
 - Architected with WCAG 2.2 AA patterns in mind (keyboard and ARIA documented per component)
 
+## MCP for coding agents
+
+Praesepe UI exposes components to coding agents via [Laravel MCP](https://laravel.com/docs/mcp).
+
+- **Public (recommended):** HTTP `{APP_URL}/mcp/praesepe-ui` (no auth). Point Cursor at that URL.
+- **Optional local stdio:** `php artisan mcp:start praesepe-ui` from a clone (Cursor starts it; do not run by hand).
+
+Consumer guide: `/docs/mcp`. Maintainer notes: `mcp/README.md`. Editor folders such as `.cursor/` stay private.
+
+Tools: `list_components`, `search_components`, `get_component`, `get_snippet`, `list_icons`, `get_guidelines`.
+
 ## License
 
 MIT. See `LICENSE`. Copyright holder is marked TODO until finalized.

@@ -38,6 +38,13 @@ class DocsController extends Controller
         ]);
     }
 
+    public function mcp(): View
+    {
+        return view('docs.mcp', [
+            'mcpUrl' => url('/mcp/praesepe-ui'),
+        ]);
+    }
+
     public function components(): View
     {
         return view('docs.components.index', [
