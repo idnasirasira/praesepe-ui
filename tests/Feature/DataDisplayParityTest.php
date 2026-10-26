@@ -100,3 +100,19 @@ it('renders navbar mobile drawer contracts', function (): void {
         ->and($html)->toContain('x-on:keydown.escape.window')
         ->and($html)->toContain('aria-current="page"');
 });
+
+it('renders sidebar active link and collapse controls', function (): void {
+    $html = Blade::render(<<<'BLADE'
+        <x-ui.sidebar label="Operasional">
+            <x-ui.sidebar.section title="Penjualan">
+                <x-ui.sidebar.item href="#" current label="Pesanan">Pesanan</x-ui.sidebar.item>
+            </x-ui.sidebar.section>
+        </x-ui.sidebar>
+    BLADE);
+
+    expect($html)->toContain('aria-label="Operasional"')
+        ->and($html)->toContain('aria-current="page"')
+        ->and($html)->toContain('x-trap.inert.noscroll')
+        ->and($html)->toContain('x-on:keydown.escape.window')
+        ->and($html)->toContain('aria-label="Collapse sidebar"');
+});
