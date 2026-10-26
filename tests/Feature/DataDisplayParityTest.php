@@ -69,3 +69,17 @@ it('renders pagination range summary and aria-current page', function (): void {
         ->and($html)->toContain('aria-label="Pagination"')
         ->and($html)->toContain('42');
 });
+
+it('renders breadcrumb nav list with aria-current on the final item', function (): void {
+    $html = Blade::render(<<<'BLADE'
+        <x-ui.breadcrumb home-href="/">
+            <x-ui.breadcrumb.item href="/orders">Pesanan</x-ui.breadcrumb.item>
+            <x-ui.breadcrumb.item current>ORD-2201</x-ui.breadcrumb.item>
+        </x-ui.breadcrumb>
+    BLADE);
+
+    expect($html)->toContain('aria-label="Breadcrumb"')
+        ->and($html)->toContain('<ol')
+        ->and($html)->toContain('aria-current="page"')
+        ->and($html)->toContain('ORD-2201');
+});
