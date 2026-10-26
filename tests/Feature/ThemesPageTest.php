@@ -16,6 +16,8 @@ it('renders the themes gallery with a custom palette lab', function (): void {
         ->assertSee('Chroma', false)
         ->assertSee('Lightness', false)
         ->assertSee('Theme name', false)
+        ->assertSee('Brand hex', false)
+        ->assertSee('Paste a hex value', false)
         ->assertSee('Token samples', false)
         ->assertSee('Indigo brand with cool slate neutrals', false);
 });

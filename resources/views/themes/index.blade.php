@@ -93,6 +93,41 @@
                     >
                 </label>
 
+                <div class="space-y-2">
+                    <span class="text-xs font-medium text-fg">Brand hex</span>
+                    <div class="flex items-center gap-2">
+                        <input
+                            type="color"
+                            class="size-9 shrink-0 cursor-pointer rounded-control border border-border bg-surface p-1 shadow-2xs transition-colors duration-150 hover:border-border-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                            x-bind:value="hex"
+                            x-on:input="onHexPicker($event)"
+                            aria-label="Pick brand hex color"
+                        >
+                        <input
+                            type="text"
+                            spellcheck="false"
+                            autocomplete="off"
+                            maxlength="7"
+                            placeholder="#4f46e5"
+                            class="h-9 min-w-0 flex-1 rounded-control border border-border bg-surface px-3 font-mono text-sm text-fg shadow-2xs tabular-nums transition-colors duration-150 hover:border-border-strong focus:border-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                            x-bind:class="hexError && 'border-danger focus:border-danger focus-visible:ring-danger'"
+                            x-model="hex"
+                            x-on:change="onHexInput()"
+                            x-on:keydown.enter.prevent="onHexInput()"
+                        >
+                    </div>
+                    <p class="text-xs text-fg-muted leading-relaxed">
+                        Paste a hex value. We convert it to OKLCH for the brand token and sliders below.
+                    </p>
+                    <p
+                        class="text-xs text-danger"
+                        x-show="hexError"
+                        x-cloak
+                    >
+                        Use a valid hex like <span class="font-mono">#4f46e5</span> or <span class="font-mono">#46e</span>.
+                    </p>
+                </div>
+
                 <label class="block space-y-2">
                     <span class="flex items-center justify-between text-xs font-medium text-fg">
                         <span>Hue</span>
@@ -146,6 +181,7 @@
                     <div class="min-w-0">
                         <p class="truncate text-sm font-medium text-fg" x-text="name || 'My theme'"></p>
                         <p class="truncate text-xs text-fg-muted tabular-nums" x-text="brandSwatch"></p>
+                        <p class="truncate font-mono text-xs text-fg-muted tabular-nums uppercase" x-text="hex"></p>
                     </div>
                 </div>
 
