@@ -43,25 +43,28 @@
     x-on:ui-theme-change.window="theme = $event.detail?.theme || theme"
 >
     {{-- Studio toolbar --}}
-    <div class="flex flex-col gap-3 border-b border-border bg-surface/80 px-3 py-3 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:px-4">
-        <div class="min-w-0">
-            <h3 class="truncate text-sm font-semibold tracking-tight text-fg">{{ $title }}</h3>
+    <div class="flex items-center gap-3 border-b border-border bg-surface/80 px-3 py-2 backdrop-blur-sm sm:px-4">
+        <div class="min-w-0 flex-1">
+            <h3
+                class="truncate text-sm font-semibold tracking-tight text-fg"
+                @if ($description) title="{{ $description }}" @endif
+            >{{ $title }}</h3>
             @if ($description)
-                <p class="mt-0.5 truncate text-xs text-fg-muted leading-relaxed">{{ $description }}</p>
+                <p class="mt-0.5 hidden truncate text-[11px] leading-snug text-fg-muted xl:block">{{ $description }}</p>
             @endif
         </div>
 
-        <div class="flex flex-wrap items-center gap-2">
-            {{-- Preview / Blade / HTML segmented control --}}
+        <div class="flex shrink-0 items-center gap-1 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {{-- Preview / Blade / HTML --}}
             <div
-                class="inline-flex rounded-control border border-border bg-surface-sunken/60 p-0.5 text-xs shadow-2xs"
+                class="inline-flex h-7 items-center rounded-control border border-border bg-surface-sunken/60 p-0.5 text-[11px] shadow-2xs"
                 role="tablist"
                 aria-label="Preview or code"
             >
                 <button
                     type="button"
                     role="tab"
-                    class="rounded-[calc(var(--ui-radius-control)-2px)] px-2.5 py-1.5 font-medium transition-colors duration-150"
+                    class="rounded-[calc(var(--ui-radius-control)-2px)] px-2 py-1 font-medium transition-colors duration-150"
                     x-bind:class="tab === 'preview' ? 'bg-surface-raised text-fg shadow-2xs' : 'text-fg-muted hover:text-fg'"
                     x-bind:aria-selected="(tab === 'preview').toString()"
                     x-on:click="tab = 'preview'"
@@ -71,7 +74,7 @@
                 <button
                     type="button"
                     role="tab"
-                    class="rounded-[calc(var(--ui-radius-control)-2px)] px-2.5 py-1.5 font-medium transition-colors duration-150"
+                    class="rounded-[calc(var(--ui-radius-control)-2px)] px-2 py-1 font-medium transition-colors duration-150"
                     x-bind:class="tab === 'blade' ? 'bg-surface-raised text-fg shadow-2xs' : 'text-fg-muted hover:text-fg'"
                     x-bind:aria-selected="(tab === 'blade').toString()"
                     x-on:click="tab = 'blade'"
@@ -81,81 +84,80 @@
                 <button
                     type="button"
                     role="tab"
-                    class="rounded-[calc(var(--ui-radius-control)-2px)] px-2.5 py-1.5 font-medium transition-colors duration-150"
+                    class="rounded-[calc(var(--ui-radius-control)-2px)] px-2 py-1 font-medium transition-colors duration-150"
                     x-bind:class="tab === 'html' ? 'bg-surface-raised text-fg shadow-2xs' : 'text-fg-muted hover:text-fg'"
                     x-bind:aria-selected="(tab === 'html').toString()"
                     x-on:click="tab = 'html'"
+                    title="HTML + Alpine"
                 >
-                    HTML + Alpine
+                    HTML
                 </button>
             </div>
 
-            {{-- Viewport resizer (desktop only) --}}
+            {{-- Viewport: short labels, desktop+ --}}
             <div
-                class="hidden rounded-control border border-border bg-surface-sunken/60 p-0.5 text-xs shadow-2xs md:inline-flex"
+                class="ml-1 hidden h-7 items-center rounded-control border border-border bg-surface-sunken/60 p-0.5 text-[11px] shadow-2xs lg:inline-flex"
                 role="group"
                 aria-label="Preview width"
                 x-show="tab === 'preview'"
             >
                 <button
                     type="button"
-                    class="rounded-[calc(var(--ui-radius-control)-2px)] px-2 py-1.5 transition-colors duration-150"
+                    class="rounded-[calc(var(--ui-radius-control)-2px)] px-1.5 py-1 transition-colors duration-150"
                     x-bind:class="viewport === 'full' ? 'bg-surface-raised font-medium text-fg shadow-2xs' : 'text-fg-muted hover:text-fg'"
                     x-on:click="viewport = 'full'"
                     title="Desktop 100%"
+                    aria-label="Desktop width"
                 >
-                    Desktop
+                    Desk
                 </button>
                 <button
                     type="button"
-                    class="rounded-[calc(var(--ui-radius-control)-2px)] px-2 py-1.5 transition-colors duration-150"
+                    class="rounded-[calc(var(--ui-radius-control)-2px)] px-1.5 py-1 transition-colors duration-150"
                     x-bind:class="viewport === 'tablet' ? 'bg-surface-raised font-medium text-fg shadow-2xs' : 'text-fg-muted hover:text-fg'"
                     x-on:click="viewport = 'tablet'"
                     title="Tablet 768px"
+                    aria-label="Tablet width"
                 >
-                    Tablet
+                    Tab
                 </button>
                 <button
                     type="button"
-                    class="rounded-[calc(var(--ui-radius-control)-2px)] px-2 py-1.5 transition-colors duration-150"
+                    class="rounded-[calc(var(--ui-radius-control)-2px)] px-1.5 py-1 transition-colors duration-150"
                     x-bind:class="viewport === 'mobile' ? 'bg-surface-raised font-medium text-fg shadow-2xs' : 'text-fg-muted hover:text-fg'"
                     x-on:click="viewport = 'mobile'"
                     title="Mobile 375px"
+                    aria-label="Mobile width"
                 >
-                    Mobile
+                    Mob
                 </button>
             </div>
 
-            {{-- Local canvas dark toggle --}}
+            {{-- Canvas dark: icon only --}}
             <button
                 type="button"
-                class="inline-flex items-center gap-1.5 rounded-control border border-border bg-surface px-2.5 py-1.5 text-xs font-medium text-fg shadow-2xs transition-colors duration-150 hover:bg-surface-sunken"
+                class="ml-1 inline-flex size-7 items-center justify-center rounded-control border border-border bg-surface text-fg shadow-2xs transition-colors duration-150 hover:bg-surface-sunken"
                 x-show="tab === 'preview'"
                 x-on:click="previewDark = !previewDark"
                 x-bind:aria-pressed="previewDark.toString()"
                 x-bind:aria-label="previewDark ? 'Switch preview canvas to light' : 'Switch preview canvas to dark'"
+                x-bind:title="previewDark ? 'Canvas light' : 'Canvas dark'"
             >
                 <span x-show="!previewDark"><x-icons.moon class="size-3.5 shrink-0" /></span>
                 <span x-show="previewDark" x-cloak><x-icons.sun class="size-3.5 shrink-0" /></span>
-                <span class="hidden sm:inline" x-text="previewDark ? 'Canvas light' : 'Canvas dark'"></span>
             </button>
 
-            {{-- One-click copy --}}
-            <div class="relative">
+            {{-- Copy: icon only --}}
+            <div class="relative ml-1">
                 <button
                     type="button"
-                    class="inline-flex items-center gap-1.5 rounded-control border border-border bg-surface px-2.5 py-1.5 text-xs font-medium text-fg shadow-2xs transition-colors duration-150 hover:bg-surface-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                    class="inline-flex size-7 items-center justify-center rounded-control border border-border bg-surface text-fg shadow-2xs transition-colors duration-150 hover:bg-surface-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                     x-on:click="copySnippet()"
                     x-bind:aria-label="copied ? 'Copied' : 'Copy snippet'"
+                    title="Copy snippet"
                 >
-                    <span x-show="!copied" class="inline-flex items-center gap-1.5">
-                        <x-icons.copy class="size-3.5 shrink-0" />
-                        <span class="hidden sm:inline">Copy</span>
-                    </span>
-                    <span x-show="copied" x-cloak class="inline-flex items-center gap-1.5 text-success">
-                        <x-icons.check class="size-3.5 shrink-0" />
-                        <span class="hidden sm:inline">Copied</span>
-                    </span>
+                    <span x-show="!copied"><x-icons.copy class="size-3.5 shrink-0" /></span>
+                    <span x-show="copied" x-cloak class="text-success"><x-icons.check class="size-3.5 shrink-0" /></span>
                 </button>
                 <span
                     class="pointer-events-none absolute -top-8 left-1/2 z-10 -translate-x-1/2 rounded-control bg-fg px-2 py-1 text-[10px] font-medium text-fg-inverse shadow-md"
