@@ -12,10 +12,15 @@
 
     <h2 class="mt-10 text-xl font-semibold text-fg">Built-in themes</h2>
     <ul class="mt-3 list-disc space-y-2 pl-5 text-fg">
-        <li><strong>praesepe</strong>: default teal brand with cool neutrals</li>
+        <li><strong>praesepe</strong>: indigo brand with cool slate neutrals</li>
         <li><strong>minimal</strong>: sharp monochrome surfaces</li>
-        <li><strong>warm</strong>: soft amber brand with teal focus rings</li>
+        <li><strong>warm</strong>: teal brand on soft stone and sand neutrals</li>
     </ul>
+
+    <h2 class="mt-10 text-xl font-semibold text-fg">Custom palette lab</h2>
+    <p class="mt-3 text-fg-muted">
+        On the themes gallery you can mix brand hue, chroma, and lightness in OKLCH, preview components live, apply tokens to the page, and copy a CSS snippet into your app.
+    </p>
 
     <h2 class="mt-10 text-xl font-semibold text-fg">Color scheme</h2>
     <p class="mt-3 text-fg-muted">

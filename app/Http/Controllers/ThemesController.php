@@ -15,7 +15,7 @@ class ThemesController extends Controller
                 [
                     'id' => 'praesepe',
                     'name' => 'Praesepe',
-                    'description' => 'Default teal brand with cool neutrals.',
+                    'description' => 'Indigo brand with cool slate neutrals.',
                 ],
                 [
                     'id' => 'minimal',
@@ -25,7 +25,7 @@ class ThemesController extends Controller
                 [
                     'id' => 'warm',
                     'name' => 'Warm',
-                    'description' => 'Soft amber brand with teal focus rings.',
+                    'description' => 'Teal brand on soft stone and sand neutrals.',
                 ],
             ],
         ]);
