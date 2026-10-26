@@ -1,0 +1,20 @@
+<div class="w-full max-w-sm">
+    <label for="region-error" class="mb-1.5 block text-sm font-medium text-fg">Region</label>
+    <div class="relative">
+        <select
+            id="region-error"
+            name="region"
+            aria-invalid="true"
+            aria-describedby="region-error-error"
+            class="h-10 w-full appearance-none rounded-control border border-danger bg-surface-raised pl-3 pr-9 text-sm text-fg shadow-sm"
+        >
+            <option value="" disabled selected>Select a region</option>
+            <option value="apac">APAC</option>
+            <option value="eu">EU</option>
+        </select>
+        <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2.5 text-fg-subtle" aria-hidden="true">
+            <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" /></svg>
+        </span>
+    </div>
+    <p id="region-error-error" class="mt-1.5 text-xs text-danger">Please choose a region.</p>
+</div>
