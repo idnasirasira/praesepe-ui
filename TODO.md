@@ -25,3 +25,5 @@
 - [ ] Expand component library beyond button, input, and modal
 - [ ] Publish package distribution strategy (copy-paste docs only vs Composer package)
 - [ ] Configure production domain DNS and HTTPS for `ui.praesepe.id`
+- [ ] Replace home page marketing TODO with real proof points when available
+- [ ] Add real brand logo assets under `public/` when approved

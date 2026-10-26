@@ -11,3 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Project scaffolding for Praesepe UI documentation app
 - Quality tooling: Pest, Pint, Larastan (level 6), Composer check scripts
+- OKLCH semantic theme engine with praesepe, minimal, and warm themes
+- Docs registry, layouts, search index, sitemap, and robots routes
+- Golden archetypes: Button, Input, Modal
+- Feature test suite and GitHub Actions CI for PHP 8.3 and 8.4
