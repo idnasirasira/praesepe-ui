@@ -1,0 +1,48 @@
+<div
+    class="relative inline-block text-left"
+    x-data="{
+        open: false,
+        items() {
+            return Array.from(this.$refs.menu.querySelectorAll('[role=menuitem]:not([disabled]):not([aria-disabled=true])'));
+        },
+        show() { this.open = true; this.$nextTick(() => this.items()[0]?.focus()); },
+        hide() { this.open = false; this.$refs.trigger.focus(); },
+        toggle() { this.open ? this.hide() : this.show(); },
+        focusByOffset(offset) {
+            const list = this.items();
+            const current = list.indexOf(document.activeElement);
+            const next = (current + offset + list.length) % list.length;
+            list[next]?.focus();
+        }
+    }"
+    x-on:click.outside="if (open) open = false"
+    x-on:keydown.escape.window="if (open) hide()"
+>
+    <button
+        type="button"
+        x-ref="trigger"
+        class="inline-flex items-center gap-2 rounded-control border border-border bg-surface-raised px-3 py-2 text-sm font-medium text-fg"
+        aria-haspopup="menu"
+        x-bind:aria-expanded="open.toString()"
+        x-on:click="toggle()"
+    >
+        Actions
+    </button>
+    <div
+        x-ref="menu"
+        role="menu"
+        x-show="open"
+        x-cloak
+        class="absolute left-0 z-40 mt-2 min-w-48 rounded-card border border-border bg-surface-raised p-1 shadow-lg"
+        x-on:keydown.arrow-down.prevent="focusByOffset(1)"
+        x-on:keydown.arrow-up.prevent="focusByOffset(-1)"
+    >
+        <button type="button" role="menuitem" tabindex="-1" class="flex w-full rounded-control px-3 py-2 text-left text-sm text-fg hover:bg-surface-sunken" x-on:click="hide()">Edit</button>
+        <button type="button" role="menuitem" tabindex="-1" class="flex w-full items-center justify-between rounded-control px-3 py-2 text-left text-sm text-fg hover:bg-surface-sunken" x-on:click="hide()">
+            <span>Duplicate</span>
+            <kbd class="rounded border border-border px-1.5 py-0.5 text-[10px] text-fg-subtle">⌘D</kbd>
+        </button>
+        <div role="separator" class="my-1 h-px bg-border"></div>
+        <button type="button" role="menuitem" tabindex="-1" class="flex w-full rounded-control px-3 py-2 text-left text-sm text-danger hover:bg-danger-soft" x-on:click="hide()">Delete</button>
+    </div>
+</div>

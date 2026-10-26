@@ -1,0 +1,26 @@
+<div class="flex justify-end">
+    <div
+        class="relative inline-block text-left"
+        x-data="{ open: false }"
+        x-on:click.outside="open = false"
+    >
+        <button
+            type="button"
+            class="inline-flex items-center rounded-control border border-border bg-surface-raised px-3 py-2 text-sm font-medium text-fg"
+            aria-haspopup="menu"
+            x-bind:aria-expanded="open.toString()"
+            x-on:click="open = !open"
+        >
+            Account
+        </button>
+        <div
+            role="menu"
+            x-show="open"
+            x-cloak
+            class="absolute right-0 z-40 mt-2 min-w-48 rounded-card border border-border bg-surface-raised p-1 shadow-lg"
+        >
+            <button type="button" role="menuitem" tabindex="-1" class="flex w-full rounded-control px-3 py-2 text-left text-sm text-fg hover:bg-surface-sunken" x-on:click="open = false">Profile</button>
+            <button type="button" role="menuitem" tabindex="-1" class="flex w-full rounded-control px-3 py-2 text-left text-sm text-fg hover:bg-surface-sunken" x-on:click="open = false">Billing</button>
+        </div>
+    </div>
+</div>
