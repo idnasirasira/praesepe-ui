@@ -43,18 +43,19 @@ return [
     'a11yNotes' => [
         'When name or alt is provided, the avatar uses role="img" with an accessible label.',
         'Broken images are swapped to initials or a decorative user icon via Alpine x-on:error without leaving an empty broken image.',
-        'Status dots include a text label/title (online, busy, offline). Do not rely on color alone.',
+        'Status dots include an sr-only Status label plus a title (Online, Busy, Offline). Do not rely on color alone.',
+        'Avatars use an inset hairline so light photos do not bleed into light surfaces, plus ring-2 ring-surface for group stacking.',
     ],
     'examples' => [
         [
             'slug' => 'customers',
-            'title' => 'Customer avatars',
-            'description' => 'Initials fallback and status indicators for SME staff.',
+            'title' => 'Ops team presence',
+            'description' => 'Finance, warehouse, and procurement staff with online, busy, and offline status.',
         ],
         [
             'slug' => 'sizes',
             'title' => 'Sizes',
-            'description' => 'xs through xl density scale.',
+            'description' => 'xs through xl density scale with SME role labels.',
         ],
         [
             'slug' => 'group',

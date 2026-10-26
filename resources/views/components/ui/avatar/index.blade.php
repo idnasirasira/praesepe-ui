@@ -23,6 +23,12 @@
         'offline' => 'bg-fg-subtle',
     ];
 
+    $statusLabels = [
+        'online' => 'Online',
+        'busy' => 'Busy',
+        'offline' => 'Offline',
+    ];
+
     $statusSizeClasses = [
         'xs' => 'size-1.5',
         'sm' => 'size-2',
@@ -33,6 +39,7 @@
 
     $sizeClass = $sizeClasses[$size] ?? $sizeClasses['md'];
     $statusClass = $statusClasses[$status] ?? null;
+    $statusLabel = $statusLabels[$status] ?? null;
     $statusSizeClass = $statusSizeClasses[$size] ?? $statusSizeClasses['md'];
 
     $initials = null;
@@ -47,7 +54,7 @@
     x-data="{ failed: false }"
 >
     <span
-        class="inline-flex {{ $sizeClass }} items-center justify-center overflow-hidden rounded-full bg-surface-sunken font-medium text-fg ring-2 ring-surface"
+        class="relative inline-flex {{ $sizeClass }} items-center justify-center overflow-hidden rounded-full bg-surface-sunken font-medium text-fg ring-2 ring-surface after:pointer-events-none after:absolute after:inset-0 after:rounded-full after:ring-1 after:ring-inset after:ring-black/10 after:content-[''] dark:after:ring-white/15"
         aria-hidden="{{ filled($alt) || filled($name) ? 'false' : 'true' }}"
         @if (filled($alt) || filled($name)) role="img" aria-label="{{ $alt ?: $name }}" @endif
     >
@@ -69,7 +76,7 @@
             @if (filled($initials))
                 {{ $initials }}
             @else
-                <x-icons.user class="size-[55%] text-fg-muted" />
+                <x-icons.user class="size-[55%] shrink-0 text-fg-muted" />
             @endif
         </span>
     </span>
@@ -77,9 +84,9 @@
     @if ($statusClass)
         <span
             class="absolute right-0 bottom-0 {{ $statusSizeClass }} rounded-full ring-2 ring-surface {{ $statusClass }}"
-            role="img"
-            aria-label="{{ $status }}"
-            title="{{ $status }}"
+            aria-hidden="true"
+            title="{{ $statusLabel }}"
         ></span>
+        <span class="sr-only">Status: {{ $statusLabel }}</span>
     @endif
 </span>

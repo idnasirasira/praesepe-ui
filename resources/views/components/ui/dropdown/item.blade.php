@@ -28,13 +28,15 @@
         tabindex="-1"
         {{ $attributes->class([$baseClass, $variantClass]) }}
         x-on:click="hide(true)"
+        x-on:keydown.enter.prevent="hide(true)"
+        x-on:keydown.space.prevent="hide(true)"
     >
         @if (filled($icon))
             <span class="shrink-0 text-fg-muted [&_svg]:size-4 [&_svg]:shrink-0">{{ $icon }}</span>
         @endif
         <span class="min-w-0 flex-1">{{ $slot }}</span>
         @if (filled($shortcut))
-            <kbd class="rounded-control border border-border px-1.5 py-0.5 text-[10px] tabular-nums text-fg-subtle">{{ $shortcut }}</kbd>
+            <kbd class="ml-auto pl-4 font-mono text-[11px] tracking-tight text-fg-subtle">{{ $shortcut }}</kbd>
         @endif
     </a>
 @else
@@ -46,6 +48,8 @@
         {{ $attributes->class([$baseClass, $variantClass]) }}
         @unless ($isDisabled)
             x-on:click="hide(true)"
+            x-on:keydown.enter.prevent="hide(true)"
+            x-on:keydown.space.prevent="hide(true)"
         @endunless
     >
         @if (filled($icon))
@@ -53,7 +57,7 @@
         @endif
         <span class="min-w-0 flex-1">{{ $slot }}</span>
         @if (filled($shortcut))
-            <kbd class="rounded-control border border-border px-1.5 py-0.5 text-[10px] tabular-nums text-fg-subtle">{{ $shortcut }}</kbd>
+            <kbd class="ml-auto pl-4 font-mono text-[11px] tracking-tight text-fg-subtle">{{ $shortcut }}</kbd>
         @endif
     </button>
 @endif

@@ -68,7 +68,7 @@
                 type="button"
                 class="inline-flex size-10 items-center justify-center rounded-control border border-border bg-surface-raised text-fg shadow-2xs transition-colors duration-150 hover:bg-surface-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface md:hidden"
                 x-on:click="mobileOpen = !mobileOpen"
-                x-bind:aria-expanded="mobileOpen.toString()"
+                x-bind:aria-expanded="mobileOpen ? 'true' : 'false'"
                 aria-controls="ui-navbar-drawer"
                 x-bind:aria-label="mobileOpen ? 'Close navigation menu' : 'Open navigation menu'"
             >

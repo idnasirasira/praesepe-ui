@@ -24,12 +24,12 @@
 >
     <template x-for="toast in $store.toasts.items" x-bind:key="toast.id">
         <div
-            class="pointer-events-auto relative w-full overflow-hidden rounded-card border bg-surface-raised p-4 shadow-lg ring-1 ring-border/60"
+            class="pointer-events-auto relative w-full overflow-hidden rounded-card border border-border border-l-4 bg-surface-raised p-4 shadow-lg ring-1 ring-border/60"
             x-bind:class="{
-                'border-border': toast.type === 'info',
-                'border-success/40': toast.type === 'success',
-                'border-warning/40': toast.type === 'warning',
-                'border-danger/40': toast.type === 'danger',
+                'border-l-info': toast.type === 'info',
+                'border-l-success': toast.type === 'success',
+                'border-l-warning': toast.type === 'warning',
+                'border-l-danger': toast.type === 'danger',
             }"
             x-bind:role="toast.type === 'danger' ? 'alert' : 'status'"
             x-transition:enter="transition ease-out duration-150"
@@ -90,12 +90,11 @@
             </div>
 
             <span
-                class="pointer-events-none absolute top-3 right-12 rounded-control bg-surface-sunken px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-fg-subtle"
+                class="pointer-events-none absolute top-3 right-12 rounded-control bg-surface-sunken px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-fg-subtle tabular-nums"
                 x-show="toast.hovering && toast.duration > 0"
                 x-cloak
-            >
-                Paused
-            </span>
+                x-text="`Paused · ${Math.ceil(toast.remaining / 1000)}s`"
+            ></span>
         </div>
     </template>
 </div>

@@ -9,6 +9,9 @@ it('renders badge tone classes without dynamic concatenation artifacts', functio
 
     expect($html)->toContain('bg-success-soft')
         ->and($html)->toContain('text-success')
+        ->and($html)->toContain('tabular-nums')
+        ->and($html)->toContain('ring-1 ring-inset ring-current/15')
+        ->and($html)->toContain('after:-inset-2')
         ->and($html)->toContain('aria-label="Remove"')
         ->and($html)->not->toContain('bg-{$');
 });
@@ -34,7 +37,10 @@ it('renders avatar initials fallback and status indicator', function (): void {
 
     expect($html)->toContain('SR')
         ->and($html)->toContain('x-on:error="failed = true"')
-        ->and($html)->toContain('aria-label="online"')
+        ->and($html)->toContain('Status: Online')
+        ->and($html)->toContain('sr-only')
+        ->and($html)->toContain('ring-2 ring-surface')
+        ->and($html)->toContain('after:ring-1 after:ring-inset after:ring-black/10')
         ->and($html)->toContain('role="img"');
 });
 

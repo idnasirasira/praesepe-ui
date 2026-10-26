@@ -1,4 +1,4 @@
-<div class="w-full max-w-sm">
+<div class="w-full max-w-sm" x-data="{ empty: true }">
     <label for="team-role" class="mb-1.5 block text-sm font-medium text-fg">Team role</label>
     <div class="relative">
         <select
@@ -6,9 +6,11 @@
             name="role"
             required
             aria-describedby="team-role-hint"
-            class="h-9 w-full appearance-none rounded-control border border-border bg-surface-raised pl-3.5 pr-9 text-sm text-fg shadow-2xs transition-colors duration-150 hover:border-border-strong focus:border-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+            x-on:change="empty = $event.target.value === ''"
+            x-bind:class="empty ? 'text-fg-subtle' : 'text-fg'"
+            class="h-9 w-full appearance-none rounded-control border border-border bg-surface-raised pl-3.5 pr-9 text-sm shadow-2xs transition-colors duration-150 hover:border-border-strong focus:border-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface [&_option]:bg-surface-raised [&_option]:text-fg"
         >
-            <option value="" disabled selected>Select a role</option>
+            <option value="" disabled selected class="text-fg-subtle">Select a role</option>
             <option value="owner">Owner</option>
             <option value="finance">Finance</option>
             <option value="ops">Operations</option>

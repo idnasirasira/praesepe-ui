@@ -38,10 +38,12 @@
             this.open = true;
             this.$nextTick(() => {
                 const panel = this.$refs.panel;
+                const autofocus = panel?.querySelector('[data-autofocus]');
+                const primary = panel?.querySelector('[data-ui-modal-primary]');
                 const focusable = panel?.querySelector(
                     'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex=\'-1\'])'
                 );
-                (focusable || panel)?.focus?.();
+                (autofocus || primary || focusable || panel)?.focus?.();
             });
         },
         hide() {
@@ -135,7 +137,7 @@
                     @isset($footer)
                         {{ $footer }}
                     @else
-                        <x-ui.button variant="secondary" x-on:click="hide()">Close</x-ui.button>
+                        <x-ui.button variant="secondary" data-ui-modal-primary x-on:click="hide()">Close</x-ui.button>
                         @isset($action)
                             {{ $action }}
                         @endisset

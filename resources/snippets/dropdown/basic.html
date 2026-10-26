@@ -6,22 +6,36 @@
             return Array.from(this.$refs.menu.querySelectorAll('[role=menuitem]:not([disabled]):not([aria-disabled=true])'));
         },
         show() { this.open = true; this.$nextTick(() => this.items()[0]?.focus()); },
-        hide() { this.open = false; this.$refs.trigger.focus(); },
+        hide() { this.open = false; this.$nextTick(() => this.$refs.trigger?.focus()); },
         toggle() { this.open ? this.hide() : this.show(); },
         focusByOffset(offset) {
             const list = this.items();
             const current = list.indexOf(document.activeElement);
             const next = (current + offset + list.length) % list.length;
             list[next]?.focus();
+        },
+        focusByTypeahead(char) {
+            const list = this.items();
+            if (!list.length || !char) return;
+            const needle = char.toLowerCase();
+            const current = list.indexOf(document.activeElement);
+            const ordered = list.slice(current + 1).concat(list.slice(0, current + 1));
+            ordered.find((el) => (el.textContent || '').trim().toLowerCase().startsWith(needle))?.focus();
         }
     }"
-    x-on:click.outside="if (open) open = false"
+    x-on:click.outside="if (open) hide()"
     x-on:keydown.escape.window="if (open) hide()"
+    x-on:keydown="
+        if (!open) return;
+        if ($event.key === 'ArrowDown') { $event.preventDefault(); focusByOffset(1); }
+        else if ($event.key === 'ArrowUp') { $event.preventDefault(); focusByOffset(-1); }
+        else if ($event.key.length === 1 && !$event.ctrlKey && !$event.metaKey && !$event.altKey) { $event.preventDefault(); focusByTypeahead($event.key); }
+    "
 >
     <button
         type="button"
         x-ref="trigger"
-        class="inline-flex h-9 items-center gap-2 rounded-control border border-border bg-surface-raised px-3.5 text-sm font-medium text-fg shadow-2xs transition-colors duration-150 hover:border-border-strong hover:bg-surface-sunken"
+        class="inline-flex h-9 items-center gap-2 rounded-control border border-border bg-surface-raised px-3.5 text-sm font-medium text-fg shadow-2xs transition-colors duration-150 hover:border-border-strong hover:bg-surface-sunken motion-safe:active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
         aria-haspopup="menu"
         x-bind:aria-expanded="open.toString()"
         x-on:click="toggle()"
@@ -37,21 +51,19 @@
         x-show="open"
         x-cloak
         x-transition:enter="transition ease-out duration-150"
-        x-transition:enter-start="opacity-0 scale-95 translate-y-1"
+        x-transition:enter-start="opacity-0 scale-95 translate-y-0.5"
         x-transition:enter-end="opacity-100 scale-100 translate-y-0"
         x-transition:leave="transition ease-in duration-100"
         x-transition:leave-start="opacity-100 scale-100 translate-y-0"
-        x-transition:leave-end="opacity-0 scale-95 translate-y-1"
-        class="absolute left-0 z-40 mt-2 min-w-48 origin-top-left rounded-card border border-border bg-surface-raised p-1 shadow-lg ring-1 ring-black/5"
-        x-on:keydown.arrow-down.prevent="focusByOffset(1)"
-        x-on:keydown.arrow-up.prevent="focusByOffset(-1)"
+        x-transition:leave-end="opacity-0 scale-95 translate-y-0.5"
+        class="absolute left-0 z-40 mt-2 min-w-48 origin-top-left rounded-card border border-border bg-surface-raised p-1 shadow-lg ring-1 ring-border/60"
     >
-        <button type="button" role="menuitem" tabindex="-1" class="flex w-full rounded-control px-3 py-2 text-left text-sm text-fg hover:bg-surface-sunken" x-on:click="hide()">Edit invoice</button>
-        <button type="button" role="menuitem" tabindex="-1" class="flex w-full items-center justify-between rounded-control px-3 py-2 text-left text-sm text-fg hover:bg-surface-sunken" x-on:click="hide()">
-            <span>Duplicate</span>
-            <kbd class="rounded border border-border px-1.5 py-0.5 text-[10px] tabular-nums text-fg-subtle">⌘D</kbd>
+        <button type="button" role="menuitem" tabindex="-1" class="flex min-h-10 w-full items-center rounded-control px-3 py-2.5 text-left text-sm text-fg hover:bg-surface-sunken focus-visible:ring-2 focus-visible:ring-ring" x-on:click="hide()" x-on:keydown.enter.prevent="hide()" x-on:keydown.space.prevent="hide()">Edit invoice</button>
+        <button type="button" role="menuitem" tabindex="-1" class="flex min-h-10 w-full items-center rounded-control px-3 py-2.5 text-left text-sm text-fg hover:bg-surface-sunken focus-visible:ring-2 focus-visible:ring-ring" x-on:click="hide()" x-on:keydown.enter.prevent="hide()" x-on:keydown.space.prevent="hide()">
+            <span class="min-w-0 flex-1">Duplicate</span>
+            <kbd class="ml-auto pl-4 font-mono text-[11px] tracking-tight text-fg-subtle">⌘D</kbd>
         </button>
         <div role="separator" class="my-1 h-px bg-border"></div>
-        <button type="button" role="menuitem" tabindex="-1" class="flex w-full rounded-control px-3 py-2 text-left text-sm text-danger hover:bg-danger-soft" x-on:click="hide()">Void invoice</button>
+        <button type="button" role="menuitem" tabindex="-1" class="flex min-h-10 w-full items-center rounded-control px-3 py-2.5 text-left text-sm text-danger hover:bg-danger-soft focus-visible:ring-2 focus-visible:ring-ring" x-on:click="hide()" x-on:keydown.enter.prevent="hide()" x-on:keydown.space.prevent="hide()">Void invoice</button>
     </div>
 </div>

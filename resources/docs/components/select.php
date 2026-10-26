@@ -37,7 +37,13 @@ return [
             'name' => 'placeholder',
             'type' => 'string|null',
             'default' => 'null',
-            'description' => 'Disabled empty first option shown before real choices.',
+            'description' => 'Disabled empty first option shown before real choices. Renders muted until a value is chosen.',
+        ],
+        [
+            'name' => 'leadingIcon',
+            'type' => 'slot|null',
+            'default' => 'null',
+            'description' => 'Optional leading icon. Adjusts left padding to match input (pl-8/pl-9/pl-10 by size).',
         ],
     ],
     'a11yNotes' => [
@@ -45,6 +51,7 @@ return [
         'Label for, select id, hint, and error are linked through aria-describedby. Errors set aria-invalid="true".',
         'Pass-through attributes (name, required, disabled, x-model, wire:model) land on the select, not the wrapper.',
         'The chevron is decorative (aria-hidden) and pointer-events-none so it never steals clicks.',
+        'Option elements use bg-surface-raised text-fg so native menus do not flash white in dark mode.',
     ],
     'examples' => [
         [

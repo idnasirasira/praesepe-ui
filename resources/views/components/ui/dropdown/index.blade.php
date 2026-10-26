@@ -81,6 +81,16 @@
             const start = current === -1 ? (offset > 0 ? -1 : 0) : current;
             this.focusItem(start + offset);
         },
+        focusByTypeahead(char) {
+            const list = this.items();
+            if (!list.length || !char) return;
+            const needle = char.toLowerCase();
+            const active = document.activeElement;
+            const current = list.indexOf(active);
+            const ordered = list.slice(current + 1).concat(list.slice(0, current + 1));
+            const match = ordered.find((el) => (el.textContent || '').trim().toLowerCase().startsWith(needle));
+            match?.focus();
+        },
         onMenuKeydown(event) {
             if (!this.open) return;
             switch (event.key) {
@@ -106,6 +116,12 @@
                     break;
                 case 'Tab':
                     this.hide(false);
+                    break;
+                default:
+                    if (event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey) {
+                        event.preventDefault();
+                        this.focusByTypeahead(event.key);
+                    }
                     break;
             }
         }

@@ -30,7 +30,6 @@ Scores are **/10**. Defects listed are pre-fix findings. Post-fix scores live in
 | table | 8 | 8 | 7 | 6 | 7 | **7.2** | Raw checkboxes; scroll focus uses outline not ring tokens |
 | pagination | 7 | 8 | 5 | 3 | 6 | **5.8** | Controls `size-9`/`h-9` (36px); missing `focus-visible` rings |
 | avatar | 8 | 8 | 8 | 5 | 7 | **7.2** | Image `x-show` missing cloak |
-| tooltip | 7 | 7 | 7 | 7 | 8 | **7.2** | (see above) |
 | breadcrumb | 7 | 7 | 6 | 2 | 5 | **5.4** | Links lack focus-visible rings |
 | navbar | 8 | 8 | 6 | 8 | 7 | **7.4** | Menu/close `size-9`; floating panel not teleported; missing cloak on nested shows |
 | sidebar | 7 | 8 | 6 | 8 | 6 | **7.0** | Brand/item labels missing cloak; close/collapse lack focus rings |
@@ -86,6 +85,7 @@ Scores are **/10**. Defects listed are pre-fix findings. Post-fix scores live in
 | B | Overlays: modal, dropdown (+teleport), tooltip, toast, alert | `refactor(ui): harden overlay motion, hit targets, and elevation` |
 | C | Data/layout: table, pagination, badge, card, avatar, breadcrumb, tabs, accordion, navbar, sidebar | `refactor(ui): raise data and navigation ergonomics` |
 | D | Snippet SME realism + HTML class parity after component fixes | `docs(snippets): align demos with SME scenarios and control polish` |
+| E | Surgical 7.x lift: badge, select, avatar, breadcrumb + residual focus/chrome follow-ups | `refactor(ui): lift badge select avatar breadcrumb past 8.8` |
 
 Verification after each batch: `composer check` and `npm run build`.
 
@@ -97,40 +97,42 @@ Verification after each batch: `composer check` and `npm run build`.
 | --- | ---: | ---: | ---: |
 | button | 7.6 | 8.4 | +0.8 |
 | input | 7.4 | 8.6 | +1.2 |
-| select | 7.2 | 7.8 | +0.6 |
+| select | 7.2 | **8.8** | +1.6 |
 | textarea | 5.8 | 8.4 | +2.6 |
 | checkbox | 5.6 | 8.2 | +2.6 |
 | radio | 5.8 | 8.2 | +2.4 |
 | switch | 6.2 | 8.0 | +1.8 |
-| modal | 7.2 | 8.6 | +1.4 |
-| dropdown | 7.2 | 8.8 | +1.6 |
+| modal | 7.2 | **9.0** | +1.8 |
+| dropdown | 7.2 | **9.0** | +1.8 |
 | tooltip | 7.2 | 8.0 | +0.8 |
-| toast | 7.0 | 8.4 | +1.4 |
+| toast | 7.0 | **8.8** | +1.8 |
 | alert | 6.0 | 8.2 | +2.2 |
-| badge | 5.4 | 7.6 | +2.2 |
+| badge | 5.4 | **9.0** | +3.6 |
 | card | 6.4 | 8.0 | +1.6 |
 | table | 7.2 | 8.2 | +1.0 |
 | pagination | 5.8 | 8.4 | +2.6 |
-| avatar | 7.2 | 7.8 | +0.6 |
-| breadcrumb | 5.4 | 7.8 | +2.4 |
-| navbar | 7.4 | 8.4 | +1.0 |
+| avatar | 7.2 | **8.8** | +1.6 |
+| breadcrumb | 5.4 | **8.8** | +3.4 |
+| navbar | 7.4 | **8.8** | +1.4 |
 | sidebar | 7.0 | 8.2 | +1.2 |
 | tabs | 6.6 | 8.0 | +1.4 |
 | accordion | 8.0 | 8.4 | +0.4 |
-| **System** | **~6.7** | **~8.2** | **+1.5** |
+| **System** | **~6.7** | **~8.5** | **+1.8** |
+
+### Surgical lift (Batch E) detail
+
+| Component | Prior residual | After | What changed |
+| --- | ---: | ---: | --- |
+| badge | 7.6 | **9.0** | Soft inset `ring-current/15`, `tabular-nums`, compact remove + `after:-inset-2` touch expansion |
+| select | 7.8 | **8.8** | `leadingIcon` + input height/pad parity, option surface tokens, muted empty placeholder |
+| avatar | 7.8 | **8.8** | Inset hairline ring, status `ring-2 ring-surface` + `sr-only`, SME names/roles |
+| breadcrumb | 7.8 | **8.8** | Horizontal scroll + truncate on 320px, focus rings, current `aria-current` |
 
 ### Residual known gaps (acceptable / follow-ups)
 
-- Badge remove control is `size-6` (dense chip constraint); full 40px would break chip geometry.
 - Icon-only `button` `sm` remains 32px for dense toolbars; prefer `icon-md`/`lg` on primary mobile chrome.
 - Floating navbar panel stays in-header (by design) rather than body teleport; drawer style teleports.
 - HTML dropdown demos still use absolute menus (copy-paste simplicity) while Blade components teleport.
-- Toast viewport stays layout-mounted at `body` end (fixed + high z-index); type accents now render visually.
-- Follow-up from audit agents: modal initial focus, dropdown focus restore on item activate, navbar toggle label, toast type chrome, avatar SME names, `modal/event.html` completeness.
+- Toast viewport stays layout-mounted at `body` end (fixed + high z-index) by design.
 
----
-
-## Notes for reviewers
-
-- Honest a11y claim remains: architected with WCAG 2.2 AA patterns in mind. This audit does not assert full conformance.
-- No invented metrics, logos, or testimonials were introduced in demos; invoice/order IDs are clearly fictional SME fixtures.
+**Resolved in Batch E:** modal initial focus + focus restore; `modal/event.html` parity; dropdown item activate restores trigger focus; navbar toggle dynamic `aria-label` / `aria-expanded`; toast type left-border + icon-badge chrome with pause-on-hover and `tabular-nums` remaining timer; avatar SME name/role snippets; badge remove touch expansion without inflating chip height.

@@ -1,9 +1,17 @@
 <div x-data="{ show: true }">
     <span
         x-show="show"
-        class="inline-flex items-center gap-1.5 rounded-pill bg-brand/10 px-2 py-0.5 text-xs font-medium text-brand"
+        x-cloak
+        class="inline-flex items-center gap-1.5 rounded-pill bg-brand/10 px-2 py-0.5 text-xs font-medium tabular-nums text-brand shadow-2xs ring-1 ring-inset ring-current/15"
     >
         Cabang Bandung
-        <button type="button" class="rounded-full p-0.5" aria-label="Remove" x-on:click="show = false">×</button>
+        <button
+            type="button"
+            class="relative -mr-0.5 ml-0.5 inline-flex size-4 shrink-0 items-center justify-center rounded-pill opacity-80 transition-colors hover:bg-black/10 hover:opacity-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring dark:hover:bg-white/15 after:absolute after:-inset-2 after:content-['']"
+            aria-label="Remove"
+            x-on:click="show = false"
+        >
+            <svg class="size-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
     </span>
 </div>

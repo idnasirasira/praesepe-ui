@@ -36,7 +36,9 @@ return [
     ],
     'a11yNotes' => [
         'Uses nav aria-label="Breadcrumb" wrapping an ordered list.',
-        'The current page sets aria-current="page" and is not a link.',
+        'The current page sets aria-current="page", uses font-medium text-fg, and is not a link.',
+        'Ancestor links include focus-visible rings and hover:text-fg transition-colors.',
+        'On narrow viewports the trail scrolls horizontally (overflow-x-auto whitespace-nowrap) with max-w-[12rem] truncate on intermediate crumbs.',
         'Separators and the decorative home icon are aria-hidden. Home keeps a screen-reader-only text label.',
     ],
     'examples' => [

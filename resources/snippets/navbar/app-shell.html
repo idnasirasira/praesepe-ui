@@ -25,9 +25,9 @@
                     type="button"
                     class="inline-flex size-9 items-center justify-center rounded-control border border-border bg-surface-raised text-fg shadow-2xs hover:bg-surface-sunken md:hidden"
                     x-on:click="mobileOpen = !mobileOpen"
-                    x-bind:aria-expanded="mobileOpen.toString()"
+                    x-bind:aria-expanded="mobileOpen ? 'true' : 'false'"
                     aria-controls="ui-navbar-drawer-demo"
-                    aria-label="Open navigation menu"
+                    x-bind:aria-label="mobileOpen ? 'Close navigation menu' : 'Open navigation menu'"
                 >
                     <svg x-show="!mobileOpen" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h12" /></svg>
                     <svg x-show="mobileOpen" x-cloak class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" d="M18 6 6 18M6 6l12 12" /></svg>
@@ -80,9 +80,9 @@
                 type="button"
                 class="inline-flex size-10 items-center justify-center rounded-control text-fg-muted hover:bg-surface-sunken md:hidden"
                 x-on:click="mobileOpen = !mobileOpen"
-                x-bind:aria-expanded="mobileOpen.toString()"
+                x-bind:aria-expanded="mobileOpen ? 'true' : 'false'"
                 aria-controls="ui-navbar-floating-demo"
-                aria-label="Open navigation menu"
+                x-bind:aria-label="mobileOpen ? 'Close navigation menu' : 'Open navigation menu'"
             >
                 Menu
             </button>

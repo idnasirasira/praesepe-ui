@@ -4,9 +4,9 @@
 ])
 
 <nav {{ $attributes->class(['text-sm']) }} aria-label="Breadcrumb">
-    <ol class="flex flex-wrap items-center gap-1.5 text-fg-muted">
+    <ol class="flex items-center gap-1.5 overflow-x-auto whitespace-nowrap py-1 text-fg-muted">
         @if (filled($homeHref))
-            <li class="inline-flex items-center gap-1.5">
+            <li class="inline-flex shrink-0 items-center gap-1.5">
                 <a
                     href="{{ $homeHref }}"
                     class="inline-flex items-center gap-1 rounded-control text-fg-muted transition-colors duration-150 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"

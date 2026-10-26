@@ -1,31 +1,39 @@
 <div
     class="relative inline-block text-left"
-    x-data="{ open: false }"
-    x-on:click.outside="open = false"
+    x-data="{
+        open: false,
+        show() { this.open = true },
+        hide() { this.open = false; this.$nextTick(() => this.$refs.trigger?.focus()) },
+        toggle() { this.open ? this.hide() : this.show() },
+    }"
+    x-on:click.outside="if (open) hide()"
+    x-on:keydown.escape.window="if (open) hide()"
 >
     <button
         type="button"
-        class="inline-flex h-9 items-center gap-2 rounded-control border border-border bg-surface-raised px-3.5 text-sm font-medium text-fg shadow-2xs transition-colors duration-150 hover:border-border-strong hover:bg-surface-sunken"
+        x-ref="trigger"
+        class="inline-flex h-9 items-center gap-2 rounded-control border border-border bg-surface-raised px-3.5 text-sm font-medium text-fg shadow-2xs transition-colors duration-150 hover:border-border-strong hover:bg-surface-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
         aria-haspopup="menu"
         x-bind:aria-expanded="open.toString()"
-        x-on:click="open = !open"
+        x-on:click="toggle()"
     >
         More
     </button>
     <div
+        x-ref="menu"
         role="menu"
         x-show="open"
         x-cloak
         x-transition:enter="transition ease-out duration-150"
-        x-transition:enter-start="opacity-0 scale-95 translate-y-1"
+        x-transition:enter-start="opacity-0 scale-95 translate-y-0.5"
         x-transition:enter-end="opacity-100 scale-100 translate-y-0"
         x-transition:leave="transition ease-in duration-100"
         x-transition:leave-start="opacity-100 scale-100 translate-y-0"
-        x-transition:leave-end="opacity-0 scale-95 translate-y-1"
-        class="absolute left-0 z-40 mt-2 min-w-48 origin-top-left rounded-card border border-border bg-surface-raised p-1 shadow-lg ring-1 ring-black/5"
+        x-transition:leave-end="opacity-0 scale-95 translate-y-0.5"
+        class="absolute left-0 z-40 mt-2 min-w-48 origin-top-left rounded-card border border-border bg-surface-raised p-1 shadow-lg ring-1 ring-border/60"
     >
-        <button type="button" role="menuitem" tabindex="-1" class="flex w-full rounded-control px-3 py-2 text-left text-sm text-fg hover:bg-surface-sunken" x-on:click="open = false">Share link</button>
-        <button type="button" role="menuitem" tabindex="-1" disabled aria-disabled="true" class="flex w-full cursor-not-allowed rounded-control px-3 py-2 text-left text-sm text-fg-subtle opacity-60">Archive (needs Owner)</button>
-        <button type="button" role="menuitem" tabindex="-1" class="flex w-full rounded-control px-3 py-2 text-left text-sm text-fg hover:bg-surface-sunken" x-on:click="open = false">Export CSV</button>
+        <button type="button" role="menuitem" tabindex="-1" class="flex min-h-10 w-full items-center rounded-control px-3 py-2.5 text-left text-sm text-fg hover:bg-surface-sunken focus-visible:ring-2 focus-visible:ring-ring" x-on:click="hide()" x-on:keydown.enter.prevent="hide()" x-on:keydown.space.prevent="hide()">Share link</button>
+        <button type="button" role="menuitem" tabindex="-1" disabled aria-disabled="true" class="flex min-h-10 w-full cursor-not-allowed items-center rounded-control px-3 py-2.5 text-left text-sm text-fg-subtle opacity-60">Archive (needs Owner)</button>
+        <button type="button" role="menuitem" tabindex="-1" class="flex min-h-10 w-full items-center rounded-control px-3 py-2.5 text-left text-sm text-fg hover:bg-surface-sunken focus-visible:ring-2 focus-visible:ring-ring" x-on:click="hide()" x-on:keydown.enter.prevent="hide()" x-on:keydown.space.prevent="hide()">Export CSV</button>
     </div>
 </div>

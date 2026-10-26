@@ -1,13 +1,18 @@
 <nav aria-label="Breadcrumb" class="text-sm">
-    <ol class="flex flex-wrap items-center gap-1.5 text-fg-muted">
-        <li class="inline-flex items-center gap-1.5">
-            <a href="/" class="hover:text-fg"><span class="sr-only">Home</span>⌂</a>
-            <span aria-hidden="true">/</span>
+    <ol class="flex items-center gap-1.5 overflow-x-auto whitespace-nowrap py-1 text-fg-muted">
+        <li class="inline-flex shrink-0 items-center gap-1.5">
+            <a href="/" class="inline-flex items-center gap-1 rounded-control text-fg-muted transition-colors duration-150 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface">
+                <span class="sr-only">Beranda</span>
+                <svg class="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5Z" /></svg>
+            </a>
+            <span class="text-fg-subtle" aria-hidden="true">/</span>
         </li>
-        <li class="inline-flex items-center gap-1.5">
-            <a href="/docs" class="hover:text-fg">Inventori</a>
-            <span aria-hidden="true">/</span>
+        <li class="inline-flex max-w-[12rem] shrink-0 items-center gap-1.5 sm:max-w-none">
+            <a href="/docs" class="truncate rounded-control text-fg-muted transition-colors duration-150 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface">Inventori</a>
+            <span class="shrink-0 text-fg-subtle" aria-hidden="true">/</span>
         </li>
-        <li><span class="font-medium text-fg" aria-current="page">Stok gudang</span></li>
+        <li class="inline-flex max-w-[12rem] shrink-0 items-center gap-1.5 sm:max-w-none">
+            <span class="truncate font-medium text-fg" aria-current="page">Stok gudang</span>
+        </li>
     </ol>
 </nav>

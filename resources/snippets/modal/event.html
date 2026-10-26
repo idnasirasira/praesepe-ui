@@ -1,8 +1,33 @@
-<div class="flex flex-wrap items-center gap-3" x-data="{
-    open: false,
-    show() { this.open = true },
-    hide() { this.open = false },
-}" x-on:ui-modal-open.window="if ($event.detail?.id === 'demo-event') show()" x-on:keydown.escape.window="if (open) hide()">
+<div
+    class="flex flex-wrap items-center gap-3"
+    x-data="{
+        open: false,
+        trigger: null,
+        show() {
+            this.trigger = document.activeElement;
+            this.open = true;
+            this.$nextTick(() => {
+                const panel = this.$refs.panel;
+                const autofocus = panel?.querySelector('[data-autofocus]');
+                const primary = panel?.querySelector('[data-ui-modal-primary]');
+                const focusable = panel?.querySelector(
+                    'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex=\'-1\'])'
+                );
+                (autofocus || primary || focusable || panel)?.focus?.();
+            });
+        },
+        hide() {
+            this.open = false;
+            this.$nextTick(() => {
+                if (this.trigger && typeof this.trigger.focus === 'function') {
+                    this.trigger.focus();
+                }
+            });
+        },
+    }"
+    x-on:ui-modal-open.window="if ($event.detail?.id === 'demo-event') show()"
+    x-on:keydown.escape.window="if (open) hide()"
+>
     <button
         type="button"
         class="inline-flex h-9 items-center justify-center gap-2 rounded-control border border-border-strong bg-transparent px-3.5 text-sm font-medium text-fg shadow-2xs transition duration-150 hover:bg-surface-sunken motion-safe:active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
@@ -19,15 +44,64 @@
             role="dialog"
             aria-modal="true"
             aria-labelledby="demo-event-title"
+            aria-describedby="demo-event-description"
             x-trap.inert.noscroll="open"
         >
-            <div class="absolute inset-0 bg-overlay backdrop-blur-[2px]" x-on:click="hide()"></div>
-            <div class="relative z-10 w-full max-w-lg rounded-card border border-border bg-surface-raised p-5 shadow-lg ring-1 ring-border/60" x-on:click.stop>
-                <h2 id="demo-event-title" class="text-lg font-semibold tracking-tight text-fg">Approval queue</h2>
-                <p class="mt-1 text-sm text-fg-muted leading-relaxed">Open INV-2026-089 from the finance toolbar without nesting the trigger.</p>
-                <p class="mt-4 text-sm text-fg leading-relaxed">Listen for the ui-modal-open window event and match detail.id.</p>
-                <div class="mt-6 flex justify-end">
-                    <button type="button" class="inline-flex h-9 items-center rounded-control border border-border bg-surface-sunken px-3.5 text-sm font-medium text-fg shadow-2xs" x-on:click="hide()">Close</button>
+            <div
+                class="absolute inset-0 bg-overlay backdrop-blur-[2px]"
+                x-show="open"
+                x-cloak
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in duration-100"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                x-on:click="hide()"
+            ></div>
+
+            <div
+                x-ref="panel"
+                tabindex="-1"
+                class="relative z-10 w-full max-w-lg rounded-card border border-border bg-surface-raised p-5 shadow-lg ring-1 ring-border/60 focus:outline-none"
+                x-show="open"
+                x-cloak
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 scale-95 translate-y-2"
+                x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-100"
+                x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+                x-transition:leave-end="opacity-0 scale-95 translate-y-2"
+                x-on:click.stop
+            >
+                <div class="flex items-start gap-3">
+                    <div class="min-w-0 flex-1">
+                        <h2 id="demo-event-title" class="text-lg font-semibold tracking-tight text-balance text-fg">Approval queue</h2>
+                        <p id="demo-event-description" class="mt-1 text-sm text-fg-muted leading-relaxed text-pretty">Open INV-2026-089 from the finance toolbar without nesting the trigger.</p>
+                    </div>
+                    <button
+                        type="button"
+                        class="inline-flex size-10 shrink-0 items-center justify-center rounded-control text-fg-muted transition-colors duration-150 hover:bg-surface-sunken hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                        x-on:click="hide()"
+                        aria-label="Close dialog"
+                    >
+                        <svg class="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M18 6 6 18M6 6l12 12" /></svg>
+                    </button>
+                </div>
+
+                <div class="mt-4 text-sm text-fg leading-relaxed">
+                    <p>Listen for the ui-modal-open window event and match detail.id.</p>
+                </div>
+
+                <div class="mt-6 flex flex-wrap justify-end gap-2">
+                    <button
+                        type="button"
+                        data-ui-modal-primary
+                        class="inline-flex h-9 items-center rounded-control border border-border bg-surface-sunken px-3.5 text-sm font-medium text-fg shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                        x-on:click="hide()"
+                    >
+                        Close
+                    </button>
                 </div>
             </div>
         </div>

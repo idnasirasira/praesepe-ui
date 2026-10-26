@@ -37,13 +37,32 @@ return [
             'name' => 'removable',
             'type' => 'bool',
             'default' => 'false',
-            'description' => 'Adds a Remove button. Pass x-on:click handlers to the badge to wire dismissal.',
+            'description' => 'Adds a compact Remove button with an expanded invisible touch target. Pass x-on:click handlers to wire dismissal.',
+        ],
+        [
+            'name' => 'dismissible',
+            'type' => 'bool',
+            'default' => 'false',
+            'description' => 'Alias of removable for filter-pill APIs.',
+        ],
+        [
+            'name' => 'dismissLabel',
+            'type' => 'string',
+            'default' => 'Remove',
+            'description' => 'Accessible label for the dismiss control.',
+        ],
+        [
+            'name' => 'icon',
+            'type' => 'slot|null',
+            'default' => 'null',
+            'description' => 'Optional leading icon slot. Optical size is size-3 (sm) or size-3.5 (md).',
         ],
     ],
     'a11yNotes' => [
         'Badges are non-interactive by default and convey status visually plus text.',
-        'Removable badges expose a button with aria-label="Remove". Pair with visible text so color is not the only cue.',
+        'Removable badges expose a button with a configurable aria-label (default Remove). Pair with visible text so color is not the only cue.',
         'Status dots are decorative (aria-hidden) and should accompany a text label such as Lunas or Menunggu.',
+        'Soft badges use an inset ring-current/15 hairline so they stay crisp on sunken and raised surfaces in light and dark themes.',
     ],
     'examples' => [
         [
