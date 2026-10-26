@@ -28,3 +28,12 @@ it('renders interactive cards with a stretched link pattern', function (): void 
         ->and($html)->toContain('after:absolute after:inset-0')
         ->and($html)->toContain('relative z-10');
 });
+
+it('renders avatar initials fallback and status indicator', function (): void {
+    $html = Blade::render('<x-ui.avatar name="Siti Rahma" src="https://example.invalid/missing.jpg" status="online" />');
+
+    expect($html)->toContain('SR')
+        ->and($html)->toContain('x-on:error="failed = true"')
+        ->and($html)->toContain('aria-label="online"')
+        ->and($html)->toContain('role="img"');
+});
