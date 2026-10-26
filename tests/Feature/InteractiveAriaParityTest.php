@@ -80,10 +80,10 @@ it('renders alert roles for status and danger variants', function (): void {
         ->and($danger)->toContain('aria-label="Dismiss alert"');
 });
 
-it('renders toast viewport with teleport and live region', function (): void {
+it('renders toast viewport with live region at body level', function (): void {
     $html = Blade::render('<x-ui.toast-viewport position="bottom-right" />');
 
-    expect($html)->toContain('x-teleport="body"')
+    expect($html)->toContain('data-ui-toast-viewport')
         ->and($html)->toContain('aria-live="polite"')
         ->and($html)->toContain('$store.toasts')
         ->and($html)->toContain("toast.type === 'danger' ? 'alert' : 'status'");

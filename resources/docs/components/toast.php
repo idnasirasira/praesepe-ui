@@ -5,7 +5,7 @@ declare(strict_types=1);
 return [
     'slug' => 'toast',
     'name' => 'Toast',
-    'description' => 'Global toast notifications via Alpine.store and the ui:toast window event, rendered through a body-teleported viewport.',
+    'description' => 'Global toast notifications via Alpine.store and the ui:toast window event, rendered through a fixed body-level viewport.',
     'category' => 'feedback',
     'tags' => ['toast', 'notification', 'store'],
     'props' => [
@@ -13,7 +13,7 @@ return [
             'name' => 'toast-viewport.position',
             'type' => 'bottom-right|top-right|top-center|bottom-center',
             'default' => 'bottom-right',
-            'description' => 'Fixed placement for the teleported toast stack.',
+            'description' => 'Fixed placement for the toast stack.',
         ],
         [
             'name' => 'event.detail.type',
@@ -29,7 +29,7 @@ return [
         ],
     ],
     'a11yNotes' => [
-        'Viewport teleports to body and uses aria-live="polite" so new toasts are announced without stealing focus.',
+        'Viewport sits at the end of body and uses aria-live="polite" so new toasts are announced without stealing focus.',
         'danger toasts set role="alert". Other types set role="status".',
         'Auto-dismiss timers pause on mouseenter and focusin, then resume on mouseleave and focusout.',
         'Visible stack is capped at 5 toasts. Dismiss buttons are labeled for assistive tech.',
