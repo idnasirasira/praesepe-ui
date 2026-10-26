@@ -1,6 +1,7 @@
 @props([
     'striped' => false,
-    'hoverable' => false,
+    'hoverable' => true,
+    'stickyHeader' => false,
     'label' => 'Data table',
     'selectable' => false,
 ])
@@ -9,7 +10,8 @@
     $tableClasses = [
         'w-full min-w-[40rem] border-collapse text-left text-sm text-fg',
         $striped ? '[&_tbody_tr:nth-child(odd)]:bg-surface-sunken/60' : '',
-        $hoverable ? '[&_tbody_tr:hover]:bg-surface-sunken' : '',
+        $hoverable ? '[&_tbody_tr]:transition-colors [&_tbody_tr:hover]:bg-surface-sunken/50' : '',
+        $stickyHeader ? '[&_thead]:sticky [&_thead]:top-0 [&_thead]:z-10' : '',
     ];
 @endphp
 
@@ -40,7 +42,7 @@
     @endif
 >
     <div
-        class="overflow-x-auto rounded-card border border-border focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--ui-ring)]"
+        class="overflow-x-auto rounded-card border border-border focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--ui-ring)] {{ $stickyHeader ? 'max-h-[28rem] overflow-y-auto' : '' }}"
         role="region"
         aria-label="{{ $label }}"
         tabindex="0"

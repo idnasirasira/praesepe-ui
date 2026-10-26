@@ -1,23 +1,26 @@
 <div x-data="{ selected: [], toggle(id) { this.selected = this.selected.includes(id) ? this.selected.filter(v => v !== id) : [...this.selected, id] } }">
     <div class="overflow-x-auto rounded-card border border-border" role="region" aria-label="Faktur terpilih" tabindex="0">
-        <table class="w-full min-w-[32rem] text-left text-sm">
-            <thead class="bg-surface-sunken">
+        <table class="w-full min-w-[32rem] text-left text-sm [&_tbody_tr]:transition-colors [&_tbody_tr:hover]:bg-surface-sunken/50">
+            <thead class="bg-surface-sunken/60 text-xs font-semibold uppercase tracking-wider text-fg-muted">
                 <tr>
-                    <th class="px-4 py-3"><span class="sr-only">Select</span></th>
-                    <th class="px-4 py-3 font-medium">Faktur</th>
-                    <th class="px-4 py-3 font-medium">Jatuh tempo</th>
+                    <th class="px-4 py-2.5"><span class="sr-only">Select</span></th>
+                    <th class="px-4 py-2.5 font-semibold">Invoice</th>
+                    <th class="px-4 py-2.5 font-semibold">Due date</th>
+                    <th class="px-4 py-2.5 font-semibold">Amount</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-border">
                 <tr>
-                    <td class="px-4 py-3"><input type="checkbox" x-on:change="toggle('INV-1')" aria-label="Select INV-1"></td>
-                    <td class="px-4 py-3">INV-1</td>
-                    <td class="px-4 py-3">28 Okt 2026</td>
+                    <td class="px-4 py-3"><input type="checkbox" x-on:change="toggle('INV-2026-089')" aria-label="Select INV-2026-089"></td>
+                    <td class="px-4 py-3 tabular-nums">INV-2026-089</td>
+                    <td class="px-4 py-3 tabular-nums">28 Oct 2026</td>
+                    <td class="px-4 py-3 tabular-nums">Rp 2.450.000</td>
                 </tr>
                 <tr>
-                    <td class="px-4 py-3"><input type="checkbox" x-on:change="toggle('INV-2')" aria-label="Select INV-2"></td>
-                    <td class="px-4 py-3">INV-2</td>
-                    <td class="px-4 py-3">02 Nov 2026</td>
+                    <td class="px-4 py-3"><input type="checkbox" x-on:change="toggle('INV-2026-090')" aria-label="Select INV-2026-090"></td>
+                    <td class="px-4 py-3 tabular-nums">INV-2026-090</td>
+                    <td class="px-4 py-3 tabular-nums">02 Nov 2026</td>
+                    <td class="px-4 py-3 tabular-nums">USD 480.00</td>
                 </tr>
             </tbody>
         </table>

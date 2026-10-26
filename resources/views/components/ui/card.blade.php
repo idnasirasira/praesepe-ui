@@ -5,9 +5,9 @@
 
 @php
     $variantClasses = [
-        'default' => 'border border-border bg-surface-raised shadow-sm',
+        'default' => 'border border-border bg-surface-raised shadow-sm ring-1 ring-black/5',
         'sunken' => 'border border-transparent bg-surface-sunken',
-        'interactive' => 'border border-border bg-surface-raised shadow-sm transition-colors hover:border-border-strong hover:bg-surface',
+        'interactive' => 'border border-border bg-surface-raised shadow-sm ring-1 ring-black/5 transition-colors duration-150 hover:border-border-strong hover:bg-surface',
     ];
 
     $variantClass = $variantClasses[$variant] ?? $variantClasses['default'];

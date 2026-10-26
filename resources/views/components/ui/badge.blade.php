@@ -38,8 +38,8 @@
     ];
 
     $sizeClasses = [
-        'sm' => 'gap-1 px-1.5 py-0.5 text-[11px]',
-        'md' => 'gap-1.5 px-2 py-0.5 text-xs',
+        'sm' => 'gap-1 px-1.5 py-0.5 text-[11px] tabular-nums',
+        'md' => 'gap-1.5 px-2 py-0.5 text-xs tabular-nums',
     ];
 
     $toneKey = $variant.'-'.$color;
@@ -52,7 +52,7 @@
 
 <span
     {{ $wrapperAttributes->class([
-        'inline-flex items-center rounded-pill font-medium',
+        'inline-flex items-center rounded-pill font-medium shadow-2xs',
         $toneClass,
         $sizeClass,
     ]) }}
