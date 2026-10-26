@@ -20,6 +20,7 @@ it('defines required ui tokens across themes and dark blocks', function (): void
         '--ui-fg-muted',
         '--ui-fg-subtle',
         '--ui-fg-inverse',
+        '--ui-overlay',
         '--ui-danger',
         '--ui-danger-soft',
         '--ui-on-danger',

@@ -19,6 +19,7 @@
     --color-fg-muted: var(--ui-fg-muted);
     --color-fg-subtle: var(--ui-fg-subtle);
     --color-fg-inverse: var(--ui-fg-inverse);
+    --color-overlay: var(--ui-overlay);
     --color-danger: var(--ui-danger);
     --color-danger-soft: var(--ui-danger-soft);
     --color-on-danger: var(--ui-on-danger);
@@ -42,39 +43,40 @@
 
 /* -------------------------------------------------------------------------
  * Theme: praesepe (default) light
- * Deep teal brand with cool neutrals.
+ * Crisp, authoritative tech-studio indigo/violet with slate-tinted neutrals.
  * ------------------------------------------------------------------------- */
 :root,
 [data-theme='praesepe'] {
     --ui-font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
 
-    --ui-brand: oklch(0.48 0.11 195);
-    --ui-on-brand: oklch(0.99 0.01 195);
+    --ui-brand: oklch(0.46 0.17 278);
+    --ui-on-brand: oklch(0.99 0.01 278);
 
-    --ui-surface: oklch(0.99 0.005 195);
+    --ui-surface: oklch(0.985 0.006 268);
     --ui-surface-raised: oklch(1 0 0);
-    --ui-surface-sunken: oklch(0.96 0.008 195);
+    --ui-surface-sunken: oklch(0.955 0.01 268);
 
-    --ui-border: oklch(0.88 0.015 195);
-    --ui-border-strong: oklch(0.72 0.03 195);
-    --ui-ring: oklch(0.55 0.12 195);
+    --ui-border: oklch(0.88 0.014 268);
+    --ui-border-strong: oklch(0.70 0.03 278);
+    --ui-ring: oklch(0.55 0.16 278);
+    --ui-overlay: oklch(0.22 0.04 278 / 0.48);
 
-    --ui-fg: oklch(0.22 0.02 195);
-    --ui-fg-muted: oklch(0.40 0.02 195);
-    --ui-fg-subtle: oklch(0.45 0.015 195);
-    --ui-fg-inverse: oklch(0.99 0.005 195);
+    --ui-fg: oklch(0.24 0.03 268);
+    --ui-fg-muted: oklch(0.42 0.025 268);
+    --ui-fg-subtle: oklch(0.50 0.02 268);
+    --ui-fg-inverse: oklch(0.99 0.005 268);
 
     --ui-danger: oklch(0.52 0.19 25);
     --ui-danger-soft: oklch(0.95 0.03 25);
     --ui-on-danger: oklch(0.99 0.01 25);
 
-    --ui-success: oklch(0.48 0.12 150);
-    --ui-success-soft: oklch(0.95 0.03 150);
-    --ui-on-success: oklch(0.99 0.01 150);
+    --ui-success: oklch(0.48 0.12 155);
+    --ui-success-soft: oklch(0.95 0.03 155);
+    --ui-on-success: oklch(0.99 0.01 155);
 
-    --ui-warning: oklch(0.52 0.14 75);
+    --ui-warning: oklch(0.58 0.14 75);
     --ui-warning-soft: oklch(0.95 0.05 85);
-    --ui-on-warning: oklch(0.99 0.02 85);
+    --ui-on-warning: oklch(0.22 0.04 75);
 
     --ui-info: oklch(0.52 0.12 250);
     --ui-info-soft: oklch(0.95 0.03 250);
@@ -84,72 +86,75 @@
     --ui-radius-card: 0.75rem;
     --ui-radius-pill: 9999px;
 
-    --ui-shadow-sm: 0 1px 2px oklch(0.2 0.02 195 / 0.08);
-    --ui-shadow-md: 0 4px 12px oklch(0.2 0.02 195 / 0.1);
-    --ui-shadow-lg: 0 12px 32px oklch(0.2 0.02 195 / 0.14);
+    --ui-shadow-sm: 0 1px 2px oklch(0.28 0.04 278 / 0.08);
+    --ui-shadow-md: 0 4px 12px oklch(0.28 0.04 278 / 0.1);
+    --ui-shadow-lg: 0 12px 32px oklch(0.28 0.04 278 / 0.14);
 }
 
 [data-theme='praesepe'].dark,
 .dark[data-theme='praesepe'],
 html.dark:not([data-theme]),
 html.dark[data-theme='praesepe'] {
-    --ui-brand: oklch(0.72 0.1 195);
-    --ui-on-brand: oklch(0.2 0.03 195);
+    --ui-brand: oklch(0.74 0.12 278);
+    --ui-on-brand: oklch(0.18 0.04 278);
 
-    --ui-surface: oklch(0.18 0.02 195);
-    --ui-surface-raised: oklch(0.23 0.02 195);
-    --ui-surface-sunken: oklch(0.14 0.015 195);
+    --ui-surface: oklch(0.19 0.02 268);
+    --ui-surface-raised: oklch(0.26 0.025 268);
+    --ui-surface-sunken: oklch(0.14 0.018 268);
 
-    --ui-border: oklch(0.32 0.02 195);
-    --ui-border-strong: oklch(0.45 0.03 195);
-    --ui-ring: oklch(0.7 0.1 195);
+    --ui-border: oklch(0.34 0.025 268);
+    --ui-border-strong: oklch(0.48 0.035 278);
+    --ui-ring: oklch(0.72 0.11 278);
+    --ui-overlay: oklch(0.08 0.02 268 / 0.72);
 
-    --ui-fg: oklch(0.95 0.01 195);
-    --ui-fg-muted: oklch(0.80 0.015 195);
-    --ui-fg-subtle: oklch(0.74 0.015 195);
-    --ui-fg-inverse: oklch(0.18 0.02 195);
+    --ui-fg: oklch(0.96 0.01 268);
+    --ui-fg-muted: oklch(0.78 0.015 268);
+    --ui-fg-subtle: oklch(0.68 0.015 268);
+    --ui-fg-inverse: oklch(0.18 0.02 268);
 
     --ui-danger: oklch(0.72 0.16 25);
     --ui-danger-soft: oklch(0.28 0.06 25);
     --ui-on-danger: oklch(0.16 0.03 25);
 
-    --ui-success: oklch(0.76 0.12 150);
-    --ui-success-soft: oklch(0.28 0.05 150);
-    --ui-on-success: oklch(0.16 0.03 150);
+    --ui-success: oklch(0.76 0.12 155);
+    --ui-success-soft: oklch(0.28 0.05 155);
+    --ui-on-success: oklch(0.16 0.03 155);
 
     --ui-warning: oklch(0.82 0.12 85);
     --ui-warning-soft: oklch(0.30 0.05 85);
     --ui-on-warning: oklch(0.18 0.04 85);
 
-    --ui-info: oklch(0.72 0.1 250);
+    --ui-info: oklch(0.74 0.1 250);
     --ui-info-soft: oklch(0.28 0.05 250);
     --ui-on-info: oklch(0.16 0.03 250);
 
-    --ui-shadow-sm: 0 1px 2px oklch(0 0 0 / 0.35);
-    --ui-shadow-md: 0 4px 12px oklch(0 0 0 / 0.45);
-    --ui-shadow-lg: 0 12px 32px oklch(0 0 0 / 0.55);
+    --ui-shadow-sm: 0 1px 0 oklch(1 0 0 / 0.04);
+    --ui-shadow-md: 0 4px 16px oklch(0 0 0 / 0.28);
+    --ui-shadow-lg: 0 12px 28px oklch(0 0 0 / 0.36);
 }
 
 /* -------------------------------------------------------------------------
- * Theme: minimal (sharp / monochrome)
+ * Theme: minimal
+ * High-contrast architectural monochrome. Tighter control radius.
  * ------------------------------------------------------------------------- */
 [data-theme='minimal'] {
     --ui-font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
 
-    --ui-brand: oklch(0.25 0 0);
+    --ui-brand: oklch(0.16 0 0);
     --ui-on-brand: oklch(0.99 0 0);
 
-    --ui-surface: oklch(1 0 0);
+    --ui-surface: oklch(0.995 0 0);
     --ui-surface-raised: oklch(1 0 0);
-    --ui-surface-sunken: oklch(0.96 0 0);
+    --ui-surface-sunken: oklch(0.955 0 0);
 
     --ui-border: oklch(0.88 0 0);
-    --ui-border-strong: oklch(0.55 0 0);
-    --ui-ring: oklch(0.4 0 0);
+    --ui-border-strong: oklch(0.48 0 0);
+    --ui-ring: oklch(0.32 0 0);
+    --ui-overlay: oklch(0.12 0 0 / 0.5);
 
-    --ui-fg: oklch(0.15 0 0);
+    --ui-fg: oklch(0.14 0 0);
     --ui-fg-muted: oklch(0.38 0 0);
-    --ui-fg-subtle: oklch(0.44 0 0);
+    --ui-fg-subtle: oklch(0.48 0 0);
     --ui-fg-inverse: oklch(0.99 0 0);
 
     --ui-danger: oklch(0.45 0.18 25);
@@ -168,9 +173,9 @@ html.dark[data-theme='praesepe'] {
     --ui-info-soft: oklch(0.95 0.02 250);
     --ui-on-info: oklch(0.99 0 0);
 
-    --ui-radius-control: 0.125rem;
-    --ui-radius-card: 0.25rem;
-    --ui-radius-pill: 0.25rem;
+    --ui-radius-control: 0.375rem;
+    --ui-radius-card: 0.5rem;
+    --ui-radius-pill: 0.375rem;
 
     --ui-shadow-sm: 0 1px 0 oklch(0 0 0 / 0.08);
     --ui-shadow-md: 0 2px 8px oklch(0 0 0 / 0.1);
@@ -179,20 +184,21 @@ html.dark[data-theme='praesepe'] {
 
 html.dark[data-theme='minimal'],
 [data-theme='minimal'].dark {
-    --ui-brand: oklch(0.92 0 0);
+    --ui-brand: oklch(0.96 0 0);
     --ui-on-brand: oklch(0.12 0 0);
 
-    --ui-surface: oklch(0.14 0 0);
-    --ui-surface-raised: oklch(0.2 0 0);
-    --ui-surface-sunken: oklch(0.1 0 0);
+    --ui-surface: oklch(0.15 0 0);
+    --ui-surface-raised: oklch(0.22 0 0);
+    --ui-surface-sunken: oklch(0.10 0 0);
 
-    --ui-border: oklch(0.3 0 0);
-    --ui-border-strong: oklch(0.5 0 0);
-    --ui-ring: oklch(0.75 0 0);
+    --ui-border: oklch(0.30 0 0);
+    --ui-border-strong: oklch(0.50 0 0);
+    --ui-ring: oklch(0.82 0 0);
+    --ui-overlay: oklch(0.04 0 0 / 0.72);
 
-    --ui-fg: oklch(0.95 0 0);
-    --ui-fg-muted: oklch(0.78 0 0);
-    --ui-fg-subtle: oklch(0.72 0 0);
+    --ui-fg: oklch(0.96 0 0);
+    --ui-fg-muted: oklch(0.76 0 0);
+    --ui-fg-subtle: oklch(0.64 0 0);
     --ui-fg-inverse: oklch(0.12 0 0);
 
     --ui-danger: oklch(0.74 0.15 25);
@@ -211,32 +217,35 @@ html.dark[data-theme='minimal'],
     --ui-info-soft: oklch(0.26 0.04 250);
     --ui-on-info: oklch(0.12 0 0);
 
-    --ui-shadow-sm: 0 1px 0 oklch(0 0 0 / 0.5);
-    --ui-shadow-md: 0 2px 8px oklch(0 0 0 / 0.55);
-    --ui-shadow-lg: 0 8px 24px oklch(0 0 0 / 0.65);
+    --ui-shadow-sm: 0 1px 0 oklch(1 0 0 / 0.05);
+    --ui-shadow-md: 0 2px 10px oklch(0 0 0 / 0.4);
+    --ui-shadow-lg: 0 10px 28px oklch(0 0 0 / 0.5);
 }
 
 /* -------------------------------------------------------------------------
- * Theme: warm (soft amber / teal)
+ * Theme: warm
+ * Approachable editorial stone/sand neutrals with deep teal brand accents.
+ * Softer control radius.
  * ------------------------------------------------------------------------- */
 [data-theme='warm'] {
     --ui-font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
 
-    --ui-brand: oklch(0.48 0.12 55);
-    --ui-on-brand: oklch(0.99 0.01 85);
+    --ui-brand: oklch(0.46 0.09 195);
+    --ui-on-brand: oklch(0.99 0.01 195);
 
-    --ui-surface: oklch(0.98 0.01 85);
-    --ui-surface-raised: oklch(1 0.005 85);
-    --ui-surface-sunken: oklch(0.95 0.015 85);
+    --ui-surface: oklch(0.975 0.012 80);
+    --ui-surface-raised: oklch(0.995 0.006 80);
+    --ui-surface-sunken: oklch(0.945 0.016 75);
 
-    --ui-border: oklch(0.88 0.02 75);
-    --ui-border-strong: oklch(0.7 0.04 65);
-    --ui-ring: oklch(0.58 0.1 180);
+    --ui-border: oklch(0.88 0.02 70);
+    --ui-border-strong: oklch(0.68 0.04 60);
+    --ui-ring: oklch(0.55 0.09 195);
+    --ui-overlay: oklch(0.28 0.03 55 / 0.48);
 
     --ui-fg: oklch(0.28 0.03 55);
-    --ui-fg-muted: oklch(0.42 0.03 55);
-    --ui-fg-subtle: oklch(0.45 0.025 55);
-    --ui-fg-inverse: oklch(0.98 0.01 85);
+    --ui-fg-muted: oklch(0.44 0.03 55);
+    --ui-fg-subtle: oklch(0.52 0.025 55);
+    --ui-fg-inverse: oklch(0.98 0.01 80);
 
     --ui-danger: oklch(0.5 0.17 30);
     --ui-danger-soft: oklch(0.95 0.03 30);
@@ -246,16 +255,16 @@ html.dark[data-theme='minimal'],
     --ui-success-soft: oklch(0.95 0.03 165);
     --ui-on-success: oklch(0.99 0.01 165);
 
-    --ui-warning: oklch(0.50 0.13 70);
-    --ui-warning-soft: oklch(0.95 0.05 80);
-    --ui-on-warning: oklch(0.99 0.02 80);
+    --ui-warning: oklch(0.62 0.14 70);
+    --ui-warning-soft: oklch(0.95 0.05 75);
+    --ui-on-warning: oklch(0.24 0.04 70);
 
     --ui-info: oklch(0.52 0.09 210);
     --ui-info-soft: oklch(0.95 0.03 210);
     --ui-on-info: oklch(0.99 0.01 210);
 
-    --ui-radius-control: 0.75rem;
-    --ui-radius-card: 1rem;
+    --ui-radius-control: 0.625rem;
+    --ui-radius-card: 0.875rem;
     --ui-radius-pill: 9999px;
 
     --ui-shadow-sm: 0 1px 2px oklch(0.35 0.04 55 / 0.1);
@@ -265,20 +274,21 @@ html.dark[data-theme='minimal'],
 
 html.dark[data-theme='warm'],
 [data-theme='warm'].dark {
-    --ui-brand: oklch(0.78 0.1 70);
-    --ui-on-brand: oklch(0.22 0.04 55);
+    --ui-brand: oklch(0.76 0.08 195);
+    --ui-on-brand: oklch(0.18 0.03 195);
 
-    --ui-surface: oklch(0.2 0.02 55);
-    --ui-surface-raised: oklch(0.25 0.025 55);
-    --ui-surface-sunken: oklch(0.16 0.015 55);
+    --ui-surface: oklch(0.19 0.02 55);
+    --ui-surface-raised: oklch(0.27 0.025 55);
+    --ui-surface-sunken: oklch(0.14 0.015 55);
 
-    --ui-border: oklch(0.35 0.03 55);
-    --ui-border-strong: oklch(0.48 0.04 55);
-    --ui-ring: oklch(0.72 0.08 180);
+    --ui-border: oklch(0.34 0.025 55);
+    --ui-border-strong: oklch(0.48 0.035 55);
+    --ui-ring: oklch(0.72 0.07 195);
+    --ui-overlay: oklch(0.08 0.02 55 / 0.72);
 
-    --ui-fg: oklch(0.95 0.015 85);
-    --ui-fg-muted: oklch(0.80 0.02 75);
-    --ui-fg-subtle: oklch(0.74 0.02 65);
+    --ui-fg: oklch(0.95 0.015 80);
+    --ui-fg-muted: oklch(0.78 0.02 70);
+    --ui-fg-subtle: oklch(0.66 0.02 60);
     --ui-fg-inverse: oklch(0.2 0.02 55);
 
     --ui-danger: oklch(0.74 0.14 30);
@@ -289,15 +299,15 @@ html.dark[data-theme='warm'],
     --ui-success-soft: oklch(0.28 0.04 165);
     --ui-on-success: oklch(0.16 0.03 165);
 
-    --ui-warning: oklch(0.84 0.11 80);
-    --ui-warning-soft: oklch(0.30 0.05 80);
-    --ui-on-warning: oklch(0.18 0.04 80);
+    --ui-warning: oklch(0.84 0.11 75);
+    --ui-warning-soft: oklch(0.30 0.05 75);
+    --ui-on-warning: oklch(0.18 0.04 75);
 
     --ui-info: oklch(0.74 0.08 210);
     --ui-info-soft: oklch(0.28 0.04 210);
     --ui-on-info: oklch(0.16 0.03 210);
 
-    --ui-shadow-sm: 0 1px 2px oklch(0 0 0 / 0.4);
-    --ui-shadow-md: 0 6px 16px oklch(0 0 0 / 0.48);
-    --ui-shadow-lg: 0 16px 36px oklch(0 0 0 / 0.58);
+    --ui-shadow-sm: 0 1px 0 oklch(1 0 0 / 0.04);
+    --ui-shadow-md: 0 6px 18px oklch(0 0 0 / 0.32);
+    --ui-shadow-lg: 0 16px 36px oklch(0 0 0 / 0.42);
 }
