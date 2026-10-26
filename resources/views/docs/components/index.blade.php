@@ -4,7 +4,7 @@
 @section('meta_description', 'Browse Praesepe UI Blade components.')
 
 @section('content')
-<div class="max-w-3xl">
+<div class="mx-auto max-w-3xl">
     <h1 class="text-3xl font-semibold tracking-tight text-fg">Components</h1>
     <p class="mt-3 text-fg-muted">
         Golden archetypes ship first. More components will follow the same registry, snippet, and a11y documentation pattern.
