@@ -90,7 +90,7 @@
         type="button"
         x-ref="trigger"
         id="{{ $id }}-trigger"
-        class="inline-flex items-center gap-2 rounded-control border border-border bg-surface-raised px-3 py-2 text-sm font-medium text-fg shadow-sm hover:bg-surface-sunken"
+        class="inline-flex h-9 items-center gap-2 rounded-control border border-border bg-surface-raised px-3.5 text-sm font-medium text-fg shadow-2xs transition-colors duration-150 hover:border-border-strong hover:bg-surface-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface [&_svg]:size-4 [&_svg]:shrink-0"
         aria-haspopup="menu"
         x-bind:aria-expanded="open.toString()"
         x-bind:aria-controls="menuId"
@@ -112,8 +112,13 @@
         aria-labelledby="{{ $id }}-trigger"
         x-show="open"
         x-cloak
-        x-transition.origin.top
-        class="absolute z-40 mt-2 min-w-48 rounded-card border border-border bg-surface-raised p-1 shadow-lg {{ $alignClass }}"
+        x-transition:enter="transition ease-out duration-150"
+        x-transition:enter-start="opacity-0 scale-95 translate-y-1"
+        x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-100"
+        x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+        x-transition:leave-end="opacity-0 scale-95 translate-y-1"
+        class="absolute z-40 mt-2 min-w-48 rounded-card border border-border bg-surface-raised p-1 shadow-lg ring-1 ring-black/5 {{ $alignClass }}"
         x-bind:aria-hidden="(!open).toString()"
     >
         {{ $slot }}

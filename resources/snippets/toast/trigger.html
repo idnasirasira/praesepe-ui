@@ -1,15 +1,15 @@
 <div class="flex flex-wrap gap-3">
     <button
         type="button"
-        class="inline-flex h-10 items-center rounded-control bg-brand px-4 text-sm font-medium text-on-brand"
-        x-on:click="window.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'success', title: 'Deployed', message: 'Production is live.', duration: 4000 } }))"
+        class="inline-flex h-9 items-center rounded-control bg-brand px-3.5 text-sm font-medium text-on-brand shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16),0_1px_2px_0_rgba(0,0,0,0.06)] transition duration-150 hover:opacity-90 motion-safe:active:translate-y-[0.5px]"
+        x-on:click="window.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'success', title: 'Payout approved', message: 'Rp 18.750.000 released to CV Nusantara.', duration: 4000 } }))"
     >
         Show success toast
     </button>
     <button
         type="button"
-        class="inline-flex h-10 items-center rounded-control border border-border px-4 text-sm font-medium text-fg"
-        x-on:click="window.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', title: 'Queued', message: 'Your export will be ready shortly.' } }))"
+        class="inline-flex h-9 items-center rounded-control border border-border bg-surface-raised px-3.5 text-sm font-medium text-fg shadow-2xs"
+        x-on:click="window.dispatchEvent(new CustomEvent('ui:toast', { detail: { type: 'info', title: 'Export queued', message: 'Orders CSV for Oct 2026 will be ready shortly.' } }))"
     >
         Show info toast
     </button>

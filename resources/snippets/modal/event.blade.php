@@ -8,8 +8,8 @@
 
     <x-ui.modal
         id="demo-event"
-        title="Opened by event"
-        description="Useful when the trigger lives outside the modal tree."
+        title="Approval queue"
+        description="Open INV-2026-089 from the finance toolbar without nesting the trigger."
     >
         <p>Listen for the ui-modal-open window event and match detail.id.</p>
     </x-ui.modal>

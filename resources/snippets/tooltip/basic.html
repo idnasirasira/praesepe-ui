@@ -7,16 +7,22 @@
     x-on:focusout="open = false"
     x-on:keydown.escape.stop="open = false"
 >
-    <button type="button" class="rounded-control border border-border bg-surface-raised px-3 py-2 text-sm text-fg" aria-describedby="tip-basic">
-        Hover or focus
+    <button type="button" class="inline-flex h-9 items-center rounded-control border border-border bg-surface-raised px-3.5 text-sm text-fg shadow-2xs" aria-describedby="tip-basic">
+        Stock status
     </button>
     <span
         id="tip-basic"
         role="tooltip"
         x-show="open"
         x-cloak
-        class="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2 rounded-control bg-fg px-2 py-1 text-xs text-fg-inverse"
+        x-transition:enter="transition ease-out duration-150"
+        x-transition:enter-start="opacity-0 scale-95 translate-y-1"
+        x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-100"
+        x-transition:leave-start="opacity-100 scale-100"
+        x-transition:leave-end="opacity-0 scale-95"
+        class="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2 rounded-control bg-fg px-2 py-1 text-xs text-fg-inverse shadow-md ring-1 ring-black/5"
     >
-        Extra context for this action
+        24 units left in Gudang A
     </span>
 </span>
