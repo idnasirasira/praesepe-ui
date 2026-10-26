@@ -1,0 +1,15 @@
+<div class="w-full max-w-sm">
+    <label for="username-error" class="mb-1.5 block text-sm font-medium text-fg">Username</label>
+    <div class="relative">
+        <input
+            id="username-error"
+            type="text"
+            name="username"
+            value="ab"
+            aria-invalid="true"
+            aria-describedby="username-error-error"
+            class="h-10 w-full rounded-control border border-danger bg-surface-raised px-3 text-sm text-fg shadow-sm placeholder:text-fg-subtle"
+        >
+    </div>
+    <p id="username-error-error" class="mt-1.5 text-xs text-danger">Username must be at least 3 characters.</p>
+</div>
