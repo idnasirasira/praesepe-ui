@@ -21,3 +21,24 @@ it('renders dropdown trigger and menu aria contracts', function (): void {
         ->and($html)->toContain('role="separator"')
         ->and($html)->toContain('aria-disabled="true"');
 });
+
+it('renders tabs aria contracts for tablist tab and panel', function (): void {
+    $html = Blade::render(<<<'BLADE'
+        <x-ui.tabs variant="underline" active="account">
+            <x-slot:list>
+                <x-ui.tabs.tab id="account">Account</x-ui.tabs.tab>
+                <x-ui.tabs.tab id="billing" disabled>Billing</x-ui.tabs.tab>
+            </x-slot:list>
+            <x-ui.tabs.panel id="account">Profile</x-ui.tabs.panel>
+            <x-ui.tabs.panel id="billing">Invoices</x-ui.tabs.panel>
+        </x-ui.tabs>
+    BLADE);
+
+    expect($html)->toContain('role="tablist"')
+        ->and($html)->toContain('role="tab"')
+        ->and($html)->toContain('role="tabpanel"')
+        ->and($html)->toContain('x-bind:aria-selected')
+        ->and($html)->toContain('aria-controls="account-panel"')
+        ->and($html)->toContain('aria-labelledby="account-tab"')
+        ->and($html)->toContain('aria-disabled="true"');
+});

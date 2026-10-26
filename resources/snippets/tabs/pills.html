@@ -1,0 +1,8 @@
+<div class="space-y-4" x-data="{ active: 'overview', select(id) { this.active = id } }">
+    <div role="tablist" class="inline-flex gap-1 rounded-control bg-surface-sunken p-1">
+        <button type="button" role="tab" x-bind:aria-selected="(active === 'overview').toString()" x-on:click="select('overview')" class="rounded-control px-3 py-1.5 text-sm" x-bind:class="active === 'overview' ? 'bg-surface-raised text-fg shadow-sm' : 'text-fg-muted'">Overview</button>
+        <button type="button" role="tab" x-bind:aria-selected="(active === 'activity').toString()" x-on:click="select('activity')" class="rounded-control px-3 py-1.5 text-sm" x-bind:class="active === 'activity' ? 'bg-surface-raised text-fg shadow-sm' : 'text-fg-muted'">Activity</button>
+    </div>
+    <div role="tabpanel" x-show="active === 'overview'" class="text-sm text-fg">Project health and recent deploys.</div>
+    <div role="tabpanel" x-show="active === 'activity'" x-cloak class="text-sm text-fg">Audit log entries for this workspace.</div>
+</div>
