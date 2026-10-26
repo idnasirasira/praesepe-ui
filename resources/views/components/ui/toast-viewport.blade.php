@@ -24,7 +24,7 @@
 >
     <template x-for="toast in $store.toasts.items" x-bind:key="toast.id">
         <div
-            class="pointer-events-auto relative w-full overflow-hidden rounded-card border border-border bg-surface-raised p-4 shadow-lg ring-1 ring-black/5"
+            class="pointer-events-auto relative w-full overflow-hidden rounded-card border border-border bg-surface-raised p-4 shadow-lg ring-1 ring-border/60"
             x-bind:role="toast.type === 'danger' ? 'alert' : 'status'"
             x-transition:enter="transition ease-out duration-150"
             x-transition:enter-start="opacity-0 scale-95 translate-y-1"
@@ -39,12 +39,12 @@
         >
             <div class="flex items-start gap-3">
                 <div class="min-w-0 flex-1">
-                    <p class="text-sm font-semibold tracking-tight text-fg" x-text="toast.title" x-show="toast.title"></p>
+                    <p class="text-sm font-semibold tracking-tight text-fg" x-text="toast.title" x-show="toast.title" x-cloak></p>
                     <p class="text-sm text-fg-muted leading-relaxed" x-bind:class="toast.title ? 'mt-1' : ''" x-text="toast.message"></p>
                 </div>
                 <button
                     type="button"
-                    class="rounded-control p-1 text-fg-muted hover:bg-surface-sunken hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                    class="inline-flex size-10 shrink-0 items-center justify-center rounded-control text-fg-muted transition-colors duration-150 hover:bg-surface-sunken hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                     x-on:click="$store.toasts.dismiss(toast.id)"
                     aria-label="Dismiss notification"
                 >
@@ -65,7 +65,7 @@
             </div>
 
             <span
-                class="pointer-events-none absolute top-3 right-10 rounded-control bg-surface-sunken px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-fg-subtle"
+                class="pointer-events-none absolute top-3 right-12 rounded-control bg-surface-sunken px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-fg-subtle"
                 x-show="toast.hovering && toast.duration > 0"
                 x-cloak
             >

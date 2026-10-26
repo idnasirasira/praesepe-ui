@@ -18,7 +18,7 @@
         ? $variantClasses['disabled']
         : ($variantClasses[$variant] ?? $variantClasses['default']);
 
-    $baseClass = 'flex w-full items-center gap-2 rounded-control px-3 py-2 text-left text-sm outline-none';
+    $baseClass = 'flex min-h-10 w-full items-center gap-2 rounded-control px-3 py-2.5 text-left text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface';
 @endphp
 
 @if (filled($href) && ! $isDisabled)
@@ -30,11 +30,11 @@
         x-on:click="hide(false)"
     >
         @if (filled($icon))
-            <span class="shrink-0 text-fg-muted">{{ $icon }}</span>
+            <span class="shrink-0 text-fg-muted [&_svg]:size-4 [&_svg]:shrink-0">{{ $icon }}</span>
         @endif
         <span class="min-w-0 flex-1">{{ $slot }}</span>
         @if (filled($shortcut))
-            <kbd class="rounded border border-border px-1.5 py-0.5 text-[10px] text-fg-subtle">{{ $shortcut }}</kbd>
+            <kbd class="rounded-control border border-border px-1.5 py-0.5 text-[10px] tabular-nums text-fg-subtle">{{ $shortcut }}</kbd>
         @endif
     </a>
 @else
@@ -49,11 +49,11 @@
         @endunless
     >
         @if (filled($icon))
-            <span class="shrink-0 text-fg-muted" @if ($isDisabled) aria-hidden="true" @endif>{{ $icon }}</span>
+            <span class="shrink-0 text-fg-muted [&_svg]:size-4 [&_svg]:shrink-0" @if ($isDisabled) aria-hidden="true" @endif>{{ $icon }}</span>
         @endif
         <span class="min-w-0 flex-1">{{ $slot }}</span>
         @if (filled($shortcut))
-            <kbd class="rounded border border-border px-1.5 py-0.5 text-[10px] text-fg-subtle">{{ $shortcut }}</kbd>
+            <kbd class="rounded-control border border-border px-1.5 py-0.5 text-[10px] tabular-nums text-fg-subtle">{{ $shortcut }}</kbd>
         @endif
     </button>
 @endif

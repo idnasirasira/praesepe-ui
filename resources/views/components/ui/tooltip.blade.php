@@ -87,12 +87,12 @@
             x-cloak
             x-bind:style="style"
             x-transition:enter="transition ease-out duration-150"
-            x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100"
+            x-transition:enter-start="opacity-0 scale-95"
+            x-transition:enter-end="opacity-100 scale-100"
             x-transition:leave="transition ease-in duration-100"
-            x-transition:leave-start="opacity-100"
-            x-transition:leave-end="opacity-0"
-            class="pointer-events-none z-[70] w-max max-w-xs rounded-control bg-fg px-2.5 py-1.5 text-xs leading-snug text-fg-inverse shadow-md ring-1 ring-black/5"
+            x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-95"
+            class="pointer-events-none z-[70] w-max max-w-xs rounded-control bg-fg px-2.5 py-1.5 text-xs leading-snug text-fg-inverse shadow-md ring-1 ring-border/40"
         >
             {{ $content }}
         </span>

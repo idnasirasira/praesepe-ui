@@ -23,13 +23,40 @@
         open: false,
         menuId: @js($menuId),
         triggerEl: null,
+        menuStyle: {},
         items() {
             return Array.from(this.$refs.menu?.querySelectorAll('[role=menuitem]:not([disabled]):not([aria-disabled=true])') || []);
+        },
+        place() {
+            const trigger = this.$refs.trigger;
+            if (! trigger) {
+                return;
+            }
+
+            const rect = trigger.getBoundingClientRect();
+            const gap = 8;
+            const top = rect.bottom + gap;
+            const left = this.alignRight()
+                ? Math.max(8, rect.right - Math.max(this.$refs.menu?.offsetWidth || 192, 192))
+                : Math.min(rect.left, window.innerWidth - 200);
+
+            this.menuStyle = {
+                position: 'fixed',
+                top: top + 'px',
+                left: left + 'px',
+                minWidth: Math.max(rect.width, 192) + 'px',
+            };
+        },
+        alignRight() {
+            return @js($align) === 'right';
         },
         show() {
             this.triggerEl = this.$refs.trigger;
             this.open = true;
-            this.$nextTick(() => this.focusItem(0));
+            this.$nextTick(() => {
+                this.place();
+                this.focusItem(0);
+            });
         },
         hide(restoreFocus = true) {
             this.open = false;
@@ -84,13 +111,20 @@
         }
     }"
     x-on:keydown="onMenuKeydown($event)"
-    x-on:click.outside="if (open) hide(false)"
+    x-on:click.window="
+        if (!open) return;
+        const target = $event.target;
+        if ($refs.trigger?.contains(target) || $refs.menu?.contains(target)) return;
+        hide(false);
+    "
+    x-on:scroll.window="if (open) place()"
+    x-on:resize.window="if (open) place()"
 >
     <button
         type="button"
         x-ref="trigger"
         id="{{ $id }}-trigger"
-        class="inline-flex h-9 items-center gap-2 rounded-control border border-border bg-surface-raised px-3.5 text-sm font-medium text-fg shadow-2xs transition-colors duration-150 hover:border-border-strong hover:bg-surface-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface [&_svg]:size-4 [&_svg]:shrink-0"
+        class="inline-flex h-9 items-center gap-2 rounded-control border border-border bg-surface-raised px-3.5 text-sm font-medium text-fg shadow-2xs transition-colors duration-150 hover:border-border-strong hover:bg-surface-sunken motion-safe:active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface [&_svg]:size-4 [&_svg]:shrink-0"
         aria-haspopup="menu"
         x-bind:aria-expanded="open.toString()"
         x-bind:aria-controls="menuId"
@@ -105,22 +139,25 @@
         @endisset
     </button>
 
-    <div
-        x-ref="menu"
-        id="{{ $menuId }}"
-        role="menu"
-        aria-labelledby="{{ $id }}-trigger"
-        x-show="open"
-        x-cloak
-        x-transition:enter="transition ease-out duration-150"
-        x-transition:enter-start="opacity-0 scale-95 translate-y-1"
-        x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-        x-transition:leave="transition ease-in duration-100"
-        x-transition:leave-start="opacity-100 scale-100 translate-y-0"
-        x-transition:leave-end="opacity-0 scale-95 translate-y-1"
-        class="absolute z-40 mt-2 min-w-48 rounded-card border border-border bg-surface-raised p-1 shadow-lg ring-1 ring-black/5 {{ $alignClass }}"
-        x-bind:aria-hidden="(!open).toString()"
-    >
-        {{ $slot }}
-    </div>
+    <template x-teleport="body">
+        <div
+            x-ref="menu"
+            id="{{ $menuId }}"
+            role="menu"
+            aria-labelledby="{{ $id }}-trigger"
+            x-show="open"
+            x-cloak
+            x-bind:style="menuStyle"
+            x-transition:enter="transition ease-out duration-150"
+            x-transition:enter-start="opacity-0 scale-95 translate-y-0.5"
+            x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-100"
+            x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+            x-transition:leave-end="opacity-0 scale-95 translate-y-0.5"
+            class="z-[55] min-w-48 rounded-card border border-border bg-surface-raised p-1 shadow-lg ring-1 ring-border/60 {{ $alignClass }}"
+            x-bind:aria-hidden="(!open).toString()"
+        >
+            {{ $slot }}
+        </div>
+    </template>
 </div>

@@ -70,6 +70,7 @@
             <div
                 class="absolute inset-0 bg-overlay backdrop-blur-[2px]"
                 x-show="open"
+                x-cloak
                 x-transition:enter="transition ease-out duration-200"
                 x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100"
@@ -80,19 +81,20 @@
             ></div>
 
             <div
-                class="relative z-10 w-full {{ $sizeClass }} rounded-card border border-border bg-surface-raised p-5 shadow-lg ring-1 ring-black/5"
+                class="relative z-10 w-full {{ $sizeClass }} rounded-card border border-border bg-surface-raised p-5 shadow-lg ring-1 ring-border/60"
                 x-show="open"
+                x-cloak
                 x-transition:enter="transition ease-out duration-200"
-                x-transition:enter-start="opacity-0 scale-95 translate-y-1"
+                x-transition:enter-start="opacity-0 scale-95 translate-y-2"
                 x-transition:enter-end="opacity-100 scale-100 translate-y-0"
                 x-transition:leave="transition ease-in duration-100"
                 x-transition:leave-start="opacity-100 scale-100 translate-y-0"
-                x-transition:leave-end="opacity-0 scale-95 translate-y-1"
+                x-transition:leave-end="opacity-0 scale-95 translate-y-2"
                 x-on:click.stop
             >
                 <div class="flex items-start gap-3">
                     @if ($isConfirm)
-                        <span class="mt-0.5 inline-flex size-9 items-center justify-center rounded-pill bg-danger-soft text-danger">
+                        <span class="mt-0.5 inline-flex size-10 items-center justify-center rounded-pill bg-danger-soft text-danger">
                             <x-icons.alert class="size-5 shrink-0" />
                         </span>
                     @endif
@@ -106,7 +108,7 @@
 
                     <button
                         type="button"
-                        class="rounded-control p-1 text-fg-muted hover:bg-surface-sunken hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                        class="inline-flex size-10 shrink-0 items-center justify-center rounded-control text-fg-muted transition-colors duration-150 hover:bg-surface-sunken hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                         x-on:click="hide()"
                         aria-label="Close dialog"
                     >
