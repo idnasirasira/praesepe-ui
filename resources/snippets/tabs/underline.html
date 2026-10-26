@@ -1,11 +1,11 @@
 <div
     class="space-y-4"
-    x-data="{ active: 'account', select(id) { this.active = id } }"
+    x-data="{ active: 'profile', select(id) { this.active = id } }"
 >
     <div role="tablist" aria-orientation="horizontal" class="flex gap-1 border-b border-border">
-        <button type="button" role="tab" id="account-tab" aria-controls="account-panel" x-bind:aria-selected="(active === 'account').toString()" x-bind:tabindex="active === 'account' ? 0 : -1" class="border-b-2 px-3 py-2 text-sm font-medium" x-bind:class="active === 'account' ? 'border-brand text-fg' : 'border-transparent text-fg-muted'" x-on:click="select('account')">Account</button>
-        <button type="button" role="tab" id="billing-tab" aria-controls="billing-panel" x-bind:aria-selected="(active === 'billing').toString()" x-bind:tabindex="active === 'billing' ? 0 : -1" class="border-b-2 px-3 py-2 text-sm font-medium" x-bind:class="active === 'billing' ? 'border-brand text-fg' : 'border-transparent text-fg-muted'" x-on:click="select('billing')">Billing</button>
+        <button type="button" role="tab" id="profile-tab" aria-controls="profile-panel" x-bind:aria-selected="(active === 'profile').toString()" x-bind:tabindex="active === 'profile' ? 0 : -1" class="min-h-10 border-b-2 px-3 py-2 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface" x-bind:class="active === 'profile' ? 'border-brand text-fg' : 'border-transparent text-fg-muted'" x-on:click="select('profile')">Store profile</button>
+        <button type="button" role="tab" id="tax-tab" aria-controls="tax-panel" x-bind:aria-selected="(active === 'tax').toString()" x-bind:tabindex="active === 'tax' ? 0 : -1" class="min-h-10 border-b-2 px-3 py-2 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface" x-bind:class="active === 'tax' ? 'border-brand text-fg' : 'border-transparent text-fg-muted'" x-on:click="select('tax')">Tax & e-Faktur</button>
     </div>
-    <div role="tabpanel" id="account-panel" aria-labelledby="account-tab" x-show="active === 'account'" class="text-sm text-fg">Manage your profile and sign-in methods.</div>
-    <div role="tabpanel" id="billing-panel" aria-labelledby="billing-tab" x-show="active === 'billing'" x-cloak class="text-sm text-fg">Invoices, payment methods, and plan changes.</div>
+    <div role="tabpanel" id="profile-panel" aria-labelledby="profile-tab" x-show="active === 'profile'" class="text-sm text-fg leading-relaxed">Legal name, NPWP, and storefront contact for Toko Maju.</div>
+    <div role="tabpanel" id="tax-panel" aria-labelledby="tax-tab" x-show="active === 'tax'" x-cloak class="text-sm text-fg leading-relaxed">PPN rates, invoice numbering, and e-Faktur API credentials.</div>
 </div>

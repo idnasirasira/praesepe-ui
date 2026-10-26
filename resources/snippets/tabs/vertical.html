@@ -1,10 +1,10 @@
 <div class="flex gap-6" x-data="{ active: 'general', select(id) { this.active = id } }">
-    <div role="tablist" aria-orientation="vertical" class="flex w-40 flex-col gap-1 border-r border-border pr-4">
-        <button type="button" role="tab" x-bind:aria-selected="(active === 'general').toString()" x-on:click="select('general')" class="rounded-control px-3 py-2 text-left text-sm" x-bind:class="active === 'general' ? 'bg-surface-sunken text-fg' : 'text-fg-muted'">General</button>
-        <button type="button" role="tab" x-bind:aria-selected="(active === 'security').toString()" x-on:click="select('security')" class="rounded-control px-3 py-2 text-left text-sm" x-bind:class="active === 'security' ? 'bg-surface-sunken text-fg' : 'text-fg-muted'">Security</button>
+    <div role="tablist" aria-orientation="vertical" class="flex w-48 shrink-0 flex-col gap-1 border-r border-border pr-4">
+        <button type="button" role="tab" x-bind:aria-selected="(active === 'general').toString()" x-on:click="select('general')" class="min-h-10 rounded-control px-3 py-2.5 text-left text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface" x-bind:class="active === 'general' ? 'bg-surface-sunken text-fg' : 'text-fg-muted'">Store defaults</button>
+        <button type="button" role="tab" x-bind:aria-selected="(active === 'security').toString()" x-on:click="select('security')" class="min-h-10 rounded-control px-3 py-2.5 text-left text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface" x-bind:class="active === 'security' ? 'bg-surface-sunken text-fg' : 'text-fg-muted'">Access & 2FA</button>
     </div>
-    <div class="flex-1">
-        <div role="tabpanel" x-show="active === 'general'" class="text-sm text-fg">Workspace name and default locale.</div>
-        <div role="tabpanel" x-show="active === 'security'" x-cloak class="text-sm text-fg">Session lifetime and SSO providers.</div>
+    <div class="min-w-0 flex-1 text-sm text-fg leading-relaxed">
+        <div x-show="active === 'general'">Currency IDR, timezone Asia/Jakarta, and receipt footer.</div>
+        <div x-show="active === 'security'" x-cloak>Owner passkeys and staff session timeout policies.</div>
     </div>
 </div>

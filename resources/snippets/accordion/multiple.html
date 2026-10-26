@@ -1,25 +1,37 @@
-<div class="divide-y divide-border rounded-card border border-border bg-surface-raised" x-data="{ openIds: ['api', 'webhooks'], toggle(id) { this.openIds = this.openIds.includes(id) ? this.openIds.filter(v => v !== id) : [...this.openIds, id] }, isOpen(id) { return this.openIds.includes(id) } }">
+<div class="divide-y divide-border rounded-card border border-border bg-surface-raised" x-data="{ openIds: ['webhooks', 'limits'], toggle(id) { this.openIds = this.openIds.includes(id) ? this.openIds.filter((value) => value !== id) : [...this.openIds, id] }, isOpen(id) { return this.openIds.includes(id) } }">
     <div class="px-4">
         <h3 class="m-0">
-            <button type="button" id="api-header" class="flex w-full items-center justify-between py-4 text-left text-sm font-medium text-fg" x-on:click="toggle('api')" x-bind:aria-expanded="isOpen('api').toString()" aria-controls="api-panel">
-                <span>API access</span>
+            <button type="button" class="flex min-h-11 w-full items-center justify-between py-4 text-left text-sm font-medium text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface" x-on:click="toggle('webhooks')" x-bind:aria-expanded="isOpen('webhooks').toString()" aria-controls="webhooks-panel" id="webhooks-header">
+                <span>Order webhooks</span>
             </button>
         </h3>
-        <div id="api-panel" role="region" aria-labelledby="api-header" class="grid transition-[grid-template-rows] duration-200" x-bind:class="isOpen('api') ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
+        <div id="webhooks-panel" role="region" aria-labelledby="webhooks-header" class="grid transition-[grid-template-rows] duration-200 ease-out" x-bind:class="isOpen('webhooks') ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
             <div class="overflow-hidden">
-                <p class="pb-4 text-sm text-fg-muted">Generate personal access tokens from Settings.</p>
+                <p class="pb-4 text-sm text-fg-muted leading-relaxed">Subscribe to order.paid, order.packed, and invoice.voided events.</p>
             </div>
         </div>
     </div>
     <div class="px-4">
         <h3 class="m-0">
-            <button type="button" id="webhooks-header" class="flex w-full items-center justify-between py-4 text-left text-sm font-medium text-fg" x-on:click="toggle('webhooks')" x-bind:aria-expanded="isOpen('webhooks').toString()" aria-controls="webhooks-panel">
-                <span>Webhooks</span>
+            <button type="button" class="flex min-h-11 w-full items-center justify-between py-4 text-left text-sm font-medium text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface" x-on:click="toggle('limits')" x-bind:aria-expanded="isOpen('limits').toString()" aria-controls="limits-panel" id="limits-header">
+                <span>API rate limits</span>
             </button>
         </h3>
-        <div id="webhooks-panel" role="region" aria-labelledby="webhooks-header" class="grid transition-[grid-template-rows] duration-200" x-bind:class="isOpen('webhooks') ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
+        <div id="limits-panel" role="region" aria-labelledby="limits-header" class="grid transition-[grid-template-rows] duration-200 ease-out" x-bind:class="isOpen('limits') ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
             <div class="overflow-hidden">
-                <p class="pb-4 text-sm text-fg-muted">Subscribe to deploy and billing events.</p>
+                <p class="pb-4 text-sm text-fg-muted leading-relaxed">Standard workspaces share 60 requests per minute per API key.</p>
+            </div>
+        </div>
+    </div>
+    <div class="px-4">
+        <h3 class="m-0">
+            <button type="button" class="flex min-h-11 w-full items-center justify-between py-4 text-left text-sm font-medium text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface" x-on:click="toggle('tokens')" x-bind:aria-expanded="isOpen('tokens').toString()" aria-controls="tokens-panel" id="tokens-header">
+                <span>Staff access tokens</span>
+            </button>
+        </h3>
+        <div id="tokens-panel" role="region" aria-labelledby="tokens-header" class="grid transition-[grid-template-rows] duration-200 ease-out" x-bind:class="isOpen('tokens') ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
+            <div class="overflow-hidden">
+                <p class="pb-4 text-sm text-fg-muted leading-relaxed">Generate personal access tokens from Settings → Integrations.</p>
             </div>
         </div>
     </div>

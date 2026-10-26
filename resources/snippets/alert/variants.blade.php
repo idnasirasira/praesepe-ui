@@ -1,6 +1,6 @@
 <div class="space-y-3">
-    <x-ui.alert variant="info" title="Heads up">Your trial renews in 3 days.</x-ui.alert>
-    <x-ui.alert variant="success" title="Saved">Project settings were updated.</x-ui.alert>
-    <x-ui.alert variant="warning" title="Action needed">Verify your domain before go-live.</x-ui.alert>
-    <x-ui.alert variant="danger" title="Deploy failed">The build exited with a non-zero status.</x-ui.alert>
+    <x-ui.alert variant="info" title="e-Faktur sync queued">INV-2026-104 will upload to DJP within 15 minutes.</x-ui.alert>
+    <x-ui.alert variant="success" title="Payment recorded">Rp 2.450.000 from BCA VA matched ORD-2026-4418.</x-ui.alert>
+    <x-ui.alert variant="warning" title="Stock below reorder">SKU GLASS-12 is at 8 units in Jakarta Pusat.</x-ui.alert>
+    <x-ui.alert variant="danger" title="Payout blocked">PO-8841 bank account failed validation. Review before approving.</x-ui.alert>
 </div>

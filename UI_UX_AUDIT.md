@@ -91,11 +91,40 @@ Verification after each batch: `composer check` and `npm run build`.
 
 ---
 
-## Before vs After (updated as batches complete)
+## Before vs After (post-fix)
 
 | Component | Before avg | After avg | Delta |
 | --- | ---: | ---: | ---: |
-| *(filled after fixes)* | | | |
+| button | 7.6 | 8.4 | +0.8 |
+| input | 7.4 | 8.6 | +1.2 |
+| select | 7.2 | 7.8 | +0.6 |
+| textarea | 5.8 | 8.4 | +2.6 |
+| checkbox | 5.6 | 8.2 | +2.6 |
+| radio | 5.8 | 8.2 | +2.4 |
+| switch | 6.2 | 8.0 | +1.8 |
+| modal | 7.2 | 8.6 | +1.4 |
+| dropdown | 7.2 | 8.8 | +1.6 |
+| tooltip | 7.2 | 8.0 | +0.8 |
+| toast | 7.0 | 8.4 | +1.4 |
+| alert | 6.0 | 8.2 | +2.2 |
+| badge | 5.4 | 7.6 | +2.2 |
+| card | 6.4 | 8.0 | +1.6 |
+| table | 7.2 | 8.2 | +1.0 |
+| pagination | 5.8 | 8.4 | +2.6 |
+| avatar | 7.2 | 7.8 | +0.6 |
+| breadcrumb | 5.4 | 7.8 | +2.4 |
+| navbar | 7.4 | 8.4 | +1.0 |
+| sidebar | 7.0 | 8.2 | +1.2 |
+| tabs | 6.6 | 8.0 | +1.4 |
+| accordion | 8.0 | 8.4 | +0.4 |
+| **System** | **~6.7** | **~8.2** | **+1.5** |
+
+### Residual known gaps (acceptable / follow-ups)
+
+- Badge remove control is `size-6` (dense chip constraint); full 40px would break chip geometry.
+- Icon-only `button` `sm` remains 32px for dense toolbars; prefer `icon-md`/`lg` on primary mobile chrome.
+- Floating navbar panel stays in-header (by design) rather than body teleport; drawer style teleports.
+- HTML dropdown demos still use absolute menus (copy-paste simplicity) while Blade components teleport.
 
 ---
 

@@ -1,8 +1,8 @@
-<div class="space-y-4" x-data="{ active: 'overview', select(id) { this.active = id } }">
-    <div role="tablist" class="inline-flex gap-1 rounded-control bg-surface-sunken p-1">
-        <button type="button" role="tab" x-bind:aria-selected="(active === 'overview').toString()" x-on:click="select('overview')" class="rounded-control px-3 py-1.5 text-sm" x-bind:class="active === 'overview' ? 'bg-surface-raised text-fg shadow-sm' : 'text-fg-muted'">Overview</button>
-        <button type="button" role="tab" x-bind:aria-selected="(active === 'activity').toString()" x-on:click="select('activity')" class="rounded-control px-3 py-1.5 text-sm" x-bind:class="active === 'activity' ? 'bg-surface-raised text-fg shadow-sm' : 'text-fg-muted'">Activity</button>
+<div class="space-y-4" x-data="{ active: 'pipeline', select(id) { this.active = id } }">
+    <div role="tablist" class="inline-flex flex-wrap gap-1 rounded-control bg-surface-sunken p-1">
+        <button type="button" role="tab" x-bind:aria-selected="(active === 'pipeline').toString()" x-on:click="select('pipeline')" class="min-h-9 rounded-control px-3 py-2 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface" x-bind:class="active === 'pipeline' ? 'bg-surface-raised text-fg shadow-sm' : 'text-fg-muted'">Order pipeline</button>
+        <button type="button" role="tab" x-bind:aria-selected="(active === 'stock').toString()" x-on:click="select('stock')" class="min-h-9 rounded-control px-3 py-2 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface" x-bind:class="active === 'stock' ? 'bg-surface-raised text-fg shadow-sm' : 'text-fg-muted'">Stock moves</button>
     </div>
-    <div role="tabpanel" x-show="active === 'overview'" class="text-sm text-fg">Project health and recent deploys.</div>
-    <div role="tabpanel" x-show="active === 'activity'" x-cloak class="text-sm text-fg">Audit log entries for this workspace.</div>
+    <div x-show="active === 'pipeline'" class="text-sm text-fg leading-relaxed">Open, packed, and shipped counts for today.</div>
+    <div x-show="active === 'stock'" x-cloak class="text-sm text-fg leading-relaxed">Inbound receipts and pick-list adjustments.</div>
 </div>

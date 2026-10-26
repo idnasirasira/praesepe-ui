@@ -1,25 +1,37 @@
-<div class="divide-y divide-border rounded-card border border-border bg-surface-raised" x-data="{ openId: 'shipping', toggle(id) { this.openId = this.openId === id ? null : id }, isOpen(id) { return this.openId === id } }">
+<div class="divide-y divide-border rounded-card border border-border bg-surface-raised" x-data="{ openId: 'sla', toggle(id) { this.openId = this.openId === id ? null : id }, isOpen(id) { return this.openId === id } }">
     <div class="px-4">
         <h3 class="m-0">
-            <button type="button" class="flex w-full items-center justify-between py-4 text-left text-sm font-medium text-fg" x-on:click="toggle('shipping')" x-bind:aria-expanded="isOpen('shipping').toString()" aria-controls="shipping-panel" id="shipping-header">
-                <span>Shipping</span>
+            <button type="button" class="flex min-h-11 w-full items-center justify-between py-4 text-left text-sm font-medium text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface" x-on:click="toggle('sla')" x-bind:aria-expanded="isOpen('sla').toString()" aria-controls="sla-panel" id="sla-header">
+                <span>Fulfillment SLA</span>
             </button>
         </h3>
-        <div id="shipping-panel" role="region" aria-labelledby="shipping-header" class="grid transition-[grid-template-rows] duration-200" x-bind:class="isOpen('shipping') ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
+        <div id="sla-panel" role="region" aria-labelledby="sla-header" class="grid transition-[grid-template-rows] duration-200 ease-out" x-bind:class="isOpen('sla') ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
             <div class="overflow-hidden">
-                <p class="pb-4 text-sm text-fg-muted">Ships within 2 business days across Indonesia.</p>
+                <p class="pb-4 text-sm text-fg-muted leading-relaxed">Same-day cut-off is 14:00 WIB for Jabodetabek. Outer islands ship within 2 business days.</p>
             </div>
         </div>
     </div>
     <div class="px-4">
         <h3 class="m-0">
-            <button type="button" class="flex w-full items-center justify-between py-4 text-left text-sm font-medium text-fg" x-on:click="toggle('returns')" x-bind:aria-expanded="isOpen('returns').toString()" aria-controls="returns-panel" id="returns-header">
-                <span>Returns</span>
+            <button type="button" class="flex min-h-11 w-full items-center justify-between py-4 text-left text-sm font-medium text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface" x-on:click="toggle('returns')" x-bind:aria-expanded="isOpen('returns').toString()" aria-controls="returns-panel" id="returns-header">
+                <span>Returns & credit memos</span>
             </button>
         </h3>
-        <div id="returns-panel" role="region" aria-labelledby="returns-header" class="grid transition-[grid-template-rows] duration-200" x-bind:class="isOpen('returns') ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
+        <div id="returns-panel" role="region" aria-labelledby="returns-header" class="grid transition-[grid-template-rows] duration-200 ease-out" x-bind:class="isOpen('returns') ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
             <div class="overflow-hidden">
-                <p class="pb-4 text-sm text-fg-muted">Start a return within 14 days of delivery.</p>
+                <p class="pb-4 text-sm text-fg-muted leading-relaxed">Start a return within 14 days of delivery. Damaged goods require photo proof for INV credit.</p>
+            </div>
+        </div>
+    </div>
+    <div class="px-4">
+        <h3 class="m-0">
+            <button type="button" class="flex min-h-11 w-full items-center justify-between py-4 text-left text-sm font-medium text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface" x-on:click="toggle('support')" x-bind:aria-expanded="isOpen('support').toString()" aria-controls="support-panel" id="support-header">
+                <span>Ops support</span>
+            </button>
+        </h3>
+        <div id="support-panel" role="region" aria-labelledby="support-header" class="grid transition-[grid-template-rows] duration-200 ease-out" x-bind:class="isOpen('support') ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
+            <div class="overflow-hidden">
+                <p class="pb-4 text-sm text-fg-muted leading-relaxed">WhatsApp ops desk replies within one business day for stock and packing issues.</p>
             </div>
         </div>
     </div>
