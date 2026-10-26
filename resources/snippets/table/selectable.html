@@ -1,0 +1,25 @@
+<div x-data="{ selected: [], toggle(id) { this.selected = this.selected.includes(id) ? this.selected.filter(v => v !== id) : [...this.selected, id] } }">
+    <div class="overflow-x-auto rounded-card border border-border" role="region" aria-label="Faktur terpilih" tabindex="0">
+        <table class="w-full min-w-[32rem] text-left text-sm">
+            <thead class="bg-surface-sunken">
+                <tr>
+                    <th class="px-4 py-3"><span class="sr-only">Select</span></th>
+                    <th class="px-4 py-3 font-medium">Faktur</th>
+                    <th class="px-4 py-3 font-medium">Jatuh tempo</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-border">
+                <tr>
+                    <td class="px-4 py-3"><input type="checkbox" x-on:change="toggle('INV-1')" aria-label="Select INV-1"></td>
+                    <td class="px-4 py-3">INV-1</td>
+                    <td class="px-4 py-3">28 Okt 2026</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-3"><input type="checkbox" x-on:change="toggle('INV-2')" aria-label="Select INV-2"></td>
+                    <td class="px-4 py-3">INV-2</td>
+                    <td class="px-4 py-3">02 Nov 2026</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -37,3 +37,26 @@ it('renders avatar initials fallback and status indicator', function (): void {
         ->and($html)->toContain('aria-label="online"')
         ->and($html)->toContain('role="img"');
 });
+
+it('renders table region scroll wrapper and sortable aria-sort', function (): void {
+    $html = Blade::render(<<<'BLADE'
+        <x-ui.table selectable label="Daftar pesanan">
+            <x-ui.table.head>
+                <x-ui.table.cell header select-all />
+                <x-ui.table.cell header sortable sort="ascending">Total</x-ui.table.cell>
+            </x-ui.table.head>
+            <x-ui.table.body>
+                <x-ui.table.row id="1">
+                    <x-ui.table.cell select-id="1" />
+                    <x-ui.table.cell>Rp 100</x-ui.table.cell>
+                </x-ui.table.row>
+            </x-ui.table.body>
+        </x-ui.table>
+    BLADE);
+
+    expect($html)->toContain('role="region"')
+        ->and($html)->toContain('tabindex="0"')
+        ->and($html)->toContain('aria-label="Daftar pesanan"')
+        ->and($html)->toContain('aria-sort="ascending"')
+        ->and($html)->toContain('aria-label="Select all rows"');
+});
