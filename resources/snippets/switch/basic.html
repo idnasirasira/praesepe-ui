@@ -1,0 +1,23 @@
+<div class="w-full max-w-md">
+    <div class="flex items-start gap-3">
+        <div class="relative inline-flex shrink-0">
+            <input
+                id="notifications-basic"
+                type="checkbox"
+                role="switch"
+                name="notifications"
+                value="1"
+                checked
+                aria-describedby="notifications-basic-description"
+                class="peer absolute inset-0 z-10 h-6 w-11 cursor-pointer opacity-0"
+            >
+            <span class="pointer-events-none inline-flex h-6 w-11 items-center rounded-pill bg-border-strong p-0.5 transition-colors peer-checked:bg-brand peer-checked:[&_.thumb]:translate-x-5" aria-hidden="true">
+                <span class="thumb block size-5 rounded-full bg-surface-raised shadow-sm transition-transform"></span>
+            </span>
+        </div>
+        <div>
+            <label for="notifications-basic" class="block text-sm font-medium text-fg">Product notifications</label>
+            <p id="notifications-basic-description" class="mt-0.5 text-sm text-fg-muted">Email me when a deploy finishes.</p>
+        </div>
+    </div>
+</div>

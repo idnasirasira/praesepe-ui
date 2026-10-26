@@ -1,0 +1,21 @@
+<div class="w-full max-w-md">
+    <div class="flex items-start gap-3">
+        <div class="relative inline-flex shrink-0">
+            <input
+                id="maintenance-disabled"
+                type="checkbox"
+                role="switch"
+                name="maintenance"
+                disabled
+                class="peer absolute inset-0 z-10 h-6 w-11 cursor-not-allowed opacity-0"
+            >
+            <span class="pointer-events-none inline-flex h-6 w-11 items-center rounded-pill bg-border-strong p-0.5 opacity-50" aria-hidden="true">
+                <span class="thumb block size-5 rounded-full bg-surface-raised shadow-sm"></span>
+            </span>
+        </div>
+        <div>
+            <label for="maintenance-disabled" class="block text-sm font-medium text-fg">Maintenance mode</label>
+            <p class="mt-0.5 text-sm text-fg-muted">Only owners can change this setting.</p>
+        </div>
+    </div>
+</div>

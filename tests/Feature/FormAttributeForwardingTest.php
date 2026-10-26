@@ -111,3 +111,15 @@ it('forwards form attributes on card radio variant to the native input', functio
         ->and($input->getAttribute('value'))->toBe('sg')
         ->and($input->getAttribute('x-model'))->toBe('region');
 });
+
+it('forwards form attributes to the native switch checkbox', function (): void {
+    $html = Blade::render('<x-ui.switch name="notifications" value="1" required x-model="enabled" class="wrapper-class" />');
+
+    [, $input] = assertControlReceivesAttributes($html, '//input[@role="switch"]');
+
+    expect($input->getAttribute('type'))->toBe('checkbox')
+        ->and($input->getAttribute('name'))->toBe('notifications')
+        ->and($input->getAttribute('value'))->toBe('1')
+        ->and($input->getAttribute('x-model'))->toBe('enabled')
+        ->and($input->hasAttribute('required'))->toBeTrue();
+});
