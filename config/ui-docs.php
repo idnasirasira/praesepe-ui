@@ -8,10 +8,8 @@ return [
     'praesepe_url' => 'https://praesepe.id',
     // TODO: replace with real WhatsApp deep link when available
     'whatsapp_url' => null,
-    // TODO: replace with real studio contact email
-    'email' => null,
-    // TODO: replace with real GitHub organization or repository URL
-    'github_url' => null,
+    'email' => 'praesepe@idnasirasira.com',
+    'github_url' => 'https://github.com/idnasirasira/praesepe-ui',
     'navigation' => [
         [
             'label' => 'Getting started',
