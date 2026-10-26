@@ -55,3 +55,17 @@ it('renders accordion aria contracts for header and region', function (): void {
         ->and($html)->toContain('role="region"')
         ->and($html)->toContain('aria-labelledby="shipping-header"');
 });
+
+it('renders tooltip with role and focus or escape handlers', function (): void {
+    $html = Blade::render(<<<'BLADE'
+        <x-ui.tooltip id="demo-tip" content="More detail" position="top">
+            <button type="button">Info</button>
+        </x-ui.tooltip>
+    BLADE);
+
+    expect($html)->toContain('role="tooltip"')
+        ->and($html)->toContain('id="demo-tip-tip"')
+        ->and($html)->toContain('aria-describedby')
+        ->and($html)->toContain('x-on:focusin')
+        ->and($html)->toContain('x-on:keydown.escape');
+});
