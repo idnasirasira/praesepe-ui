@@ -1,15 +1,15 @@
 <div class="w-full max-w-sm">
-    <label for="email-basic" class="mb-1.5 block text-sm font-medium text-fg">Email</label>
+    <label for="invoice-email" class="mb-1.5 block text-sm font-medium text-fg">Billing email</label>
     <div class="relative">
         <input
-            id="email-basic"
+            id="invoice-email"
             type="email"
-            name="email"
-            placeholder="you@company.com"
+            name="billing_email"
+            placeholder="finance@tokomaju.id"
             required
-            aria-describedby="email-basic-hint"
-            class="h-10 w-full rounded-control border border-border bg-surface-raised px-3 text-sm text-fg shadow-sm placeholder:text-fg-subtle focus:border-border-strong"
+            aria-describedby="invoice-email-hint"
+            class="h-9 w-full rounded-control border border-border bg-surface-raised px-3.5 text-sm text-fg shadow-2xs tabular-nums placeholder:text-fg-subtle transition-colors duration-150 hover:border-border-strong focus:border-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
         >
     </div>
-    <p id="email-basic-hint" class="mt-1.5 text-xs text-fg-muted">We will never share your email.</p>
+    <p id="invoice-email-hint" class="mt-1.5 text-xs text-fg-muted leading-relaxed">Used for INV-2026-089 and payment receipts.</p>
 </div>

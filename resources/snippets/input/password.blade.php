@@ -1,7 +1,8 @@
 <x-ui.input
     type="password"
     name="password"
-    label="Password"
+    label="Owner password"
     placeholder="Enter password"
+    required
     class="max-w-sm"
 />

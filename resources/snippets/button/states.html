@@ -1,15 +1,14 @@
 <div class="flex flex-wrap items-center gap-3">
-    <button type="button" disabled class="inline-flex h-10 items-center justify-center gap-2 rounded-control bg-brand px-4 text-sm font-medium text-on-brand opacity-50 shadow-sm">
-        Disabled
+    <button type="button" disabled class="inline-flex h-9 items-center justify-center gap-2 rounded-control bg-brand px-3.5 text-sm font-medium text-on-brand opacity-50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16),0_1px_2px_0_rgba(0,0,0,0.06)] [&_svg]:shrink-0">
+        Syncing stock
     </button>
-    <button type="button" aria-busy="true" disabled class="inline-flex h-10 items-center justify-center gap-2 rounded-control bg-brand px-4 text-sm font-medium text-on-brand opacity-50 shadow-sm">
-        <svg class="size-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <circle class="opacity-25" cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle>
-            <path class="opacity-90" fill="currentColor" d="M12 3a9 9 0 0 1 9 9h-2.25A6.75 6.75 0 0 0 12 5.25V3Z"></path>
+    <button type="button" aria-busy="true" disabled class="inline-flex h-9 items-center justify-center gap-2 rounded-control bg-brand px-3.5 text-sm font-medium text-on-brand opacity-50 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16),0_1px_2px_0_rgba(0,0,0,0.06)] [&_svg]:shrink-0">
+        <svg class="size-4 shrink-0 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3a9 9 0 1 0 9 9" />
         </svg>
-        Loading
+        Approving
     </button>
-    <a href="/docs" class="inline-flex h-10 items-center justify-center gap-2 rounded-control border border-border-strong bg-transparent px-4 text-sm font-medium text-fg hover:bg-surface-sunken">
-        As link
+    <a href="/docs" class="inline-flex h-9 items-center justify-center gap-2 rounded-control border border-border-strong bg-transparent px-3.5 text-sm font-medium text-fg transition duration-150 hover:bg-surface-sunken [&_svg]:shrink-0">
+        Open docs
     </a>
 </div>

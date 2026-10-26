@@ -1,20 +1,26 @@
 <div class="w-full max-w-sm">
-    <label for="region-error" class="mb-1.5 block text-sm font-medium text-fg">Region</label>
+    <label for="currency-error" class="mb-1.5 block text-sm font-medium text-fg">Settlement currency</label>
     <div class="relative">
         <select
-            id="region-error"
-            name="region"
+            id="currency-error"
+            name="currency"
             aria-invalid="true"
-            aria-describedby="region-error-error"
-            class="h-10 w-full appearance-none rounded-control border border-danger bg-surface-raised pl-3 pr-9 text-sm text-fg shadow-sm"
+            aria-describedby="currency-error-msg"
+            class="h-9 w-full appearance-none rounded-control border border-danger bg-surface-raised pl-3.5 pr-9 text-sm text-fg shadow-2xs focus:border-danger focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
         >
-            <option value="" disabled selected>Select a region</option>
-            <option value="apac">APAC</option>
-            <option value="eu">EU</option>
+            <option value="" disabled selected>Select currency</option>
+            <option value="idr">IDR · Rupiah</option>
+            <option value="usd">USD · US Dollar</option>
+            <option value="sgd">SGD · Singapore Dollar</option>
         </select>
         <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2.5 text-fg-subtle" aria-hidden="true">
-            <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" /></svg>
+            <svg class="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" /></svg>
         </span>
     </div>
-    <p id="region-error-error" class="mt-1.5 text-xs text-danger">Please choose a region.</p>
+    <p id="currency-error-msg" class="mt-1.5 flex items-start gap-1.5 text-xs text-danger">
+        <svg class="mt-0.5 size-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.3 4.2 2.8 17.1A2 2 0 0 0 4.5 20h15a2 2 0 0 0 1.7-2.9L13.7 4.2a2 2 0 0 0-3.4 0Z" />
+        </svg>
+        <span>Choose IDR or USD before issuing INV-2026-089.</span>
+    </p>
 </div>

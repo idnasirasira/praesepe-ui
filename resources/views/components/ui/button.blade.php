@@ -8,22 +8,24 @@
 ])
 
 @php
+    $solidTactile = 'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16),0_1px_2px_0_rgba(0,0,0,0.06)] motion-safe:active:translate-y-[0.5px]';
+
     $variantClasses = [
-        'primary' => 'bg-brand text-on-brand hover:opacity-90 shadow-sm',
-        'secondary' => 'bg-surface-sunken text-fg hover:bg-border/60 border border-border',
-        'outline' => 'bg-transparent text-fg border border-border-strong hover:bg-surface-sunken',
+        'primary' => 'bg-brand text-on-brand hover:opacity-90 '.$solidTactile,
+        'secondary' => 'bg-surface-sunken text-fg hover:bg-border/60 border border-border shadow-2xs motion-safe:active:translate-y-[0.5px]',
+        'outline' => 'bg-transparent text-fg border border-border-strong hover:bg-surface-sunken motion-safe:active:translate-y-[0.5px]',
         'ghost' => 'bg-transparent text-fg hover:bg-surface-sunken',
-        'danger' => 'bg-danger text-on-danger hover:opacity-90 shadow-sm',
-        'link' => 'bg-transparent text-brand underline-offset-4 hover:underline px-0 h-auto',
+        'danger' => 'bg-danger text-on-danger hover:opacity-90 '.$solidTactile,
+        'link' => 'bg-transparent text-brand underline-offset-4 hover:underline px-0 h-auto shadow-none active:translate-y-0',
     ];
 
     $sizeClasses = [
-        'sm' => 'h-8 px-3 text-xs gap-1.5 rounded-control',
-        'md' => 'h-10 px-4 text-sm gap-2 rounded-control',
-        'lg' => 'h-11 px-5 text-base gap-2 rounded-control',
-        'icon-sm' => 'size-8 p-0 rounded-control',
-        'icon-md' => 'size-10 p-0 rounded-control',
-        'icon-lg' => 'size-11 p-0 rounded-control',
+        'sm' => 'h-8 px-2.5 text-xs gap-1.5 rounded-control',
+        'md' => 'h-9 px-3.5 text-sm gap-2 rounded-control',
+        'lg' => 'h-10 px-4 text-sm gap-2 rounded-control',
+        'icon-sm' => 'size-8 p-0 gap-0 rounded-control',
+        'icon-md' => 'size-9 p-0 gap-0 rounded-control',
+        'icon-lg' => 'size-10 p-0 gap-0 rounded-control',
     ];
 
     $variantClass = $variantClasses[$variant] ?? $variantClasses['primary'];
@@ -31,7 +33,7 @@
     $isDisabled = $disabled || $loading;
     $isLink = filled($href);
 
-    $baseClass = 'inline-flex items-center justify-center font-medium transition-opacity disabled:pointer-events-none disabled:opacity-50';
+    $baseClass = 'inline-flex items-center justify-center font-medium transition duration-150 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface [&_svg]:shrink-0';
 @endphp
 
 @if ($isLink)

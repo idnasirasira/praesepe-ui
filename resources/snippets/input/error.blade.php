@@ -1,8 +1,8 @@
 <x-ui.input
     type="text"
-    name="username"
-    label="Username"
-    value="ab"
-    error="Username must be at least 3 characters."
+    name="npwp"
+    label="NPWP"
+    value="10.20.30"
+    error="Enter a valid 15-digit NPWP for e-Faktur."
     class="max-w-sm"
 />

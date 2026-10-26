@@ -1,15 +1,20 @@
 <div class="w-full max-w-sm">
-    <label for="username-error" class="mb-1.5 block text-sm font-medium text-fg">Username</label>
+    <label for="npwp-error" class="mb-1.5 block text-sm font-medium text-fg">NPWP</label>
     <div class="relative">
         <input
-            id="username-error"
+            id="npwp-error"
             type="text"
-            name="username"
-            value="ab"
+            name="npwp"
+            value="10.20.30"
             aria-invalid="true"
-            aria-describedby="username-error-error"
-            class="h-10 w-full rounded-control border border-danger bg-surface-raised px-3 text-sm text-fg shadow-sm placeholder:text-fg-subtle"
+            aria-describedby="npwp-error-msg"
+            class="h-9 w-full rounded-control border border-danger bg-surface-raised px-3.5 text-sm text-fg shadow-2xs tabular-nums placeholder:text-fg-subtle focus:border-danger focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
         >
     </div>
-    <p id="username-error-error" class="mt-1.5 text-xs text-danger">Username must be at least 3 characters.</p>
+    <p id="npwp-error-msg" class="mt-1.5 flex items-start gap-1.5 text-xs text-danger">
+        <svg class="mt-0.5 size-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.3 4.2 2.8 17.1A2 2 0 0 0 4.5 20h15a2 2 0 0 0 1.7-2.9L13.7 4.2a2 2 0 0 0-3.4 0Z" />
+        </svg>
+        <span>Enter a valid 15-digit NPWP for e-Faktur.</span>
+    </p>
 </div>
