@@ -83,8 +83,24 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}-chromium
+
       - name: Install Playwright Chromium
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install chromium --with-deps
+
+      - name: Install Playwright system deps
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
 
       - name: Build assets
         run: npm run build
@@ -94,7 +110,15 @@ jobs:
           cp .env.example .env
           php artisan key:generate
 
-      - name: Run Playwright E2E
-        run: npm run test:e2e
+      # Cheap keyboard smoke: always on PR and push to main/master.
+      - name: Run keyboard interactions
+        run: npm run test:e2e:interactions
+        env:
+          CI: true
+
+      # Heavy a11y matrix (~150 cases): PRs only, so merge pushes do not pay twice.
+      - name: Run a11y suite
+        if: github.event_name == 'pull_request'
+        run: npm run test:e2e:a11y
         env:
           CI: true
