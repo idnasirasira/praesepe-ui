@@ -25,6 +25,7 @@
 
 - [ ] LICENSE copyright holder: replace `TODO: copyright holder year and legal name`
 - [ ] Brand logo assets under `public/` when approved (Blade lockups in `x-docs.logo` / `x-docs.praesepe-logo` are interim)
+- [*] Review new avatar marks (`public/brand/praesepe-avatar.svg` + light/PNG sizes) and wire into profile/OG if approved
 - [ ] Home page marketing metrics, testimonials, and client names (still called out in `home.blade.php`)
 - [ ] Social proof (star counts, download counts) until measurable from a public source
 - [x] Distribution strategy v1: copy-paste via CLI (`@praesepe/ui`) + HTTP registry `/r/*` + MCP `get_install_files` / `get_init_files` (Composer vendor UI package out of scope for v1)
