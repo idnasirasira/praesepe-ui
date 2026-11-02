@@ -8,6 +8,17 @@ This repository is the dogfooded documentation and showcase application for
 asset for [Praesepe](https://praesepe.id), a software studio building custom
 software for SMEs.
 
+## Use in your Laravel app
+
+```bash
+npx @praesepe/ui@latest init
+npx @praesepe/ui@latest add button modal
+```
+
+Registry: `https://ui.praesepe.id/r`. Agents: point Cursor MCP at
+`https://ui.praesepe.id/mcp/praesepe-ui` (see `/docs/mcp`). Components are copied
+into your project; there is no Composer vendor UI package in v1.
+
 ## Stack
 
 - Laravel 13
@@ -16,7 +27,7 @@ software for SMEs.
 - Alpine.js 3 with `@alpinejs/focus`
 - Pest, Pint, Larastan (level 6)
 
-## Quick start
+## Docs app quick start
 
 ```bash
 composer setup
@@ -66,6 +77,18 @@ Optional UI mode: `npm run test:e2e:ui`. Override the base URL with `PLAYWRIGHT_
 - Components are copy-paste friendly Blade + Alpine, not a heavy runtime package
 - Architected with WCAG 2.2 AA patterns in mind (keyboard and ARIA documented per component)
 
+## Install registry
+
+Public HTTP registry used by the CLI and MCP:
+
+| URL | Purpose |
+| --- | --- |
+| `/r/index.json` | Component catalog |
+| `/r/{slug}.json` | Installable Blade + icon file payloads |
+| `/r/styles/theme.css` | Design tokens for `init` |
+
+CLI package source: `packages/cli` (`@praesepe/ui`).
+
 ## MCP for coding agents
 
 Praesepe UI exposes components to coding agents via [Laravel MCP](https://laravel.com/docs/mcp).
@@ -75,7 +98,7 @@ Praesepe UI exposes components to coding agents via [Laravel MCP](https://larave
 
 Consumer guide: `/docs/mcp`. Maintainer notes: `mcp/README.md`. Editor folders such as `.cursor/` stay private.
 
-Tools: `list_components`, `search_components`, `get_component`, `get_snippet`, `list_icons`, `get_guidelines`.
+Tools: `list_components`, `search_components`, `get_component`, `get_init_files`, `get_install_files`, `get_snippet`, `list_icons`, `get_guidelines`.
 
 ## License
 

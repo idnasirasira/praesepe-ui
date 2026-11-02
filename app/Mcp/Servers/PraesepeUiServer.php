@@ -7,6 +7,8 @@ namespace App\Mcp\Servers;
 use App\Mcp\Resources\AuthoringGuidelines;
 use App\Mcp\Tools\GetComponentTool;
 use App\Mcp\Tools\GetGuidelinesTool;
+use App\Mcp\Tools\GetInitFilesTool;
+use App\Mcp\Tools\GetInstallFilesTool;
 use App\Mcp\Tools\GetSnippetTool;
 use App\Mcp\Tools\ListComponentsTool;
 use App\Mcp\Tools\ListIconsTool;
@@ -21,7 +23,7 @@ use Laravel\Mcp\Server\Tool;
 
 #[Name('praesepe-ui')]
 #[Version('0.1.0')]
-#[Instructions('Praesepe UI component library MCP. Always read praesepe://guidelines or get_guidelines first (Anti-generic + Taste rules). Then search/list components, get_component for props/a11y, get_snippet for Blade or HTML. Prefer Blade. Keep Alpine long-form. Never ship purple-gradient, glow, or invented metrics.')]
+#[Instructions('Praesepe UI component library MCP. Always read praesepe://guidelines or get_guidelines first (Anti-generic + Taste rules). Ensure theme/Alpine via get_init_files when missing. Install Blade primitives with get_install_files before using x-ui.*. Then get_component for props/a11y and get_snippet for examples. Prefer Blade. Keep Alpine long-form. Never ship purple-gradient, glow, or invented metrics.')]
 class PraesepeUiServer extends Server
 {
     /**
@@ -31,6 +33,8 @@ class PraesepeUiServer extends Server
         ListComponentsTool::class,
         SearchComponentsTool::class,
         GetComponentTool::class,
+        GetInitFilesTool::class,
+        GetInstallFilesTool::class,
         GetSnippetTool::class,
         ListIconsTool::class,
         GetGuidelinesTool::class,

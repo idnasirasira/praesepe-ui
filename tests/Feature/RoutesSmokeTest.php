@@ -21,6 +21,9 @@ it('returns 200 for all public docs routes', function (string $uri): void {
     '/search-index.json',
     '/sitemap.xml',
     '/robots.txt',
+    '/r/index.json',
+    '/r/styles/theme.css',
+    '/r/button.json',
 ]);
 
 it('returns 404 for an unknown component slug', function (): void {

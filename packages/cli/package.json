@@ -1,0 +1,35 @@
+{
+  "name": "@praesepe/ui",
+  "version": "0.1.0",
+  "description": "CLI to init and add Praesepe UI Blade components into a Laravel app",
+  "type": "module",
+  "bin": {
+    "praesepe-ui": "./bin/praesepe-ui.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "praesepe",
+    "laravel",
+    "blade",
+    "tailwind",
+    "alpine",
+    "components",
+    "cli"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/idnasirasira/praesepe-ui.git",
+    "directory": "packages/cli"
+  }
+}

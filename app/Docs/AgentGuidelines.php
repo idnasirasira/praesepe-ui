@@ -13,7 +13,7 @@ final class AgentGuidelines
 
 Consumer-facing rules for implementing UI with Praesepe. Maintainer-only Cursor rules stay private; this document is the source of truth over MCP (`get_guidelines` and the `praesepe://guidelines` resource).
 
-Read **Anti-generic** and **Taste rules** on every UI task before writing markup. Prefer `get_snippet` over inventing layout.
+Read **Anti-generic** and **Taste rules** on every UI task before writing markup. Prefer `get_install_files` for primitives and `get_snippet` for usage examples. Never invent layout.
 
 ## Anti-generic (never ship AI-default UI)
 
@@ -94,12 +94,20 @@ Refuse the default LLM look. If the screen could belong to any SaaS after swappi
 - Optional local stdio: Cursor runs `php artisan mcp:start praesepe-ui` (do not start manually)
 - Human setup: `/docs/mcp`
 
+## Install into a consumer app
+- Humans: `npx @praesepe/ui@latest init` then `npx @praesepe/ui@latest add <component>`
+- Agents: `get_init_files` once per project (theme.css + Alpine checklist), then `get_install_files` with component slugs and write each `path`/`content` into the project
+- Registry HTTP: `https://ui.praesepe.id/r` (`index.json`, `{slug}.json`, `styles/theme.css`)
+- `get_snippet` returns usage examples only. It does not install `x-ui.*` primitives.
+
 ## Workflow
 1. Read these guidelines (`get_guidelines` or `praesepe://guidelines`), especially Anti-generic + Taste rules
-2. `search_components` or `list_components`
-3. `get_component` for props + a11y + example slugs
-4. `get_snippet` (`blade` or `html`)
-5. Adapt into the app. Keep Alpine long-form. Self-check against the Anti-generic ban list before finishing
+2. If the consumer app lacks Praesepe tokens/Alpine setup, call `get_init_files` and write `theme.css` plus CSS/Alpine wiring
+3. `search_components` or `list_components`
+4. `get_component` for props + a11y + example slugs
+5. `get_install_files` with the needed slugs; write returned Blade/icon files into the project before using `<x-ui.*>`
+6. `get_snippet` (`blade` or `html`) for usage examples
+7. Adapt into the app. Keep Alpine long-form. Self-check against the Anti-generic ban list before finishing
 MD;
     }
 
@@ -121,13 +129,16 @@ Setup: {$docsUrl}
 
 ## Workflow
 1. `get_guidelines` or resource `praesepe://guidelines` first. Follow Anti-generic and Taste rules before writing markup.
-2. `search_components` or `list_components` to find candidates.
-3. `get_component` for props, a11y notes, and example slugs.
-4. `get_snippet` with format `blade` (Laravel) or `html` (Alpine-only).
-5. Adapt the snippet. Keep long-form Alpine (`x-on:click`, `x-bind:class`). Self-check the Anti-generic ban list.
+2. `get_init_files` when the project is not yet wired (theme.css, Alpine focus, `@source`).
+3. `search_components` or `list_components` to find candidates.
+4. `get_component` for props, a11y notes, and example slugs.
+5. `get_install_files` with slugs; write each file into the Laravel project before using `<x-ui.*>`.
+6. `get_snippet` with format `blade` (Laravel) or `html` (Alpine-only) for usage examples.
+7. Adapt the snippet. Keep long-form Alpine (`x-on:click`, `x-bind:class`). Self-check the Anti-generic ban list.
 
 ## Do not
 - Invent prop names or variants not returned by `get_component`.
+- Use `<x-ui.*>` without installing primitives via `get_install_files` or the CLI.
 - Use Alpine shorthand on Blade components (`:class`, `@click` on `<x-ui.*>`).
 - Construct Tailwind classes with string concatenation.
 - Ship purple gradients, glow stacks, invented metrics, or generic AI landing layouts.

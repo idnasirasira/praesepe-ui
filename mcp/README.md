@@ -21,9 +21,13 @@ Local editor config (`.cursor/`, Boost MCP, etc.) is private maintainer tooling.
 | `list_components` | List components (optional `category`) |
 | `search_components` | Search by name/slug/tags/props |
 | `get_component` | Props, a11y notes, example slugs |
-| `get_snippet` | Blade or HTML source for an example |
+| `get_init_files` | `theme.css` + Alpine / Tailwind wiring checklist |
+| `get_install_files` | Blade primitives and icons to write into the consumer app |
+| `get_snippet` | Blade or HTML usage example (not the primitive install) |
 | `list_icons` | Built-in `x-icons.*` set |
 | `get_guidelines` | Authoring rules for agents (same as resource below) |
+
+HTTP install registry (shared with the CLI): `/r/index.json`, `/r/{slug}.json`, `/r/styles/theme.css`.
 
 ### Resources
 

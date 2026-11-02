@@ -47,7 +47,7 @@ JSON;
     <p>
         Coding agents can discover Praesepe UI components through
         <a class="text-brand underline underline-offset-2" href="https://laravel.com/docs/mcp">Laravel MCP</a>.
-        The registry is read-only: list, search, props, a11y notes, and copy-paste snippets.
+        The registry is read-only: list, search, props, a11y notes, installable Blade primitives, and usage snippets.
         No authentication is required.
     </p>
 
@@ -104,8 +104,16 @@ JSON;
                     <td class="px-4 py-3 text-fg-muted">Props, a11y notes, example slugs</td>
                 </tr>
                 <tr>
+                    <td class="px-4 py-3 font-mono text-xs tabular-nums">get_init_files</td>
+                    <td class="px-4 py-3 text-fg-muted"><code class="rounded bg-surface-sunken px-1">theme.css</code> plus Alpine / Tailwind wiring checklist</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-3 font-mono text-xs tabular-nums">get_install_files</td>
+                    <td class="px-4 py-3 text-fg-muted">Blade primitives and icons to write into the consumer app</td>
+                </tr>
+                <tr>
                     <td class="px-4 py-3 font-mono text-xs tabular-nums">get_snippet</td>
-                    <td class="px-4 py-3 text-fg-muted">Blade or HTML source for an example</td>
+                    <td class="px-4 py-3 text-fg-muted">Blade or HTML usage example (not the primitive install)</td>
                 </tr>
                 <tr>
                     <td class="px-4 py-3 font-mono text-xs tabular-nums">list_icons</td>
@@ -127,9 +135,11 @@ JSON;
     <h2 id="workflow">Agent workflow</h2>
     <ol>
         <li><code class="rounded bg-surface-sunken px-1 text-sm">get_guidelines</code> or resource <code class="rounded bg-surface-sunken px-1 text-sm">praesepe://guidelines</code> once per task</li>
+        <li><code class="rounded bg-surface-sunken px-1 text-sm">get_init_files</code> when the project is not yet wired</li>
         <li><code class="rounded bg-surface-sunken px-1 text-sm">search_components</code> or <code class="rounded bg-surface-sunken px-1 text-sm">list_components</code></li>
         <li><code class="rounded bg-surface-sunken px-1 text-sm">get_component</code> for props and example slugs</li>
-        <li><code class="rounded bg-surface-sunken px-1 text-sm">get_snippet</code> with <code class="rounded bg-surface-sunken px-1 text-sm">blade</code> or <code class="rounded bg-surface-sunken px-1 text-sm">html</code></li>
+        <li><code class="rounded bg-surface-sunken px-1 text-sm">get_install_files</code> and write returned Blade/icon files into the app</li>
+        <li><code class="rounded bg-surface-sunken px-1 text-sm">get_snippet</code> with <code class="rounded bg-surface-sunken px-1 text-sm">blade</code> or <code class="rounded bg-surface-sunken px-1 text-sm">html</code> for usage examples</li>
         <li>Adapt the snippet. Keep Alpine long-form (<code class="rounded bg-surface-sunken px-1 text-sm">x-on:click</code>, <code class="rounded bg-surface-sunken px-1 text-sm">x-bind:class</code>) in Blade</li>
     </ol>
     <p>

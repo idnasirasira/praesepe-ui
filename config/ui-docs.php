@@ -7,6 +7,8 @@ return [
     'version' => '0.1.0',
     'url' => 'https://ui.praesepe.id',
     'mcp_url' => 'https://ui.praesepe.id/mcp/praesepe-ui',
+    'registry_url' => 'https://ui.praesepe.id/r',
+    'cli_package' => '@praesepe/ui',
     'praesepe_url' => 'https://praesepe.id',
     'whatsapp_url' => 'https://wa.me/6285117170755',
     'email' => 'praesepe@idnasirasira.com',

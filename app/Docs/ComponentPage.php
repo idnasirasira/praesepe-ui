@@ -11,6 +11,9 @@ readonly class ComponentPage
      * @param  list<string>  $a11yNotes
      * @param  list<array{slug: string, title: string, description?: string}>  $examples
      * @param  list<string>  $tags
+     * @param  list<string>  $files  Optional install file overrides (project-relative paths)
+     * @param  list<string>  $dependencies  Optional component slug dependencies
+     * @param  list<string>  $icons  Optional icon name overrides
      */
     public function __construct(
         public string $slug,
@@ -21,6 +24,9 @@ readonly class ComponentPage
         public array $a11yNotes = [],
         public array $examples = [],
         public array $tags = [],
+        public array $files = [],
+        public array $dependencies = [],
+        public array $icons = [],
     ) {}
 
     /**
@@ -37,6 +43,9 @@ readonly class ComponentPage
             a11yNotes: $data['a11yNotes'] ?? $data['a11y'] ?? [],
             examples: $data['examples'] ?? [],
             tags: $data['tags'] ?? [],
+            files: array_values($data['files'] ?? []),
+            dependencies: array_values($data['dependencies'] ?? []),
+            icons: array_values($data['icons'] ?? []),
         );
     }
 
@@ -54,6 +63,9 @@ readonly class ComponentPage
             'a11yNotes' => $this->a11yNotes,
             'examples' => $this->examples,
             'tags' => $this->tags,
+            'files' => $this->files,
+            'dependencies' => $this->dependencies,
+            'icons' => $this->icons,
         ];
     }
 }

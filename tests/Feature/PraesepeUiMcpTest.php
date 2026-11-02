@@ -6,6 +6,8 @@ use App\Mcp\Resources\AuthoringGuidelines;
 use App\Mcp\Servers\PraesepeUiServer;
 use App\Mcp\Tools\GetComponentTool;
 use App\Mcp\Tools\GetGuidelinesTool;
+use App\Mcp\Tools\GetInitFilesTool;
+use App\Mcp\Tools\GetInstallFilesTool;
 use App\Mcp\Tools\GetSnippetTool;
 use App\Mcp\Tools\ListComponentsTool;
 use App\Mcp\Tools\ListIconsTool;
@@ -52,6 +54,24 @@ it('returns component details and snippets', function (): void {
         ->assertSee('"format": "blade"');
 });
 
+it('returns init and install file payloads', function (): void {
+    PraesepeUiServer::tool(GetInitFilesTool::class, [])
+        ->assertOk()
+        ->assertSee('resources/css/theme.css')
+        ->assertSee('--ui-')
+        ->assertSee('@praesepe/ui');
+
+    $install = PraesepeUiServer::tool(GetInstallFilesTool::class, [
+        'slugs' => ['modal'],
+    ]);
+
+    $install
+        ->assertOk()
+        ->assertSee('resources/views/components/ui/modal.blade.php')
+        ->assertSee('resources/views/components/ui/button.blade.php')
+        ->assertSee('resources/views/components/icons/spinner.blade.php');
+});
+
 it('lists icons and guidelines', function (): void {
     PraesepeUiServer::tool(ListIconsTool::class, [])
         ->assertOk()
@@ -64,6 +84,8 @@ it('lists icons and guidelines', function (): void {
         ->assertSee('Taste rules')
         ->assertSee('long-form')
         ->assertSee('get_snippet')
+        ->assertSee('get_install_files')
+        ->assertSee('get_init_files')
         ->assertSee('/docs/mcp')
         ->assertSee('https://ui.praesepe.id/mcp/praesepe-ui')
         ->assertSee('Theme tokens')

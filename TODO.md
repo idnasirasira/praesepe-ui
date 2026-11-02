@@ -27,4 +27,5 @@
 - [ ] Brand logo assets under `public/` when approved (Blade lockups in `x-docs.logo` / `x-docs.praesepe-logo` are interim)
 - [ ] Home page marketing metrics, testimonials, and client names (still called out in `home.blade.php`)
 - [ ] Social proof (star counts, download counts) until measurable from a public source
-- [ ] Publish package distribution strategy (copy-paste docs only vs Composer package)
+- [x] Distribution strategy v1: copy-paste via CLI (`@praesepe/ui`) + HTTP registry `/r/*` + MCP `get_install_files` / `get_init_files` (Composer vendor UI package out of scope for v1)
+- [ ] Publish `@praesepe/ui` to npm once production registry is deployed

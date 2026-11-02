@@ -8,6 +8,9 @@ return [
     'description' => 'Global toast notifications via Alpine.store and the ui:toast window event, rendered through a fixed body-level viewport.',
     'category' => 'feedback',
     'tags' => ['toast', 'notification', 'store'],
+    'files' => [
+        'resources/views/components/ui/toast-viewport.blade.php',
+    ],
     'props' => [
         [
             'name' => 'toast-viewport.position',
