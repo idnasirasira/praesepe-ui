@@ -69,7 +69,7 @@
                     Blade components you can paste into Laravel and ship.
                 </h1>
                 <p class="mt-4 max-w-2xl text-lg text-fg-muted leading-relaxed text-pretty">
-                    Tailwind CSS 4 tokens and Alpine.js 3 behavior, dogfooded for Indonesian SME software. Architected with WCAG 2.2 AA patterns in mind.
+                    Tailwind CSS 4 tokens and Alpine.js 3 behavior, dogfooded in real SME software. Architected with WCAG 2.2 AA patterns in mind.
                 </p>
                 <div class="mt-8 flex flex-wrap gap-3">
                     <x-ui.button size="lg" :href="route('docs.index')">Read the docs</x-ui.button>

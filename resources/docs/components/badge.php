@@ -68,7 +68,7 @@ return [
         [
             'slug' => 'invoice-status',
             'title' => 'Invoice statuses',
-            'description' => 'Indonesian SME invoice states using soft badges with dots.',
+            'description' => 'SME invoice states using soft badges with dots.',
         ],
         [
             'slug' => 'variants',

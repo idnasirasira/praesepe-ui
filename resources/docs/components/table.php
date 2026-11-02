@@ -50,7 +50,7 @@ return [
         [
             'slug' => 'orders',
             'title' => 'Orders table',
-            'description' => 'Indonesian SME order list with badges and sortable amount.',
+            'description' => 'SME order list with badges and sortable amount.',
         ],
         [
             'slug' => 'selectable',

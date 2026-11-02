@@ -25,7 +25,7 @@
                 </li>
                 <li class="flex gap-2">
                     <span class="mt-1 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden="true"></span>
-                    <span>Opinionated for Indonesian SME ops: invoices, stock, roles, approvals</span>
+                    <span>Opinionated for SME ops: invoices, stock, roles, approvals</span>
                 </li>
                 <li class="flex gap-2">
                     <span class="mt-1 size-1.5 shrink-0 rounded-full bg-brand" aria-hidden="true"></span>
