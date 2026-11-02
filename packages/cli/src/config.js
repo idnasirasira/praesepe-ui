@@ -28,14 +28,24 @@ export function readComponentsConfig(cwd) {
 /**
  * @param {string} cwd
  * @param {{ style: string, registry: string, aliases: { ui: string, icons: string, css: string } }} config
+ * @param {{ overwrite?: boolean }} [options]
+ * @returns {'written' | 'skipped'}
  */
-export function writeComponentsConfig(cwd, config) {
+export function writeComponentsConfig(cwd, config, options = {}) {
+  const file = componentsJsonPath(cwd);
+
+  if (fs.existsSync(file) && !options.overwrite) {
+    return 'skipped';
+  }
+
   const payload = {
     $schema: 'https://ui.praesepe.id/r/schema.json',
     ...config,
   };
 
-  fs.writeFileSync(componentsJsonPath(cwd), `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
+  fs.writeFileSync(file, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
+
+  return 'written';
 }
 
 /**

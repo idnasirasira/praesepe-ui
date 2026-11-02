@@ -24,7 +24,7 @@ class InstallRegistry
     {
         if (! app()->isLocal()) {
             /** @var array{version: string, registry: string, items: list<array{slug: string, name: string, description: string, category: string}>} */
-            return Cache::rememberForever('ui.install-registry.index', fn (): array => $this->buildIndex());
+            return Cache::rememberForever($this->cacheKey('index'), fn (): array => $this->buildIndex());
         }
 
         return $this->buildIndex();
@@ -52,15 +52,38 @@ class InstallRegistry
             throw new InvalidArgumentException("Unknown component slug: {$slug}");
         }
 
-        if (! app()->isLocal()) {
-            /** @var array{slug: string, name: string, description: string, category: string, dependencies: list<string>, icons: list<string>, resolved: list<string>, files: list<array{path: string, type: string, content: string, dependency_of: string|null}>} */
-            return Cache::rememberForever(
-                'ui.install-registry.package.'.$slug,
-                fn (): array => $this->buildPackage([$slug]),
-            );
+        try {
+            if (! app()->isLocal()) {
+                /** @var array{slug: string, name: string, description: string, category: string, dependencies: list<string>, icons: list<string>, resolved: list<string>, files: list<array{path: string, type: string, content: string, dependency_of: string|null}>} */
+                return Cache::rememberForever(
+                    $this->cacheKey('package.'.$slug),
+                    fn (): array => $this->buildPackage([$slug]),
+                );
+            }
+
+            return $this->buildPackage([$slug]);
+        } catch (RuntimeException $exception) {
+            throw new InvalidArgumentException($exception->getMessage(), previous: $exception);
+        }
+    }
+
+    /**
+     * Forget production install-registry cache keys for the current docs version.
+     */
+    public function flushCache(): void
+    {
+        Cache::forget($this->cacheKey('index'));
+
+        foreach ($this->components->all() as $page) {
+            Cache::forget($this->cacheKey('package.'.$page->slug));
         }
 
-        return $this->buildPackage([$slug]);
+        // Legacy unversioned keys from v1 rollout.
+        Cache::forget('ui.install-registry.index');
+
+        foreach ($this->components->all() as $page) {
+            Cache::forget('ui.install-registry.package.'.$page->slug);
+        }
     }
 
     /**
@@ -305,6 +328,11 @@ class InstallRegistry
             return array_values(array_unique($page->files));
         }
 
+        // toast Blade lives at toast-viewport.blade.php (slug does not match filename).
+        if ($page->slug === 'toast') {
+            return ['resources/views/components/ui/toast-viewport.blade.php'];
+        }
+
         $root = $this->viewsComponentsPath();
         $single = $root.DIRECTORY_SEPARATOR.'ui'.DIRECTORY_SEPARATOR.$page->slug.'.blade.php';
         $directory = $root.DIRECTORY_SEPARATOR.'ui'.DIRECTORY_SEPARATOR.$page->slug;
@@ -335,6 +363,13 @@ class InstallRegistry
         }
 
         throw new RuntimeException("Unable to locate install files for component [{$page->slug}]");
+    }
+
+    private function cacheKey(string $suffix): string
+    {
+        $version = (string) config('ui-docs.version', '0');
+
+        return 'ui.install-registry.'.$version.'.'.$suffix;
     }
 
     /**

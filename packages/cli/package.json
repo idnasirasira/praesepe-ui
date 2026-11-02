@@ -17,6 +17,10 @@
   "engines": {
     "node": ">=20"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [
     "praesepe",
     "laravel",
@@ -27,6 +31,10 @@
     "cli"
   ],
   "license": "MIT",
+  "homepage": "https://ui.praesepe.id/docs",
+  "bugs": {
+    "url": "https://github.com/idnasirasira/praesepe-ui/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/idnasirasira/praesepe-ui.git",

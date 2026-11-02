@@ -29,8 +29,11 @@ class ComponentRegistry
             return $this->build();
         }
 
+        $version = (string) config('ui-docs.version', '0');
+        $cacheKey = 'ui.registry.'.$version;
+
         /** @var list<array<string, mixed>> $cached */
-        $cached = Cache::rememberForever('ui.registry', fn (): array => array_map(
+        $cached = Cache::rememberForever($cacheKey, fn (): array => array_map(
             static fn (ComponentPage $page): array => $page->toArray(),
             $this->build(),
         ));

@@ -17,17 +17,25 @@ export async function initCommand(argv) {
     console.warn('Warning: artisan/composer.json not found. Continuing anyway.');
   }
 
-  writeComponentsConfig(cwd, {
-    style: 'praesepe',
-    registry: registry || DEFAULT_REGISTRY,
-    aliases: {
-      ui: 'resources/views/components/ui',
-      icons: 'resources/views/components/icons',
-      css: 'resources/css',
+  const configResult = writeComponentsConfig(
+    cwd,
+    {
+      style: 'praesepe',
+      registry: registry || DEFAULT_REGISTRY,
+      aliases: {
+        ui: 'resources/views/components/ui',
+        icons: 'resources/views/components/icons',
+        css: 'resources/css',
+      },
     },
-  });
+    { overwrite: Boolean(flags.overwrite) },
+  );
 
-  console.log('Wrote components.json');
+  console.log(
+    configResult === 'written'
+      ? 'Wrote components.json'
+      : 'Skipped components.json (exists; pass --overwrite to replace)',
+  );
 
   const themeCss = await fetchThemeCss(registry);
   const themeResult = writeProjectFile(cwd, 'resources/css/theme.css', themeCss, {

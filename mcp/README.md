@@ -87,8 +87,10 @@ php artisan mcp:inspector praesepe-ui
 
 ## Agent workflow
 
-1. `get_guidelines`
-2. `search_components` / `list_components`
-3. `get_component`
-4. `get_snippet` (`blade` or `html`)
-5. Adapt into the consuming app with long-form Alpine
+1. `get_guidelines` (or `praesepe://guidelines`)
+2. `get_init_files` when the consumer app lacks theme/Alpine wiring
+3. `search_components` / `list_components`
+4. `get_component`
+5. `get_install_files` and write returned Blade/icon files into the app
+6. `get_snippet` (`blade` or `html`) for usage examples
+7. Adapt into the consuming app with long-form Alpine

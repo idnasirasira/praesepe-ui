@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { parseArgs } from '../src/args.js';
+import { isAllowedInstallPath } from '../src/fs.js';
 import { resolveInstallFiles } from '../src/registry.js';
 
 describe('parseArgs', () => {
@@ -10,6 +11,17 @@ describe('parseArgs', () => {
     assert.deepEqual(result.positionals, ['button', 'modal']);
     assert.equal(result.flags.overwrite, true);
     assert.equal(result.flags.registry, 'http://127.0.0.1:8000/r');
+  });
+});
+
+describe('isAllowedInstallPath', () => {
+  it('allows component, icon, and css paths only', () => {
+    assert.equal(isAllowedInstallPath('resources/views/components/ui/button.blade.php'), true);
+    assert.equal(isAllowedInstallPath('resources/views/components/icons/x.blade.php'), true);
+    assert.equal(isAllowedInstallPath('resources/css/theme.css'), true);
+    assert.equal(isAllowedInstallPath('.env'), false);
+    assert.equal(isAllowedInstallPath('../etc/passwd'), false);
+    assert.equal(isAllowedInstallPath('app/Http/Kernel.php'), false);
   });
 });
 

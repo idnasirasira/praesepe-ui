@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 return [
     'name' => 'Praesepe UI',
-    'version' => '0.1.0',
+    'version' => '0.1.1',
     'url' => 'https://ui.praesepe.id',
     'mcp_url' => 'https://ui.praesepe.id/mcp/praesepe-ui',
     'registry_url' => 'https://ui.praesepe.id/r',
     'cli_package' => '@praesepe/ui',
+    // Flip to true after the scoped package is live on npm.
+    'cli_published' => false,
     'praesepe_url' => 'https://praesepe.id',
     'whatsapp_url' => 'https://wa.me/6285117170755',
     'email' => 'praesepe@idnasirasira.com',

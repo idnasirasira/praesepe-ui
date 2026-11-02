@@ -4,6 +4,14 @@ declare(strict_types=1);
 
 use App\Docs\ComponentRegistry;
 
+it('serves a human registry landing page', function (): void {
+    $this->get('/r')
+        ->assertOk()
+        ->assertSee('Praesepe UI registry', false)
+        ->assertSee('/r/index.json', false)
+        ->assertSee('button', false);
+});
+
 it('serves the registry index json', function (): void {
     $response = $this->getJson('/r/index.json');
 
@@ -17,7 +25,9 @@ it('serves the registry index json', function (): void {
         ]);
 
     expect($response->json('items'))->not->toBeEmpty()
-        ->and(collect($response->json('items'))->pluck('slug'))->toContain('button');
+        ->and(collect($response->json('items'))->pluck('slug'))->toContain('button')
+        ->and($response->headers->get('Cache-Control'))->toContain('max-age=60')
+        ->and($response->headers->get('Cache-Control'))->toContain('public');
 });
 
 it('serves a component registry package with file contents', function (): void {
@@ -67,4 +77,14 @@ it('serves a package for every registered component slug', function (): void {
             ->assertOk()
             ->assertJsonPath('slug', $page->slug);
     }
+});
+
+it('maps toast to toast-viewport install files', function (): void {
+    $response = $this->getJson('/r/toast.json');
+
+    $response->assertOk();
+
+    $paths = collect($response->json('files'))->pluck('path');
+
+    expect($paths)->toContain('resources/views/components/ui/toast-viewport.blade.php');
 });

@@ -95,9 +95,9 @@ Refuse the default LLM look. If the screen could belong to any SaaS after swappi
 - Human setup: `/docs/mcp`
 
 ## Install into a consumer app
-- Humans: `npx @praesepe/ui@latest init` then `npx @praesepe/ui@latest add <component>`
+- Humans: when `@praesepe/ui` is on npm, `npx @praesepe/ui@latest init` then `add <component>`. Until then, run `node packages/cli/bin/praesepe-ui.js` from a clone, or use MCP / `/r/{slug}.json`
 - Agents: `get_init_files` once per project (theme.css + Alpine checklist), then `get_install_files` with component slugs and write each `path`/`content` into the project
-- Registry HTTP: `https://ui.praesepe.id/r` (`index.json`, `{slug}.json`, `styles/theme.css`)
+- Registry HTTP: `https://ui.praesepe.id/r` (landing), `index.json`, `{slug}.json`, `styles/theme.css`
 - `get_snippet` returns usage examples only. It does not install `x-ui.*` primitives.
 
 ## Workflow

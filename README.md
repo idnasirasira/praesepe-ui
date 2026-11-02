@@ -10,10 +10,15 @@ software for SMEs.
 
 ## Use in your Laravel app
 
+The npm CLI (`@praesepe/ui`) is not published yet. Until it is:
+
 ```bash
-npx @praesepe/ui@latest init
-npx @praesepe/ui@latest add button modal
+git clone https://github.com/idnasirasira/praesepe-ui.git
+node praesepe-ui/packages/cli/bin/praesepe-ui.js init --cwd /path/to/app --registry https://ui.praesepe.id/r
+node praesepe-ui/packages/cli/bin/praesepe-ui.js add button modal --cwd /path/to/app --registry https://ui.praesepe.id/r
 ```
+
+After publish: `npx @praesepe/ui@latest init` / `add`.
 
 Registry: `https://ui.praesepe.id/r`. Agents: point Cursor MCP at
 `https://ui.praesepe.id/mcp/praesepe-ui` (see `/docs/mcp`). Components are copied
@@ -83,11 +88,12 @@ Public HTTP registry used by the CLI and MCP:
 
 | URL | Purpose |
 | --- | --- |
+| `/r` | Human landing for the install API |
 | `/r/index.json` | Component catalog |
 | `/r/{slug}.json` | Installable Blade + icon file payloads |
 | `/r/styles/theme.css` | Design tokens for `init` |
 
-CLI package source: `packages/cli` (`@praesepe/ui`).
+CLI package source: `packages/cli` (`@praesepe/ui`). After deploy, run `php artisan ui:clear-registry-cache` if install JSON looks stale.
 
 ## MCP for coding agents
 

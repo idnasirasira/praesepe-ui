@@ -5,7 +5,7 @@
 
 @section('toc')
     <x-docs.toc :items="[
-        ['id' => 'cli', 'label' => 'CLI quick start'],
+        ['id' => 'cli', 'label' => 'CLI'],
         ['id' => 'mcp', 'label' => 'MCP for agents'],
         ['id' => 'requirements', 'label' => 'Requirements'],
         ['id' => 'manual', 'label' => 'Manual setup'],
@@ -16,8 +16,16 @@
 @php
     $cliPackage = (string) config('ui-docs.cli_package');
     $registryUrl = (string) config('ui-docs.registry_url');
+    $cliPublished = (bool) config('ui-docs.cli_published', false);
 
     $cliInit = "npx {$cliPackage}@latest init\nnpx {$cliPackage}@latest add button modal";
+
+    $cliFromClone = <<<'BASH'
+git clone https://github.com/idnasirasira/praesepe-ui.git
+cd praesepe-ui
+node packages/cli/bin/praesepe-ui.js init --cwd /path/to/your-laravel-app --registry https://ui.praesepe.id/r
+node packages/cli/bin/praesepe-ui.js add button modal --cwd /path/to/your-laravel-app --registry https://ui.praesepe.id/r
+BASH;
 
     $source = static fn (string $path): string => '@'.'source "'.$path.'";';
 
@@ -46,15 +54,27 @@ JS;
         Prefer the CLI for humans and MCP for coding agents. There is no Composer vendor UI package in v1.
     </p>
 
-    <h2 id="cli">CLI quick start</h2>
-    <p>
-        From a Laravel app that already has Tailwind CSS v4 via Vite:
-    </p>
-    <x-docs.code-block language="bash" :code="$cliInit" />
+    <h2 id="cli">CLI</h2>
+    @if ($cliPublished)
+        <p>
+            From a Laravel app that already has Tailwind CSS v4 via Vite:
+        </p>
+        <x-docs.code-block language="bash" :code="$cliInit" />
+    @else
+        <p>
+            The npm package <code class="rounded bg-surface-sunken px-1 text-sm">{{ $cliPackage }}</code> is not published yet.
+            Until it is live, run the CLI from a clone (or use MCP / the HTTP registry below).
+        </p>
+        <x-docs.code-block language="bash" :code="$cliFromClone" />
+        <p class="text-fg-muted">
+            After publish, the short form will be
+            <code class="rounded bg-surface-sunken px-1 text-sm">npx {{ $cliPackage }}@latest init</code>.
+        </p>
+    @endif
     <ul>
         <li><code class="rounded bg-surface-sunken px-1 text-sm">init</code> writes <code class="rounded bg-surface-sunken px-1 text-sm">components.json</code>, copies <code class="rounded bg-surface-sunken px-1 text-sm">theme.css</code>, and wires your app CSS</li>
         <li><code class="rounded bg-surface-sunken px-1 text-sm">add</code> copies Blade primitives and required icons from the public registry</li>
-        <li>Default registry: <code class="rounded bg-surface-sunken px-1 text-sm tabular-nums">{{ $registryUrl }}</code></li>
+        <li>Default registry: <a class="text-brand underline underline-offset-2" href="{{ route('registry.home') }}"><code class="rounded bg-surface-sunken px-1 text-sm tabular-nums">{{ $registryUrl }}</code></a></li>
     </ul>
     <p>
         Then install Alpine if needed (<code class="rounded bg-surface-sunken px-1 text-sm">npm install alpinejs @alpinejs/focus</code>) and register the focus plugin once.

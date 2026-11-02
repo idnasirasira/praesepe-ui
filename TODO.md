@@ -28,4 +28,5 @@
 - [ ] Home page marketing metrics, testimonials, and client names (still called out in `home.blade.php`)
 - [ ] Social proof (star counts, download counts) until measurable from a public source
 - [x] Distribution strategy v1: copy-paste via CLI (`@praesepe/ui`) + HTTP registry `/r/*` + MCP `get_install_files` / `get_init_files` (Composer vendor UI package out of scope for v1)
-- [ ] Publish `@praesepe/ui` to npm once production registry is deployed
+- [ ] Publish `@praesepe/ui` to npm once the npm org/account is unsuspended, then set `cli_published` to `true` in `config/ui-docs.php`
+- [ ] After each production deploy that changes registry payloads: `php artisan ui:clear-registry-cache`

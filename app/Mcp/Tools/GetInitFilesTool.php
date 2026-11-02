@@ -55,8 +55,10 @@ JS,
             ],
             'checklist' => $init['checklist'],
             'cli' => [
+                'published' => (bool) config('ui-docs.cli_published', false),
                 'init' => "npx {$cli}@latest init",
                 'add' => "npx {$cli}@latest add button",
+                'from_clone' => 'node packages/cli/bin/praesepe-ui.js init --registry '.$registryUrl,
                 'registry' => $registryUrl,
             ],
         ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));

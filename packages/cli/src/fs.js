@@ -1,6 +1,26 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+const ALLOWED_PREFIXES = [
+  'resources/views/components/ui/',
+  'resources/views/components/icons/',
+  'resources/css/',
+];
+
+/**
+ * @param {string} relativePath
+ * @returns {boolean}
+ */
+export function isAllowedInstallPath(relativePath) {
+  const normalized = relativePath.replace(/\\/g, '/').replace(/^\.\//, '');
+
+  if (normalized.includes('..') || path.isAbsolute(normalized)) {
+    return false;
+  }
+
+  return ALLOWED_PREFIXES.some((prefix) => normalized === prefix.slice(0, -1) || normalized.startsWith(prefix));
+}
+
 /**
  * @param {string} cwd
  * @param {string} relativePath
@@ -9,9 +29,18 @@ import path from 'node:path';
  * @returns {'written' | 'skipped'}
  */
 export function writeProjectFile(cwd, relativePath, content, options = {}) {
-  const target = path.resolve(cwd, relativePath);
+  const normalized = relativePath.replace(/\\/g, '/');
 
-  if (!target.startsWith(path.resolve(cwd) + path.sep) && target !== path.resolve(cwd)) {
+  if (!isAllowedInstallPath(normalized)) {
+    throw new Error(
+      `Refusing to write disallowed path: ${relativePath}. Allowed: ${ALLOWED_PREFIXES.join(', ')}`,
+    );
+  }
+
+  const target = path.resolve(cwd, normalized);
+  const root = path.resolve(cwd);
+
+  if (!target.startsWith(root + path.sep) && target !== root) {
     throw new Error(`Refusing to write outside project: ${relativePath}`);
   }
 
