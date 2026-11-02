@@ -172,6 +172,7 @@
             x-transition:leave-end="opacity-0 scale-95 translate-y-0.5"
             class="z-[55] min-w-48 rounded-card border border-border bg-surface-raised p-1 shadow-lg ring-1 ring-border/60 {{ $alignClass }}"
             x-bind:aria-hidden="(!open).toString()"
+            x-on:keydown="onMenuKeydown($event)"
         >
             {{ $slot }}
         </div>

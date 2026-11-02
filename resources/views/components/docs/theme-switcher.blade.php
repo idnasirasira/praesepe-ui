@@ -43,7 +43,7 @@
         x-on:click="open = !open"
         x-bind:aria-expanded="open.toString()"
         aria-haspopup="listbox"
-        aria-label="Theme switcher"
+        x-bind:aria-label="current().label"
     >
         <span class="flex items-center -space-x-1" aria-hidden="true">
             <template x-for="item in themes" x-bind:key="item.id">

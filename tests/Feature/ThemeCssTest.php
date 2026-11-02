@@ -53,7 +53,7 @@ it('defines required ui tokens across themes and dark blocks', function (): void
         ->and($css)->toContain('html.dark[data-theme=\'warm\']')
         ->and($css)->toContain('@custom-variant dark')
         ->and($css)->toContain('@theme inline')
-        ->and($css)->toContain('--ui-warning: oklch(0.68 0.17 55)')
+        ->and($css)->toContain('--ui-warning: oklch(0.52 0.15 50)')
         ->and($css)->toContain('--ui-on-warning: oklch(0.99 0.01 70)');
 
     $appCss = file_get_contents(resource_path('css/app.css'));

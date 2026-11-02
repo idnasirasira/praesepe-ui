@@ -107,7 +107,6 @@
                     x-bind:class="viewport === 'full' ? 'bg-surface-raised font-medium text-fg shadow-2xs' : 'text-fg-muted hover:text-fg'"
                     x-on:click="viewport = 'full'"
                     title="Desktop 100%"
-                    aria-label="Desktop width"
                 >
                     Desk
                 </button>
@@ -117,7 +116,6 @@
                     x-bind:class="viewport === 'tablet' ? 'bg-surface-raised font-medium text-fg shadow-2xs' : 'text-fg-muted hover:text-fg'"
                     x-on:click="viewport = 'tablet'"
                     title="Tablet 768px"
-                    aria-label="Tablet width"
                 >
                     Tab
                 </button>
@@ -127,7 +125,6 @@
                     x-bind:class="viewport === 'mobile' ? 'bg-surface-raised font-medium text-fg shadow-2xs' : 'text-fg-muted hover:text-fg'"
                     x-on:click="viewport = 'mobile'"
                     title="Mobile 375px"
-                    aria-label="Mobile width"
                 >
                     Mob
                 </button>
